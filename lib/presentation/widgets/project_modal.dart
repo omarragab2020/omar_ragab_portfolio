@@ -594,6 +594,7 @@ class _ProjectModalState extends State<ProjectModal> {
           ),
         ),
       ),
-    );
-  }
+    ),
+  );
+}
 }

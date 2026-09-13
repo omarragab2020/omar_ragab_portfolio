@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../core/theme/app_colors.dart';
 import '../controllers/portfolio_controller.dart';
 import '../sections/about_section.dart';
 import '../sections/contact_section.dart';
