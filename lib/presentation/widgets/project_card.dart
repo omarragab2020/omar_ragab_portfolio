@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../core/constants/portfolio_data.dart';
 import '../../core/theme/app_colors.dart';
@@ -226,21 +226,19 @@ class _ProjectCardState extends State<ProjectCard> {
                       ),
                       const SizedBox(height: 10),
 
-                      // Description
-                      Expanded(
-                        child: Text(
-                          widget.isArabic
-                              ? project.descriptionAr
-                              : project.descriptionEn,
-                          maxLines: 3,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            fontSize: 12.5,
-                            color: isDark
-                                ? AppColors.textDarkSecondary
-                                : AppColors.textLightSecondary,
-                            height: 1.4,
-                          ),
+                      // Description with clean line clamping
+                      Text(
+                        widget.isArabic
+                            ? project.descriptionAr
+                            : project.descriptionEn,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: 12.5,
+                          color: isDark
+                              ? AppColors.textDarkSecondary
+                              : AppColors.textLightSecondary,
+                          height: 1.45,
                         ),
                       ),
                       const SizedBox(height: 12),
@@ -252,7 +250,7 @@ class _ProjectCardState extends State<ProjectCard> {
                         children: project.techStack.take(3).map((tech) {
                           return Container(
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 8, vertical: 3),
+                                horizontal: 8, vertical: 3.5),
                             decoration: BoxDecoration(
                               color: isDark
                                   ? AppColors.bgDarkSecondary
@@ -267,7 +265,7 @@ class _ProjectCardState extends State<ProjectCard> {
                             child: Text(
                               tech,
                               style: TextStyle(
-                                fontSize: 10,
+                                fontSize: 10.5,
                                 fontWeight: FontWeight.w600,
                                 color: isDark
                                     ? AppColors.textDarkPrimary
@@ -277,7 +275,7 @@ class _ProjectCardState extends State<ProjectCard> {
                           );
                         }).toList(),
                       ),
-                      const SizedBox(height: 12),
+                      const Spacer(),
                       const Divider(height: 1),
                       const SizedBox(height: 8),
 
@@ -294,7 +292,7 @@ class _ProjectCardState extends State<ProjectCard> {
                                 );
                               },
                               icon: const Icon(Icons.photo_library_outlined,
-                                  size: 15),
+                                  size: 16),
                               label: Text(
                                 widget.isArabic
                                     ? "تفاصيل وصور"
@@ -302,7 +300,7 @@ class _ProjectCardState extends State<ProjectCard> {
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: const TextStyle(
-                                  fontSize: 11.5,
+                                  fontSize: 12,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -324,9 +322,9 @@ class _ProjectCardState extends State<ProjectCard> {
                                 size: 14,
                                 color: Color(0xFF00E676),
                               ),
-                              tooltip: "Google Play",
+                              tooltip: "Google Play Store",
                               style: IconButton.styleFrom(
-                                padding: const EdgeInsets.all(5),
+                                padding: const EdgeInsets.all(6),
                               ),
                             ),
                           if (project.appStoreUrl != null)
@@ -336,25 +334,25 @@ class _ProjectCardState extends State<ProjectCard> {
                               },
                               icon: FaIcon(
                                 FontAwesomeIcons.apple,
-                                size: 16,
+                                size: 17,
                                 color: isDark ? Colors.white : Colors.black87,
                               ),
-                              tooltip: "App Store",
+                              tooltip: "Apple App Store",
                               style: IconButton.styleFrom(
-                                padding: const EdgeInsets.all(5),
+                                padding: const EdgeInsets.all(6),
                               ),
                             ),
                           IconButton(
                             onPressed: () {
                               UrlHelper.openGitHub();
                             },
-                            icon: const FaIcon(FontAwesomeIcons.github, size: 15),
+                            icon: const FaIcon(FontAwesomeIcons.github, size: 16),
                             tooltip: "GitHub Code",
                             style: IconButton.styleFrom(
                               foregroundColor: isDark
                                   ? AppColors.textDarkSecondary
                                   : AppColors.textLightSecondary,
-                              padding: const EdgeInsets.all(5),
+                              padding: const EdgeInsets.all(6),
                             ),
                           ),
                         ],

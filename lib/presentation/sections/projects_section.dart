@@ -98,7 +98,7 @@ class ProjectsSection extends StatelessWidget {
                   crossAxisCount: isMobile ? 1 : (isTablet ? 2 : 3),
                   crossAxisSpacing: 18,
                   mainAxisSpacing: 18,
-                  childAspectRatio: isMobile ? 0.88 : (isTablet ? 0.80 : 0.80),
+                  childAspectRatio: isMobile ? 0.78 : (isTablet ? 0.72 : 0.68),
                 ),
                 itemBuilder: (context, index) {
                   return ProjectCard(
