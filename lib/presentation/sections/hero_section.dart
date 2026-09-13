@@ -1,4 +1,4 @@
-﻿import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../core/constants/portfolio_data.dart';
@@ -341,7 +341,7 @@ class HeroSection extends StatelessWidget {
                   ),
                   child: Text(
                     isArabic
-                        ? "Mid-Level Flutter Developer"
+                        ? "مطور تطبيقات فلاتر (Mid-Level)"
                         : "Mid-Level Flutter Developer",
                     style: const TextStyle(
                       fontSize: 11,
@@ -358,7 +358,7 @@ class HeroSection extends StatelessWidget {
                         size: 12, color: AppColors.accent),
                     const SizedBox(width: 4),
                     Text(
-                      isArabic ? "مصر (Egypt)" : "Egypt",
+                      isArabic ? "المنصورة، مصر" : "Egypt",
                       style: TextStyle(
                         fontSize: 11,
                         color: isDark ? Colors.white60 : Colors.black54,

@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../core/constants/portfolio_data.dart';
 import '../../core/theme/app_colors.dart';
@@ -46,8 +46,10 @@ class _ProjectModalState extends State<ProjectModal> {
         horizontal: isMobile ? 16 : 40,
         vertical: isMobile ? 24 : 40,
       ),
-      child: Container(
-        width: isDesktop ? 900 : double.infinity,
+      child: Directionality(
+        textDirection: widget.isArabic ? TextDirection.rtl : TextDirection.ltr,
+        child: Container(
+          width: isDesktop ? 900 : double.infinity,
         constraints: BoxConstraints(
           maxHeight: MediaQuery.of(context).size.height * 0.9,
         ),

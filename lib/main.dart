@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'core/theme/app_theme.dart';
 import 'presentation/controllers/portfolio_controller.dart';
@@ -29,6 +29,7 @@ class OmarPortfolioApp extends StatelessWidget {
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: controller.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+      locale: controller.isArabic ? const Locale('ar') : const Locale('en'),
       home: const HomeScreen(),
     );
   }
