@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../controllers/portfolio_controller.dart';
 import '../../core/theme/app_colors.dart';
@@ -42,49 +42,46 @@ class ProjectsSection extends StatelessWidget {
           ),
           const SizedBox(height: 28),
 
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: categories.map((cat) {
-                final isSelected = controller.selectedCategory == cat["key"];
+          Wrap(
+            alignment: WrapAlignment.center,
+            spacing: 8,
+            runSpacing: 10,
+            children: categories.map((cat) {
+              final isSelected = controller.selectedCategory == cat["key"];
 
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 4),
-                  child: FilterChip(
-                    selected: isSelected,
-                    label: Text(
-                      isArabic ? cat["labelAr"]! : cat["labelEn"]!,
-                      style: TextStyle(
-                        fontSize: 12.5,
-                        fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
-                        color: isSelected
-                            ? Colors.white
-                            : (isDark
-                                ? AppColors.textDarkSecondary
-                                : AppColors.textLightSecondary),
-                      ),
-                    ),
-                    selectedColor: AppColors.primary,
-                    backgroundColor: isDark
-                        ? AppColors.bgDarkCard
-                        : AppColors.bgLightCard,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      side: BorderSide(
-                        color: isSelected
-                            ? AppColors.primary
-                            : (isDark
-                                ? AppColors.borderDark
-                                : AppColors.borderLight),
-                      ),
-                    ),
-                    onSelected: (_) {
-                      controller.setSelectedCategory(cat["key"]!);
-                    },
+              return FilterChip(
+                selected: isSelected,
+                label: Text(
+                  isArabic ? cat["labelAr"]! : cat["labelEn"]!,
+                  style: TextStyle(
+                    fontSize: 12.5,
+                    fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+                    color: isSelected
+                        ? Colors.white
+                        : (isDark
+                            ? AppColors.textDarkSecondary
+                            : AppColors.textLightSecondary),
                   ),
-                );
-              }).toList(),
-            ),
+                ),
+                selectedColor: AppColors.primary,
+                backgroundColor: isDark
+                    ? AppColors.bgDarkCard
+                    : AppColors.bgLightCard,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                  side: BorderSide(
+                    color: isSelected
+                        ? AppColors.primary
+                        : (isDark
+                            ? AppColors.borderDark
+                            : AppColors.borderLight),
+                  ),
+                ),
+                onSelected: (_) {
+                  controller.setSelectedCategory(cat["key"]!);
+                },
+              );
+            }).toList(),
           ),
           const SizedBox(height: 32),
 

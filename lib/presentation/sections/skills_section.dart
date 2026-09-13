@@ -55,98 +55,93 @@ class _SkillsSectionState extends State<SkillsSection> {
           _buildSuperpowersRow(context, isDark, isDesktop, isMobile),
           const SizedBox(height: 36),
 
-          // Interactive Category Filter Tabs (without "All")
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            physics: const BouncingScrollPhysics(),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(categoryTabs.length, (index) {
-                final tab = categoryTabs[index];
-                final isSelected = _selectedCategoryIndex == index;
+          // Interactive Category Filter Tabs (responsive Wrap)
+          Wrap(
+            alignment: WrapAlignment.center,
+            spacing: 8,
+            runSpacing: 10,
+            children: List.generate(categoryTabs.length, (index) {
+              final tab = categoryTabs[index];
+              final isSelected = _selectedCategoryIndex == index;
 
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 5),
-                  child: InkWell(
-                    onTap: () {
-                      setState(() {
-                        _selectedCategoryIndex = index;
-                      });
-                    },
-                    borderRadius: BorderRadius.circular(25),
-                    child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 250),
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 9,
-                      ),
-                      decoration: BoxDecoration(
-                        gradient: isSelected
-                            ? const LinearGradient(
-                                colors: [
-                                  AppColors.primary,
-                                  AppColors.primaryDark,
-                                ],
-                              )
-                            : null,
-                        color: isSelected
-                            ? null
-                            : (isDark
-                                ? AppColors.bgDarkCard
-                                : AppColors.bgLightCard),
-                        borderRadius: BorderRadius.circular(25),
-                        border: Border.all(
-                          color: isSelected
-                              ? Colors.transparent
-                              : (isDark
-                                  ? AppColors.borderDark
-                                  : AppColors.borderLight),
-                        ),
-                        boxShadow: isSelected
-                            ? [
-                                BoxShadow(
-                                  color: AppColors.primary
-                                      .withValues(alpha: 0.4),
-                                  blurRadius: 12,
-                                  offset: const Offset(0, 4),
-                                ),
-                              ]
-                            : null,
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(
-                            tab["icon"] as IconData,
-                            size: 15,
-                            color: isSelected
-                                ? Colors.white
-                                : AppColors.primaryLight,
-                          ),
-                          const SizedBox(width: 8),
-                          Text(
-                            widget.isArabic
-                                ? tab["titleAr"] as String
-                                : tab["titleEn"] as String,
-                            style: TextStyle(
-                              fontSize: 12.5,
-                              fontWeight: isSelected
-                                  ? FontWeight.bold
-                                  : FontWeight.w600,
-                              color: isSelected
-                                  ? Colors.white
-                                  : (isDark
-                                      ? AppColors.textDarkSecondary
-                                      : AppColors.textLightSecondary),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+              return InkWell(
+                onTap: () {
+                  setState(() {
+                    _selectedCategoryIndex = index;
+                  });
+                },
+                borderRadius: BorderRadius.circular(25),
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 250),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 9,
                   ),
-                );
-              }),
-            ),
+                  decoration: BoxDecoration(
+                    gradient: isSelected
+                        ? const LinearGradient(
+                            colors: [
+                              AppColors.primary,
+                              AppColors.primaryDark,
+                            ],
+                          )
+                        : null,
+                    color: isSelected
+                        ? null
+                        : (isDark
+                            ? AppColors.bgDarkCard
+                            : AppColors.bgLightCard),
+                    borderRadius: BorderRadius.circular(25),
+                    border: Border.all(
+                      color: isSelected
+                          ? Colors.transparent
+                          : (isDark
+                              ? AppColors.borderDark
+                              : AppColors.borderLight),
+                    ),
+                    boxShadow: isSelected
+                        ? [
+                            BoxShadow(
+                              color: AppColors.primary
+                                  .withValues(alpha: 0.4),
+                              blurRadius: 12,
+                              offset: const Offset(0, 4),
+                            ),
+                          ]
+                        : null,
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        tab["icon"] as IconData,
+                        size: 15,
+                        color: isSelected
+                            ? Colors.white
+                            : AppColors.primaryLight,
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        widget.isArabic
+                            ? tab["titleAr"] as String
+                            : tab["titleEn"] as String,
+                        style: TextStyle(
+                          fontSize: 12.5,
+                          fontWeight: isSelected
+                              ? FontWeight.bold
+                              : FontWeight.w600,
+                          color: isSelected
+                              ? Colors.white
+                              : (isDark
+                                  ? AppColors.textDarkSecondary
+                                  : AppColors.textLightSecondary),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            }),
           ),
           const SizedBox(height: 28),
 
