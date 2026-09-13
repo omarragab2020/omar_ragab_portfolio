@@ -55,95 +55,110 @@ class _SkillsSectionState extends State<SkillsSection> {
           _buildSuperpowersRow(context, isDark, isDesktop, isMobile),
           const SizedBox(height: 36),
 
-          // Interactive Category Filter Tabs (responsive Wrap)
-          Wrap(
-            alignment: WrapAlignment.center,
-            spacing: 8,
-            runSpacing: 10,
-            children: List.generate(categoryTabs.length, (index) {
-              final tab = categoryTabs[index];
-              final isSelected = _selectedCategoryIndex == index;
+          // Interactive Category Filter Tabs (responsive & uniform width)
+          LayoutBuilder(
+            builder: (context, filterConstraints) {
+              final isNarrow = filterConstraints.maxWidth < 650;
 
-              return InkWell(
-                onTap: () {
-                  setState(() {
-                    _selectedCategoryIndex = index;
-                  });
-                },
-                borderRadius: BorderRadius.circular(25),
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 250),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 9,
-                  ),
-                  decoration: BoxDecoration(
-                    gradient: isSelected
-                        ? const LinearGradient(
-                            colors: [
-                              AppColors.primary,
-                              AppColors.primaryDark,
-                            ],
-                          )
-                        : null,
-                    color: isSelected
-                        ? null
-                        : (isDark
-                            ? AppColors.bgDarkCard
-                            : AppColors.bgLightCard),
-                    borderRadius: BorderRadius.circular(25),
-                    border: Border.all(
-                      color: isSelected
-                          ? Colors.transparent
-                          : (isDark
-                              ? AppColors.borderDark
-                              : AppColors.borderLight),
-                    ),
-                    boxShadow: isSelected
-                        ? [
-                            BoxShadow(
-                              color: AppColors.primary
-                                  .withValues(alpha: 0.4),
-                              blurRadius: 12,
-                              offset: const Offset(0, 4),
-                            ),
-                          ]
-                        : null,
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(
-                        tab["icon"] as IconData,
-                        size: 15,
-                        color: isSelected
-                            ? Colors.white
-                            : AppColors.primaryLight,
-                      ),
-                      const SizedBox(width: 8),
-                      Text(
-                        widget.isArabic
-                            ? tab["titleAr"] as String
-                            : tab["titleEn"] as String,
-                        style: TextStyle(
-                          fontSize: 12.5,
-                          fontWeight: isSelected
-                              ? FontWeight.bold
-                              : FontWeight.w600,
+              return Wrap(
+                alignment: WrapAlignment.center,
+                spacing: 8,
+                runSpacing: 8,
+                children: List.generate(categoryTabs.length, (index) {
+                  final tab = categoryTabs[index];
+                  final isSelected = _selectedCategoryIndex == index;
+
+                  return SizedBox(
+                    width: isNarrow ? double.infinity : null,
+                    child: InkWell(
+                      onTap: () {
+                        setState(() {
+                          _selectedCategoryIndex = index;
+                        });
+                      },
+                      borderRadius: BorderRadius.circular(25),
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 250),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: isNarrow ? 14 : 16,
+                          vertical: isNarrow ? 10 : 9,
+                        ),
+                        decoration: BoxDecoration(
+                          gradient: isSelected
+                              ? const LinearGradient(
+                                  colors: [
+                                    AppColors.primary,
+                                    AppColors.primaryDark,
+                                  ],
+                                )
+                              : null,
                           color: isSelected
-                              ? Colors.white
+                              ? null
                               : (isDark
-                                  ? AppColors.textDarkSecondary
-                                  : AppColors.textLightSecondary),
+                                  ? AppColors.bgDarkCard
+                                  : AppColors.bgLightCard),
+                          borderRadius: BorderRadius.circular(25),
+                          border: Border.all(
+                            color: isSelected
+                                ? Colors.transparent
+                                : (isDark
+                                    ? AppColors.borderDark
+                                    : AppColors.borderLight),
+                          ),
+                          boxShadow: isSelected
+                              ? [
+                                  BoxShadow(
+                                    color: AppColors.primary
+                                        .withValues(alpha: 0.4),
+                                    blurRadius: 10,
+                                    offset: const Offset(0, 3),
+                                  ),
+                                ]
+                              : null,
+                        ),
+                        child: Row(
+                          mainAxisSize:
+                              isNarrow ? MainAxisSize.max : MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              tab["icon"] as IconData,
+                              size: 15,
+                              color: isSelected
+                                  ? Colors.white
+                                  : AppColors.primaryLight,
+                            ),
+                            const SizedBox(width: 8),
+                            Flexible(
+                              child: Text(
+                                widget.isArabic
+                                    ? tab["titleAr"] as String
+                                    : tab["titleEn"] as String,
+                                style: TextStyle(
+                                  fontSize: 12.5,
+                                  fontWeight: isSelected
+                                      ? FontWeight.bold
+                                      : FontWeight.w600,
+                                  color: isSelected
+                                      ? Colors.white
+                                      : (isDark
+                                          ? AppColors.textDarkSecondary
+                                          : AppColors.textLightSecondary),
+                                ),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                    ],
-                  ),
-                ),
+                    ),
+                  );
+                }),
               );
-            }),
+            },
           ),
-          const SizedBox(height: 28),
+          const SizedBox(height: 24),
 
           // Skill Cards Grid
           LayoutBuilder(
@@ -158,9 +173,9 @@ class _SkillsSectionState extends State<SkillsSection> {
                 itemCount: displayedSkills.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: isNarrow ? 1 : (isMedium ? 2 : 3),
-                  crossAxisSpacing: 16,
-                  mainAxisSpacing: 16,
-                  childAspectRatio: isNarrow ? 1.85 : (isMedium ? 1.75 : 1.70),
+                  crossAxisSpacing: 14,
+                  mainAxisSpacing: 14,
+                  childAspectRatio: isNarrow ? 2.65 : (isMedium ? 2.1 : 1.95),
                 ),
                 itemBuilder: (context, index) {
                   return SkillCard(

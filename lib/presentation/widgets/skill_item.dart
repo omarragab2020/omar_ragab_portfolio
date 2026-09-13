@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import '../../core/constants/portfolio_data.dart';
 import '../../core/theme/app_colors.dart';
 import 'glass_container.dart';
@@ -51,19 +51,19 @@ class _SkillCardState extends State<SkillCard> {
               offset: Offset(0, _isHovered ? 8 : 4),
             ),
           ],
-          padding: const EdgeInsets.all(18),
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               // Top Row: Icon + Name + Proficiency Badge
               Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   // Brand Icon Container
                   Container(
-                    width: 44,
-                    height: 44,
+                    width: 36,
+                    height: 36,
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
@@ -73,39 +73,40 @@ class _SkillCardState extends State<SkillCard> {
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                       ),
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(10),
                       border: Border.all(
                         color: brandColor.withValues(alpha: _isHovered ? 0.8 : 0.35),
-                        width: 1.5,
+                        width: 1.2,
                       ),
                       boxShadow: [
                         if (_isHovered)
                           BoxShadow(
                             color: brandColor.withValues(alpha: 0.4),
-                            blurRadius: 10,
+                            blurRadius: 8,
                           ),
                       ],
                     ),
                     child: Center(
                       child: Icon(
                         skill.icon,
-                        size: 22,
+                        size: 18,
                         color: brandColor,
                       ),
                     ),
                   ),
-                  const SizedBox(width: 14),
+                  const SizedBox(width: 10),
 
                   // Title and Tech Tag
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
                           skill.name,
                           style: TextStyle(
                             fontWeight: FontWeight.w800,
-                            fontSize: 15,
+                            fontSize: 13.5,
                             color: isDark
                                 ? AppColors.textDarkPrimary
                                 : AppColors.textLightPrimary,
@@ -113,18 +114,18 @@ class _SkillCardState extends State<SkillCard> {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
-                        const SizedBox(height: 3),
+                        const SizedBox(height: 2),
                         Container(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 7, vertical: 2),
+                              horizontal: 6, vertical: 1.5),
                           decoration: BoxDecoration(
                             color: brandColor.withValues(alpha: 0.12),
-                            borderRadius: BorderRadius.circular(6),
+                            borderRadius: BorderRadius.circular(5),
                           ),
                           child: Text(
                             widget.isArabic ? skill.tagAr : skill.tagEn,
                             style: TextStyle(
-                              fontSize: 10.5,
+                              fontSize: 9.5,
                               fontWeight: FontWeight.w700,
                               color: brandColor,
                             ),
@@ -139,7 +140,7 @@ class _SkillCardState extends State<SkillCard> {
                   // Proficiency Chip
                   Container(
                     padding:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                        const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
                     decoration: BoxDecoration(
                       color: isDark
                           ? AppColors.bgDarkSecondary
@@ -155,24 +156,24 @@ class _SkillCardState extends State<SkillCard> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Container(
-                          width: 6,
-                          height: 6,
+                          width: 5,
+                          height: 5,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             color: brandColor,
                             boxShadow: [
                               BoxShadow(
                                 color: brandColor.withValues(alpha: 0.8),
-                                blurRadius: 4,
+                                blurRadius: 3,
                               ),
                             ],
                           ),
                         ),
-                        const SizedBox(width: 5),
+                        const SizedBox(width: 4),
                         Text(
                           "${(skill.level * 100).toInt()}%",
                           style: TextStyle(
-                            fontSize: 11,
+                            fontSize: 10.5,
                             fontWeight: FontWeight.bold,
                             color: isDark
                                 ? Colors.white
@@ -185,41 +186,41 @@ class _SkillCardState extends State<SkillCard> {
                 ],
               ),
 
-              const SizedBox(height: 12),
+              const SizedBox(height: 6),
 
               // Engineering Note / Micro-Insight
               Text(
                 widget.isArabic ? skill.noteAr : skill.noteEn,
                 style: TextStyle(
-                  fontSize: 12,
+                  fontSize: 11.5,
                   color: isDark
                       ? AppColors.textDarkSecondary
                       : AppColors.textLightSecondary,
-                  height: 1.4,
+                  height: 1.35,
                 ),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
 
-              const SizedBox(height: 14),
+              const SizedBox(height: 8),
 
               // Glowing Progress Line
               Stack(
                 children: [
                   Container(
-                    height: 5,
+                    height: 4,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: isDark
                           ? Colors.white.withValues(alpha: 0.06)
                           : Colors.black.withValues(alpha: 0.05),
-                      borderRadius: BorderRadius.circular(3),
+                      borderRadius: BorderRadius.circular(2),
                     ),
                   ),
                   FractionallySizedBox(
                     widthFactor: skill.level,
                     child: Container(
-                      height: 5,
+                      height: 4,
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                           colors: [
@@ -227,11 +228,11 @@ class _SkillCardState extends State<SkillCard> {
                             brandColor,
                           ],
                         ),
-                        borderRadius: BorderRadius.circular(3),
+                        borderRadius: BorderRadius.circular(2),
                         boxShadow: [
                           BoxShadow(
                             color: brandColor.withValues(alpha: _isHovered ? 0.7 : 0.35),
-                            blurRadius: _isHovered ? 8 : 4,
+                            blurRadius: _isHovered ? 6 : 3,
                             offset: const Offset(0, 1),
                           ),
                         ],
