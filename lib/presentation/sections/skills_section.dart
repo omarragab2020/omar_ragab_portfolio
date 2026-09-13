@@ -197,32 +197,32 @@ class _SkillsSectionState extends State<SkillsSection> {
       {
         "titleEn": "Clean Architecture",
         "titleAr": "Clean Architecture",
-        "descEn": "Strict Domain, UseCase & Data separation with 100% testability.",
-        "descAr": "فصل طبقات الدومين والبيانات بمبادئ SOLID لسهولة الفحص والتطوير.",
+        "descEn": "SOLID principles & 100% testable domain layers.",
+        "descAr": "مبادئ SOLID وفصل طبقات الدومين والبيانات.",
         "icon": Icons.architecture_rounded,
         "color": const Color(0xFF6366F1),
       },
       {
         "titleEn": "Real-Time Systems",
         "titleAr": "نظم Real-Time",
-        "descEn": "WebSocket streams, Pusher channels & GPS live pinging.",
-        "descAr": "تتبع خرائط وأحداث طلبات حية وفورية عبر Streams و WebSockets.",
+        "descEn": "Live WebSocket & Pusher stream sync.",
+        "descAr": "تتبع خرائط وأحداث لحظية عبر WebSockets و Pusher.",
         "icon": Icons.sensors_rounded,
         "color": const Color(0xFFF97316),
       },
       {
         "titleEn": "Offline-First",
         "titleAr": "أداء Offline-First",
-        "descEn": "High-speed Isar & Hive caching for resilient zero-net UX.",
-        "descAr": "كاش محلي سريع جداً يضمن تشغيل التطبيق بالكامل بدون إنترنت.",
+        "descEn": "Fast local Isar & Hive caching engine.",
+        "descAr": "كاش محلي فائق السرعة عبر Hive و SQLite.",
         "icon": Icons.offline_bolt_rounded,
         "color": const Color(0xFF10B981),
       },
       {
         "titleEn": "Store Production",
-        "titleAr": "جاهزية الإنتاج",
-        "descEn": "Google Play & App Store CI/CD releases with zero-crash policy.",
-        "descAr": "نشر فعلي معتمد على المتاجر مع سياسة أخطاء صارمة وأتمتة النشر.",
+        "titleAr": "جاهزية المتاجر",
+        "descEn": "Automated Google Play & App Store releases.",
+        "descAr": "نشر معتمد على المتاجر مع أتمتة CI/CD.",
         "icon": Icons.storefront_rounded,
         "color": const Color(0xFF00D2FF),
       },
@@ -230,54 +230,58 @@ class _SkillsSectionState extends State<SkillsSection> {
 
     return LayoutBuilder(
       builder: (context, constraints) {
-        final count = constraints.maxWidth < 650
-            ? 1
-            : (constraints.maxWidth < 1050 ? 2 : 4);
+        final isNarrow = constraints.maxWidth < 650;
+        final isMedium =
+            constraints.maxWidth >= 650 && constraints.maxWidth < 1050;
 
         return GridView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           itemCount: pillars.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: count,
-            crossAxisSpacing: 14,
-            mainAxisSpacing: 14,
-            childAspectRatio: count == 1 ? 2.8 : (count == 2 ? 2.2 : 1.45),
+            crossAxisCount: isNarrow ? 2 : (isMedium ? 2 : 4),
+            crossAxisSpacing: isNarrow ? 8 : 12,
+            mainAxisSpacing: isNarrow ? 8 : 12,
+            childAspectRatio: isNarrow ? 1.55 : (isMedium ? 2.3 : 1.65),
           ),
           itemBuilder: (context, index) {
             final p = pillars[index];
             final color = p["color"] as Color;
 
             return GlassContainer(
-              padding: const EdgeInsets.all(16),
+              padding: EdgeInsets.all(isNarrow ? 10 : 14),
               borderColor: color.withValues(alpha: 0.35),
-              borderRadius: 16,
+              borderRadius: 14,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
                     children: [
                       Container(
-                        padding: const EdgeInsets.all(8),
+                        padding: EdgeInsets.all(isNarrow ? 6 : 7),
                         decoration: BoxDecoration(
                           color: color.withValues(alpha: 0.15),
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(
+                            color: color.withValues(alpha: 0.3),
+                            width: 1,
+                          ),
                         ),
                         child: Icon(
                           p["icon"] as IconData,
-                          size: 18,
+                          size: isNarrow ? 15 : 17,
                           color: color,
                         ),
                       ),
-                      const SizedBox(width: 10),
+                      const SizedBox(width: 8),
                       Expanded(
                         child: Text(
                           widget.isArabic
                               ? p["titleAr"] as String
                               : p["titleEn"] as String,
                           style: TextStyle(
-                            fontSize: 14,
+                            fontSize: isNarrow ? 12 : 13.5,
                             fontWeight: FontWeight.bold,
                             color: isDark
                                 ? Colors.white
@@ -289,17 +293,17 @@ class _SkillsSectionState extends State<SkillsSection> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 4),
                   Text(
                     widget.isArabic
                         ? p["descAr"] as String
                         : p["descEn"] as String,
                     style: TextStyle(
-                      fontSize: 11.5,
+                      fontSize: isNarrow ? 10.5 : 11.5,
                       color: isDark
                           ? AppColors.textDarkSecondary
                           : AppColors.textLightSecondary,
-                      height: 1.35,
+                      height: 1.25,
                     ),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
