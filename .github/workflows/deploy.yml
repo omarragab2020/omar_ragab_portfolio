@@ -4,6 +4,10 @@ on:
   push:
     branches: [ main, master ]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: write
 
@@ -26,7 +30,8 @@ jobs:
         run: flutter build web --release --base-href "/omar_ragab_portfolio/"
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build/web
+          force_orphan: true
