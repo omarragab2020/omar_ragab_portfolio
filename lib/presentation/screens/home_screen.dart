@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../controllers/portfolio_controller.dart';
 import '../sections/about_section.dart';
@@ -219,7 +219,91 @@ class _HomeScreenState extends State<HomeScreen> {
                 onSectionSelected: _onNavSectionSelected,
               ),
             ),
+
+            // Floating Mobile Bottom Navigation Dock (Interactive App-Like Feel)
+            if (MediaQuery.of(context).size.width < 768)
+              Positioned(
+                bottom: 14,
+                left: 16,
+                right: 16,
+                child: Center(
+                  child: Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                    decoration: BoxDecoration(
+                      color: isDark
+                          ? const Color(0xFF0D1117).withValues(alpha: 0.92)
+                          : Colors.white.withValues(alpha: 0.95),
+                      borderRadius: BorderRadius.circular(30),
+                      border: Border.all(
+                        color: isDark
+                            ? AppColors.borderDark
+                            : AppColors.borderLight,
+                        width: 1.2,
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppColors.primary.withValues(alpha: 0.28),
+                          blurRadius: 20,
+                          offset: const Offset(0, 6),
+                        ),
+                      ],
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        _buildMobileNavIcon(0, Icons.home_rounded,
+                            isAr ? "الرئيسية" : "Home", controller.activeNavIndex, isDark),
+                        _buildMobileNavIcon(1, Icons.person_rounded,
+                            isAr ? "عني" : "About", controller.activeNavIndex, isDark),
+                        _buildMobileNavIcon(2, Icons.code_rounded,
+                            isAr ? "المهارات" : "Skills", controller.activeNavIndex, isDark),
+                        _buildMobileNavIcon(3, Icons.layers_rounded,
+                            isAr ? "المشاريع" : "Projects", controller.activeNavIndex, isDark),
+                        _buildMobileNavIcon(4, Icons.work_rounded,
+                            isAr ? "الخبرات" : "Career", controller.activeNavIndex, isDark),
+                        _buildMobileNavIcon(5, Icons.mail_rounded,
+                            isAr ? "تواصل" : "Contact", controller.activeNavIndex, isDark),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildMobileNavIcon(int index, IconData icon, String tooltip,
+      int activeIndex, bool isDark) {
+    final isActive = activeIndex == index;
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 3),
+      child: InkWell(
+        onTap: () => _onNavSectionSelected(index),
+        borderRadius: BorderRadius.circular(20),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 250),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+          decoration: BoxDecoration(
+            color: isActive
+                ? AppColors.primary.withValues(alpha: 0.2)
+                : Colors.transparent,
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+              color: isActive ? AppColors.primary : Colors.transparent,
+              width: 1,
+            ),
+          ),
+          child: Icon(
+            icon,
+            size: 19,
+            color: isActive
+                ? AppColors.primaryLight
+                : (isDark ? Colors.white54 : Colors.black54),
+          ),
         ),
       ),
     );

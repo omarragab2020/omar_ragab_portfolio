@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import 'glass_container.dart';
 
@@ -51,9 +51,9 @@ class StatsSection extends StatelessWidget {
           itemCount: stats.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: isMobile ? 2 : (isTablet ? 2 : 4),
-            crossAxisSpacing: 16,
-            mainAxisSpacing: 16,
-            childAspectRatio: isMobile ? 1.2 : 1.35,
+            crossAxisSpacing: isMobile ? 10 : 16,
+            mainAxisSpacing: isMobile ? 10 : 16,
+            childAspectRatio: isMobile ? 1.6 : 1.35,
           ),
           itemBuilder: (context, index) {
             final item = stats[index];

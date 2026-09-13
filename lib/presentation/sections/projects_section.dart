@@ -5,10 +5,24 @@ import '../../core/theme/app_colors.dart';
 import '../widgets/project_card.dart';
 import '../widgets/section_title.dart';
 
-class ProjectsSection extends StatelessWidget {
+class ProjectsSection extends StatefulWidget {
   final bool isArabic;
 
   const ProjectsSection({super.key, required this.isArabic});
+
+  @override
+  State<ProjectsSection> createState() => _ProjectsSectionState();
+}
+
+class _ProjectsSectionState extends State<ProjectsSection> {
+  final PageController _pageController = PageController(viewportFraction: 0.90);
+  int _currentPage = 0;
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,44 +31,45 @@ class ProjectsSection extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     final categories = [
-      {"key": "All", "labelEn": "All Projects (9)", "labelAr": "كل المشاريع (9)"},
-      {"key": "Delivery", "labelEn": "Delivery & Logistics", "labelAr": "التوصيل واللوجستيات"},
-      {"key": "Real-time", "labelEn": "Booking & Real-time", "labelAr": "الحجوزات و Real-time"},
-      {"key": "E-commerce", "labelEn": "E-Commerce & Deals", "labelAr": "التجارة والعروض"},
-      {"key": "Education", "labelEn": "EdTech Platforms", "labelAr": "المنصات التعليمية"},
-      {"key": "Islamic", "labelEn": "Islamic & Quran", "labelAr": "التطبيقات الإسلامية"},
-      {"key": "Tools", "labelEn": "Productivity & Maps", "labelAr": "الأدوات والخرائط"},
+      {"key": "All", "labelEn": "All (9)", "labelAr": "الكل (9)"},
+      {"key": "Delivery", "labelEn": "Delivery", "labelAr": "التوصيل"},
+      {"key": "Real-time", "labelEn": "Real-time", "labelAr": "الحجوزات"},
+      {"key": "E-commerce", "labelEn": "E-Commerce", "labelAr": "المتاجر"},
+      {"key": "Education", "labelEn": "EdTech", "labelAr": "التعليم"},
+      {"key": "Islamic", "labelEn": "Islamic", "labelAr": "إسلامي"},
+      {"key": "Tools", "labelEn": "Tools", "labelAr": "الأدوات"},
     ];
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 40),
+      padding: const EdgeInsets.symmetric(vertical: 36),
       child: Column(
         children: [
           SectionTitle(
-            tag: isArabic ? "معرض الأعمال" : "Portfolio Showcase",
-            title: isArabic
+            tag: widget.isArabic ? "معرض الأعمال" : "Portfolio Showcase",
+            title: widget.isArabic
                 ? "مشاريع وتطبيقات عملية قوية"
                 : "Featured Production Applications",
-            subtitle: isArabic
+            subtitle: widget.isArabic
                 ? "مجموعة مختارة من التطبيقات التي قمت ببنائها وهندستها بأعلى معايير الأداء وتجربة المستخدم وقابلية التوسع."
                 : "Explore production-grade Flutter apps with real-time architectures, complex state management, and seamless UX.",
             icon: Icons.layers_rounded,
           ),
-          const SizedBox(height: 28),
+          const SizedBox(height: 24),
 
+          // Categories Filter Tabs
           Wrap(
             alignment: WrapAlignment.center,
-            spacing: 8,
-            runSpacing: 10,
+            spacing: 6,
+            runSpacing: 8,
             children: categories.map((cat) {
               final isSelected = controller.selectedCategory == cat["key"];
 
               return FilterChip(
                 selected: isSelected,
                 label: Text(
-                  isArabic ? cat["labelAr"]! : cat["labelEn"]!,
+                  widget.isArabic ? cat["labelAr"]! : cat["labelEn"]!,
                   style: TextStyle(
-                    fontSize: 12.5,
+                    fontSize: 12,
                     fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
                     color: isSelected
                         ? Colors.white
@@ -64,9 +79,8 @@ class ProjectsSection extends StatelessWidget {
                   ),
                 ),
                 selectedColor: AppColors.primary,
-                backgroundColor: isDark
-                    ? AppColors.bgDarkCard
-                    : AppColors.bgLightCard,
+                backgroundColor:
+                    isDark ? AppColors.bgDarkCard : AppColors.bgLightCard,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                   side: BorderSide(
@@ -79,31 +93,141 @@ class ProjectsSection extends StatelessWidget {
                 ),
                 onSelected: (_) {
                   controller.setSelectedCategory(cat["key"]!);
+                  setState(() {
+                    _currentPage = 0;
+                  });
                 },
               );
             }).toList(),
           ),
-          const SizedBox(height: 32),
+          const SizedBox(height: 24),
 
+          // Responsive Display: Interactive Swipeable Carousel on Mobile, Grid on Desktop
           LayoutBuilder(
             builder: (context, constraints) {
               final isMobile = constraints.maxWidth < 680;
-              final isTablet = constraints.maxWidth >= 680 && constraints.maxWidth < 1050;
+              final isTablet =
+                  constraints.maxWidth >= 680 && constraints.maxWidth < 1050;
 
+              if (isMobile) {
+                if (projects.isEmpty) {
+                  return const SizedBox.shrink();
+                }
+
+                return Column(
+                  children: [
+                    SizedBox(
+                      height: 440,
+                      child: PageView.builder(
+                        controller: _pageController,
+                        itemCount: projects.length,
+                        onPageChanged: (index) {
+                          setState(() {
+                            _currentPage = index;
+                          });
+                        },
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 6,
+                              vertical: 4,
+                            ),
+                            child: ProjectCard(
+                              project: projects[index],
+                              isArabic: widget.isArabic,
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                    const SizedBox(height: 14),
+
+                    // Swipe Indicator & Next/Prev Controls
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        // Prev Button
+                        IconButton(
+                          icon: const Icon(Icons.arrow_back_ios_rounded, size: 14),
+                          onPressed: _currentPage > 0
+                              ? () {
+                                  _pageController.previousPage(
+                                    duration: const Duration(milliseconds: 300),
+                                    curve: Curves.easeOutCubic,
+                                  );
+                                }
+                              : null,
+                          style: IconButton.styleFrom(
+                            backgroundColor: isDark
+                                ? AppColors.bgDarkSecondary
+                                : AppColors.bgLightSecondary,
+                            padding: const EdgeInsets.all(8),
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+
+                        // Dots Indicator
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: List.generate(
+                            projects.length,
+                            (dotIndex) => AnimatedContainer(
+                              duration: const Duration(milliseconds: 250),
+                              margin: const EdgeInsets.symmetric(horizontal: 3),
+                              width: _currentPage == dotIndex ? 20 : 6,
+                              height: 6,
+                              decoration: BoxDecoration(
+                                color: _currentPage == dotIndex
+                                    ? AppColors.primary
+                                    : (isDark
+                                        ? Colors.white24
+                                        : Colors.black26),
+                                borderRadius: BorderRadius.circular(3),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+
+                        // Next Button
+                        IconButton(
+                          icon: const Icon(Icons.arrow_forward_ios_rounded, size: 14),
+                          onPressed: _currentPage < projects.length - 1
+                              ? () {
+                                  _pageController.nextPage(
+                                    duration: const Duration(milliseconds: 300),
+                                    curve: Curves.easeOutCubic,
+                                  );
+                                }
+                              : null,
+                          style: IconButton.styleFrom(
+                            backgroundColor: isDark
+                                ? AppColors.bgDarkSecondary
+                                : AppColors.bgLightSecondary,
+                            padding: const EdgeInsets.all(8),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                );
+              }
+
+              // Desktop & Tablet: Multi-column Grid
               return GridView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: projects.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: isMobile ? 1 : (isTablet ? 2 : 3),
+                  crossAxisCount: isTablet ? 2 : 3,
                   crossAxisSpacing: 18,
                   mainAxisSpacing: 18,
-                  childAspectRatio: isMobile ? 0.78 : (isTablet ? 0.72 : 0.68),
+                  childAspectRatio: isTablet ? 0.72 : 0.68,
                 ),
                 itemBuilder: (context, index) {
                   return ProjectCard(
                     project: projects[index],
-                    isArabic: isArabic,
+                    isArabic: widget.isArabic,
                   );
                 },
               );
