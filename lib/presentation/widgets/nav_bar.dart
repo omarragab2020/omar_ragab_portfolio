@@ -1,4 +1,4 @@
-﻿import 'dart:ui';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -24,8 +24,8 @@ class NavBar extends StatelessWidget {
     final isAr = controller.isArabic;
 
     final navItems = isAr
-        ? ["الرئيسية", "عني", "المهارات", "المشاريع", "الخبرات", "التواصل"]
-        : ["Home", "About", "Skills", "Projects", "Experience", "Contact"];
+        ? ["الرئيسية", "عني", "الخبرات", "المشاريع", "المهارات", "التواصل"]
+        : ["Home", "About", "Experience", "Projects", "Skills", "Contact"];
 
     return ClipRRect(
       child: BackdropFilter(

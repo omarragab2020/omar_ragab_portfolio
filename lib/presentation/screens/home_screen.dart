@@ -42,9 +42,9 @@ class _HomeScreenState extends State<HomeScreen> {
     final keys = [
       _heroKey,
       _aboutKey,
-      _skillsKey,
-      _projectsKey,
       _experienceKey,
+      _projectsKey,
+      _skillsKey,
       _contactKey,
     ];
 
@@ -97,13 +97,13 @@ class _HomeScreenState extends State<HomeScreen> {
         _scrollToKey(_aboutKey, 1);
         break;
       case 2:
-        _scrollToKey(_skillsKey, 2);
+        _scrollToKey(_experienceKey, 2);
         break;
       case 3:
         _scrollToKey(_projectsKey, 3);
         break;
       case 4:
-        _scrollToKey(_experienceKey, 4);
+        _scrollToKey(_skillsKey, 4);
         break;
       case 5:
         _scrollToKey(_contactKey, 5);
@@ -169,25 +169,25 @@ class _HomeScreenState extends State<HomeScreen> {
                                 child: AboutSection(isArabic: isAr),
                               ),
 
-                              // Skills Section (2)
-                              Container(
-                                key: _skillsKey,
-                                child: SkillsSection(isArabic: isAr),
-                              ),
-
-                              // Projects Section (3)
-                              Container(
-                                key: _projectsKey,
-                                child: ProjectsSection(isArabic: isAr),
-                              ),
-
-                              // Experience & Terminal Section (4)
+                              // Experience & Terminal Section (2) 💼
                               Container(
                                 key: _experienceKey,
                                 child: ExperienceSection(isArabic: isAr),
                               ),
 
-                              // Contact Section (5)
+                              // Projects Section (3) 🚀
+                              Container(
+                                key: _projectsKey,
+                                child: ProjectsSection(isArabic: isAr),
+                              ),
+
+                              // Skills Section (4) ⚡
+                              Container(
+                                key: _skillsKey,
+                                child: SkillsSection(isArabic: isAr),
+                              ),
+
+                              // Contact Section (5) ✉️
                               Container(
                                 key: _contactKey,
                                 child: ContactSection(isArabic: isAr),
@@ -256,12 +256,12 @@ class _HomeScreenState extends State<HomeScreen> {
                             isAr ? "الرئيسية" : "Home", controller.activeNavIndex, isDark),
                         _buildMobileNavIcon(1, Icons.person_rounded,
                             isAr ? "عني" : "About", controller.activeNavIndex, isDark),
-                        _buildMobileNavIcon(2, Icons.code_rounded,
-                            isAr ? "المهارات" : "Skills", controller.activeNavIndex, isDark),
+                        _buildMobileNavIcon(2, Icons.work_rounded,
+                            isAr ? "الخبرات" : "Career", controller.activeNavIndex, isDark),
                         _buildMobileNavIcon(3, Icons.layers_rounded,
                             isAr ? "المشاريع" : "Projects", controller.activeNavIndex, isDark),
-                        _buildMobileNavIcon(4, Icons.work_rounded,
-                            isAr ? "الخبرات" : "Career", controller.activeNavIndex, isDark),
+                        _buildMobileNavIcon(4, Icons.code_rounded,
+                            isAr ? "المهارات" : "Skills", controller.activeNavIndex, isDark),
                         _buildMobileNavIcon(5, Icons.mail_rounded,
                             isAr ? "تواصل" : "Contact", controller.activeNavIndex, isDark),
                       ],
