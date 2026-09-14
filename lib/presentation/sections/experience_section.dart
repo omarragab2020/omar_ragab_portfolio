@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import '../../core/constants/portfolio_data.dart';
 import '../../core/utils/responsive.dart';
 import '../widgets/dev_terminal.dart';
@@ -13,9 +13,10 @@ class ExperienceSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDesktop = Responsive.isDesktop(context);
+    final isMobile = Responsive.isMobile(context);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 40),
+      padding: EdgeInsets.symmetric(vertical: isMobile ? 20 : 40),
       child: Column(
         children: [
           SectionTitle(
@@ -28,7 +29,7 @@ class ExperienceSection extends StatelessWidget {
                 : "Career timeline across companies and remote teams, paired with a live hacker developer console.",
             icon: Icons.timeline_rounded,
           ),
-          const SizedBox(height: 36),
+          SizedBox(height: isMobile ? 20 : 36),
 
           isDesktop
               ? Row(

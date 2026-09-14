@@ -36,7 +36,7 @@ class _SkillsSectionState extends State<SkillsSection> {
         PortfolioData.skillCategories[_selectedCategoryIndex].skills;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 40),
+      padding: EdgeInsets.symmetric(vertical: isMobile ? 20 : 40),
       child: Column(
         children: [
           SectionTitle(
@@ -49,108 +49,102 @@ class _SkillsSectionState extends State<SkillsSection> {
                 : "A categorized deep-dive into the mobile frameworks, state machines, real-time engines, and DevOps pipelines I master.",
             icon: Icons.code_rounded,
           ),
-          const SizedBox(height: 32),
+          SizedBox(height: isMobile ? 18 : 32),
 
           // Core Superpowers Banner (4 Pillars)
           _buildSuperpowersRow(context, isDark, isDesktop, isMobile),
-          const SizedBox(height: 36),
+          SizedBox(height: isMobile ? 18 : 32),
 
-          // Interactive Category Filter Tabs (responsive & uniform width)
+          // Interactive Category Filter Tabs (responsive compact wrap)
           LayoutBuilder(
             builder: (context, filterConstraints) {
               final isNarrow = filterConstraints.maxWidth < 650;
 
               return Wrap(
                 alignment: WrapAlignment.center,
-                spacing: 8,
-                runSpacing: 8,
+                spacing: isNarrow ? 6 : 8,
+                runSpacing: isNarrow ? 6 : 8,
                 children: List.generate(categoryTabs.length, (index) {
                   final tab = categoryTabs[index];
                   final isSelected = _selectedCategoryIndex == index;
 
-                  return SizedBox(
-                    width: isNarrow ? double.infinity : null,
-                    child: InkWell(
-                      onTap: () {
-                        setState(() {
-                          _selectedCategoryIndex = index;
-                        });
-                      },
-                      borderRadius: BorderRadius.circular(25),
-                      child: AnimatedContainer(
-                        duration: const Duration(milliseconds: 250),
-                        padding: EdgeInsets.symmetric(
-                          horizontal: isNarrow ? 14 : 16,
-                          vertical: isNarrow ? 10 : 9,
-                        ),
-                        decoration: BoxDecoration(
-                          gradient: isSelected
-                              ? const LinearGradient(
-                                  colors: [
-                                    AppColors.primary,
-                                    AppColors.primaryDark,
-                                  ],
-                                )
-                              : null,
+                  return InkWell(
+                    onTap: () {
+                      setState(() {
+                        _selectedCategoryIndex = index;
+                      });
+                    },
+                    borderRadius: BorderRadius.circular(25),
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 200),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: isNarrow ? 11 : 16,
+                        vertical: isNarrow ? 7 : 9,
+                      ),
+                      decoration: BoxDecoration(
+                        gradient: isSelected
+                            ? const LinearGradient(
+                                colors: [
+                                  AppColors.primary,
+                                  AppColors.primaryDark,
+                                ],
+                              )
+                            : null,
+                        color: isSelected
+                            ? null
+                            : (isDark
+                                ? AppColors.bgDarkCard
+                                : AppColors.bgLightCard),
+                        borderRadius: BorderRadius.circular(25),
+                        border: Border.all(
                           color: isSelected
-                              ? null
+                              ? Colors.transparent
                               : (isDark
-                                  ? AppColors.bgDarkCard
-                                  : AppColors.bgLightCard),
-                          borderRadius: BorderRadius.circular(25),
-                          border: Border.all(
-                            color: isSelected
-                                ? Colors.transparent
-                                : (isDark
-                                    ? AppColors.borderDark
-                                    : AppColors.borderLight),
-                          ),
-                          boxShadow: isSelected
-                              ? [
-                                  BoxShadow(
-                                    color: AppColors.primary
-                                        .withValues(alpha: 0.4),
-                                    blurRadius: 10,
-                                    offset: const Offset(0, 3),
-                                  ),
-                                ]
-                              : null,
+                                  ? AppColors.borderDark
+                                  : AppColors.borderLight),
                         ),
-                        child: Row(
-                          mainAxisSize:
-                              isNarrow ? MainAxisSize.max : MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              tab["icon"] as IconData,
-                              size: 15,
+                        boxShadow: isSelected
+                            ? [
+                                BoxShadow(
+                                  color: AppColors.primary
+                                      .withValues(alpha: 0.4),
+                                  blurRadius: 8,
+                                  offset: const Offset(0, 2),
+                                ),
+                              ]
+                            : null,
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            tab["icon"] as IconData,
+                            size: isNarrow ? 13 : 15,
+                            color: isSelected
+                                ? Colors.white
+                                : AppColors.primaryLight,
+                          ),
+                          const SizedBox(width: 6),
+                          Text(
+                            widget.isArabic
+                                ? tab["titleAr"] as String
+                                : tab["titleEn"] as String,
+                            style: TextStyle(
+                              fontSize: isNarrow ? 11.5 : 12.5,
+                              fontWeight: isSelected
+                                  ? FontWeight.bold
+                                  : FontWeight.w600,
                               color: isSelected
                                   ? Colors.white
-                                  : AppColors.primaryLight,
+                                  : (isDark
+                                      ? AppColors.textDarkSecondary
+                                      : AppColors.textLightSecondary),
                             ),
-                            const SizedBox(width: 8),
-                            Flexible(
-                              child: Text(
-                                widget.isArabic
-                                    ? tab["titleAr"] as String
-                                    : tab["titleEn"] as String,
-                                style: TextStyle(
-                                  fontSize: 12.5,
-                                  fontWeight: isSelected
-                                      ? FontWeight.bold
-                                      : FontWeight.w600,
-                                  color: isSelected
-                                      ? Colors.white
-                                      : (isDark
-                                          ? AppColors.textDarkSecondary
-                                          : AppColors.textLightSecondary),
-                                ),
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                          ],
-                        ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
                       ),
                     ),
                   );
@@ -158,7 +152,7 @@ class _SkillsSectionState extends State<SkillsSection> {
               );
             },
           ),
-          const SizedBox(height: 24),
+          SizedBox(height: isMobile ? 14 : 24),
 
           // Skill Cards Grid
           LayoutBuilder(
@@ -172,10 +166,10 @@ class _SkillsSectionState extends State<SkillsSection> {
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: displayedSkills.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: isNarrow ? 1 : (isMedium ? 2 : 3),
-                  crossAxisSpacing: 14,
-                  mainAxisSpacing: 14,
-                  childAspectRatio: isNarrow ? 2.65 : (isMedium ? 2.1 : 1.95),
+                  crossAxisCount: isNarrow ? 2 : (isMedium ? 2 : 3),
+                  crossAxisSpacing: isNarrow ? 8 : 14,
+                  mainAxisSpacing: isNarrow ? 8 : 14,
+                  childAspectRatio: isNarrow ? 1.55 : (isMedium ? 2.1 : 1.95),
                 ),
                 itemBuilder: (context, index) {
                   return SkillCard(
@@ -242,35 +236,34 @@ class _SkillsSectionState extends State<SkillsSection> {
             crossAxisCount: isNarrow ? 2 : (isMedium ? 2 : 4),
             crossAxisSpacing: isNarrow ? 8 : 12,
             mainAxisSpacing: isNarrow ? 8 : 12,
-            childAspectRatio: isNarrow ? 1.55 : (isMedium ? 2.3 : 1.65),
+            childAspectRatio: isNarrow ? 1.6 : (isMedium ? 2.3 : 1.65),
           ),
           itemBuilder: (context, index) {
             final p = pillars[index];
             final color = p["color"] as Color;
 
             return GlassContainer(
-              padding: EdgeInsets.all(isNarrow ? 10 : 14),
+              padding: EdgeInsets.symmetric(
+                horizontal: isNarrow ? 10 : 16,
+                vertical: isNarrow ? 10 : 16,
+              ),
+              borderRadius: isNarrow ? 14 : 18,
               borderColor: color.withValues(alpha: 0.35),
-              borderRadius: 14,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Row(
                     children: [
                       Container(
-                        padding: EdgeInsets.all(isNarrow ? 6 : 7),
+                        padding: EdgeInsets.all(isNarrow ? 5 : 7),
                         decoration: BoxDecoration(
-                          color: color.withValues(alpha: 0.15),
+                          color: color.withValues(alpha: 0.18),
                           borderRadius: BorderRadius.circular(8),
-                          border: Border.all(
-                            color: color.withValues(alpha: 0.3),
-                            width: 1,
-                          ),
                         ),
                         child: Icon(
                           p["icon"] as IconData,
-                          size: isNarrow ? 15 : 17,
+                          size: isNarrow ? 15 : 18,
                           color: color,
                         ),
                       ),
@@ -280,20 +273,18 @@ class _SkillsSectionState extends State<SkillsSection> {
                           widget.isArabic
                               ? p["titleAr"] as String
                               : p["titleEn"] as String,
-                          style: TextStyle(
-                            fontSize: isNarrow ? 12 : 13.5,
-                            fontWeight: FontWeight.bold,
-                            color: isDark
-                                ? Colors.white
-                                : AppColors.textLightPrimary,
-                          ),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: isNarrow ? 11.5 : 13.5,
+                            fontWeight: FontWeight.bold,
+                            color: isDark ? Colors.white : AppColors.textLightPrimary,
+                          ),
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 4),
+                  SizedBox(height: isNarrow ? 6 : 8),
                   Text(
                     widget.isArabic
                         ? p["descAr"] as String

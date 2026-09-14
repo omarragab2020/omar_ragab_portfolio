@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../core/constants/portfolio_data.dart';
 import '../../core/theme/app_colors.dart';
@@ -42,9 +42,10 @@ class _ContactSectionState extends State<ContactSection> {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final isDesktop = Responsive.isDesktop(context);
+    final isMobile = Responsive.isMobile(context);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 40),
+      padding: EdgeInsets.symmetric(vertical: isMobile ? 20 : 40),
       child: Column(
         children: [
           SectionTitle(
@@ -57,7 +58,7 @@ class _ContactSectionState extends State<ContactSection> {
                 : "Whether you have a new mobile product, technical inquiry, or job opportunity, feel free to reach out!",
             icon: Icons.support_agent_rounded,
           ),
-          const SizedBox(height: 36),
+          SizedBox(height: isMobile ? 18 : 36),
 
           isDesktop
               ? Row(
@@ -65,20 +66,20 @@ class _ContactSectionState extends State<ContactSection> {
                   children: [
                     Expanded(
                       flex: 5,
-                      child: _buildContactCards(context, isDark),
+                      child: _buildContactCards(context, isDark, isMobile),
                     ),
                     const SizedBox(width: 32),
                     Expanded(
                       flex: 5,
-                      child: _buildContactForm(context, isDark),
+                      child: _buildContactForm(context, isDark, isMobile),
                     ),
                   ],
                 )
               : Column(
                   children: [
-                    _buildContactCards(context, isDark),
-                    const SizedBox(height: 28),
-                    _buildContactForm(context, isDark),
+                    _buildContactCards(context, isDark, isMobile),
+                    const SizedBox(height: 20),
+                    _buildContactForm(context, isDark, isMobile),
                   ],
                 ),
         ],
@@ -86,11 +87,11 @@ class _ContactSectionState extends State<ContactSection> {
     );
   }
 
-  Widget _buildContactCards(BuildContext context, bool isDark) {
+  Widget _buildContactCards(BuildContext context, bool isDark, bool isMobile) {
     final channels = [
       {
-        "titleEn": "WhatsApp Direct Chat",
-        "titleAr": "محادثة فورية على واتساب",
+        "titleEn": "WhatsApp Chat",
+        "titleAr": "محادثة واتساب",
         "value": PortfolioData.displayPhone,
         "icon": FontAwesomeIcons.whatsapp,
         "color": const Color(0xFF25D366),
@@ -107,20 +108,98 @@ class _ContactSectionState extends State<ContactSection> {
       {
         "titleEn": "LinkedIn Profile",
         "titleAr": "حساب لينكد إن",
-        "value": "linkedin.com/in/omar-ragab",
+        "value": "omar-ragab",
         "icon": FontAwesomeIcons.linkedinIn,
         "color": const Color(0xFF0A66C2),
         "onTap": () => UrlHelper.openLinkedIn(),
       },
       {
-        "titleEn": "GitHub Repository",
+        "titleEn": "GitHub Profile",
         "titleAr": "مستودع جيت هاب",
-        "value": "github.com/omarragab2020",
+        "value": "omarragab2020",
         "icon": FontAwesomeIcons.github,
         "color": isDark ? Colors.white : Colors.black87,
         "onTap": () => UrlHelper.openGitHub(),
       },
     ];
+
+    if (isMobile) {
+      return GridView.builder(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemCount: channels.length,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 8,
+          mainAxisSpacing: 8,
+          childAspectRatio: 1.85,
+        ),
+        itemBuilder: (context, index) {
+          final c = channels[index];
+          final color = c["color"] as Color;
+          final onTap = c["onTap"] as VoidCallback;
+          final icon = c["icon"] as FaIconData;
+
+          return InkWell(
+            onTap: onTap,
+            borderRadius: BorderRadius.circular(14),
+            child: GlassContainer(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              borderRadius: 14,
+              child: Row(
+                children: [
+                  Container(
+                    width: 34,
+                    height: 34,
+                    decoration: BoxDecoration(
+                      color: color.withValues(alpha: 0.15),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Center(
+                      child: FaIcon(icon, color: color, size: 15),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          widget.isArabic
+                              ? c["titleAr"] as String
+                              : c["titleEn"] as String,
+                          style: TextStyle(
+                            fontSize: 10,
+                            fontWeight: FontWeight.w600,
+                            color: isDark
+                                ? AppColors.textDarkMuted
+                                : AppColors.textLightMuted,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        const SizedBox(height: 1),
+                        Text(
+                          c["value"] as String,
+                          style: TextStyle(
+                            fontSize: 11,
+                            fontWeight: FontWeight.bold,
+                            color: isDark ? Colors.white : AppColors.textLightPrimary,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+      );
+    }
 
     return Column(
       children: channels.map((c) {
@@ -194,27 +273,32 @@ class _ContactSectionState extends State<ContactSection> {
     );
   }
 
-  Widget _buildContactForm(BuildContext context, bool isDark) {
+  Widget _buildContactForm(BuildContext context, bool isDark, bool isMobile) {
     return GlassContainer(
-      padding: const EdgeInsets.all(26),
+      padding: EdgeInsets.all(isMobile ? 16 : 26),
+      borderRadius: isMobile ? 18 : 24,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             widget.isArabic ? "أرسل لي رسالة مباشرة" : "Send a Direct Message",
-            style: const TextStyle(
-              fontSize: 18,
+            style: TextStyle(
+              fontSize: isMobile ? 16 : 18,
               fontWeight: FontWeight.w800,
             ),
           ),
-          const SizedBox(height: 18),
+          SizedBox(height: isMobile ? 12 : 18),
 
           TextField(
             controller: _nameController,
             decoration: InputDecoration(
               labelText: widget.isArabic ? "الاسم الكريم" : "Your Name",
-              prefixIcon: const Icon(Icons.person_outline, size: 20),
+              prefixIcon: const Icon(Icons.person_outline, size: 18),
               filled: true,
+              contentPadding: EdgeInsets.symmetric(
+                horizontal: 14,
+                vertical: isMobile ? 12 : 16,
+              ),
               fillColor: isDark
                   ? AppColors.bgDarkSecondary.withValues(alpha: 0.6)
                   : AppColors.bgLightSecondary.withValues(alpha: 0.8),
@@ -226,15 +310,19 @@ class _ContactSectionState extends State<ContactSection> {
               ),
             ),
           ),
-          const SizedBox(height: 14),
+          SizedBox(height: isMobile ? 10 : 14),
 
           TextField(
             controller: _emailController,
             keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(
               labelText: widget.isArabic ? "البريد الإلكتروني" : "Your Email",
-              prefixIcon: const Icon(Icons.email_outlined, size: 20),
+              prefixIcon: const Icon(Icons.email_outlined, size: 18),
               filled: true,
+              contentPadding: EdgeInsets.symmetric(
+                horizontal: 14,
+                vertical: isMobile ? 12 : 16,
+              ),
               fillColor: isDark
                   ? AppColors.bgDarkSecondary.withValues(alpha: 0.6)
                   : AppColors.bgLightSecondary.withValues(alpha: 0.8),
@@ -246,19 +334,23 @@ class _ContactSectionState extends State<ContactSection> {
               ),
             ),
           ),
-          const SizedBox(height: 14),
+          SizedBox(height: isMobile ? 10 : 14),
 
           TextField(
             controller: _messageController,
-            maxLines: 4,
+            maxLines: isMobile ? 3 : 4,
             decoration: InputDecoration(
               labelText: widget.isArabic ? "تفاصيل الرسالة أو المشروع" : "Project Details / Message",
               alignLabelWithHint: true,
               prefixIcon: const Padding(
-                padding: EdgeInsets.only(bottom: 50),
-                child: Icon(Icons.chat_bubble_outline, size: 20),
+                padding: EdgeInsets.only(bottom: 35),
+                child: Icon(Icons.chat_bubble_outline, size: 18),
               ),
               filled: true,
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: 14,
+                vertical: 14,
+              ),
               fillColor: isDark
                   ? AppColors.bgDarkSecondary.withValues(alpha: 0.6)
                   : AppColors.bgLightSecondary.withValues(alpha: 0.8),
@@ -270,17 +362,20 @@ class _ContactSectionState extends State<ContactSection> {
               ),
             ),
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: isMobile ? 14 : 20),
 
           SizedBox(
             width: double.infinity,
-            height: 50,
+            height: isMobile ? 44 : 50,
             child: ElevatedButton.icon(
               onPressed: _sendMessage,
-              icon: const FaIcon(FontAwesomeIcons.paperPlane, size: 16),
+              icon: FaIcon(FontAwesomeIcons.paperPlane, size: isMobile ? 14 : 16),
               label: Text(
                 widget.isArabic ? "إرسال الرسالة عبر واتساب" : "Send via WhatsApp",
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: isMobile ? 13 : 15,
+                ),
               ),
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.primary,

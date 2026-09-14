@@ -28,6 +28,8 @@ class _ProjectCardState extends State<ProjectCard> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final project = widget.project;
 
+    final isMobile = MediaQuery.of(context).size.width < 680;
+
     return MouseRegion(
       onEnter: (_) => setState(() => _isHovered = true),
       onExit: (_) => setState(() => _isHovered = false),
@@ -35,10 +37,10 @@ class _ProjectCardState extends State<ProjectCard> {
         duration: const Duration(milliseconds: 250),
         curve: Curves.easeOutCubic,
         transform: _isHovered
-            ? Matrix4.translationValues(0.0, -8.0, 0.0)
+            ? Matrix4.translationValues(0.0, -6.0, 0.0)
             : Matrix4.identity(),
         child: GlassContainer(
-          borderRadius: 20,
+          borderRadius: isMobile ? 16 : 20,
           borderColor: _isHovered
               ? project.primaryColor.withValues(alpha: 0.8)
               : (isDark ? AppColors.borderDark : AppColors.borderLight),
@@ -47,8 +49,8 @@ class _ProjectCardState extends State<ProjectCard> {
               color: _isHovered
                   ? project.primaryColor.withValues(alpha: 0.25)
                   : Colors.black.withValues(alpha: isDark ? 0.2 : 0.05),
-              blurRadius: _isHovered ? 24 : 12,
-              offset: Offset(0, _isHovered ? 12 : 6),
+              blurRadius: _isHovered ? 20 : 10,
+              offset: Offset(0, _isHovered ? 10 : 5),
             ),
           ],
           child: Column(
@@ -58,11 +60,11 @@ class _ProjectCardState extends State<ProjectCard> {
               Stack(
                 children: [
                   ClipRRect(
-                    borderRadius: const BorderRadius.vertical(
-                      top: Radius.circular(20),
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(isMobile ? 16 : 20),
                     ),
                     child: Container(
-                      height: 160,
+                      height: isMobile ? 135 : 160,
                       width: double.infinity,
                       decoration: BoxDecoration(
                         color: project.primaryColor.withValues(alpha: 0.12),
@@ -75,7 +77,7 @@ class _ProjectCardState extends State<ProjectCard> {
                                 return Center(
                                   child: Icon(
                                     project.icon,
-                                    size: 48,
+                                    size: isMobile ? 38 : 48,
                                     color: project.primaryColor
                                         .withValues(alpha: 0.6),
                                   ),
@@ -85,7 +87,7 @@ class _ProjectCardState extends State<ProjectCard> {
                           : Center(
                               child: Icon(
                                 project.icon,
-                                size: 48,
+                                size: isMobile ? 38 : 48,
                                 color: project.primaryColor
                                     .withValues(alpha: 0.6),
                               ),
@@ -95,23 +97,25 @@ class _ProjectCardState extends State<ProjectCard> {
 
                   // Category Badge
                   Positioned(
-                    top: 12,
-                    left: 12,
+                    top: 10,
+                    left: 10,
                     child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 4),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: isMobile ? 8 : 10,
+                        vertical: isMobile ? 3 : 4,
+                      ),
                       decoration: BoxDecoration(
-                        color: Colors.black.withValues(alpha: 0.65),
+                        color: Colors.black.withValues(alpha: 0.7),
                         borderRadius: BorderRadius.circular(20),
                         border: Border.all(
-                          color: Colors.white.withValues(alpha: 0.15),
+                          color: Colors.white.withValues(alpha: 0.2),
                         ),
                       ),
                       child: Text(
                         project.category,
-                        style: const TextStyle(
+                        style: TextStyle(
                           color: Colors.white,
-                          fontSize: 11,
+                          fontSize: isMobile ? 10 : 11,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -120,8 +124,8 @@ class _ProjectCardState extends State<ProjectCard> {
 
                   // Featured or Live Badge
                   Positioned(
-                    top: 12,
-                    right: 12,
+                    top: 10,
+                    right: 10,
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -130,7 +134,7 @@ class _ProjectCardState extends State<ProjectCard> {
                           Container(
                             margin: const EdgeInsets.only(right: 6),
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 7, vertical: 4),
+                                horizontal: 7, vertical: 3),
                             decoration: BoxDecoration(
                               color: const Color(0xFF00C853),
                               borderRadius: BorderRadius.circular(20),
@@ -146,13 +150,13 @@ class _ProjectCardState extends State<ProjectCard> {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 const Icon(Icons.check,
-                                    size: 10, color: Colors.white),
+                                    size: 9, color: Colors.white),
                                 const SizedBox(width: 3),
                                 Text(
                                   widget.isArabic ? "لايف" : "LIVE",
                                   style: const TextStyle(
                                     color: Colors.white,
-                                    fontSize: 9.5,
+                                    fontSize: 9,
                                     fontWeight: FontWeight.w900,
                                   ),
                                 ),
@@ -162,7 +166,7 @@ class _ProjectCardState extends State<ProjectCard> {
                         if (project.isFeatured)
                           Container(
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 8, vertical: 4),
+                                horizontal: 7, vertical: 3),
                             decoration: BoxDecoration(
                               gradient: const LinearGradient(
                                 colors: [AppColors.accent, Colors.orangeAccent],
@@ -180,7 +184,7 @@ class _ProjectCardState extends State<ProjectCard> {
                               widget.isArabic ? "مميز ⭐" : "⭐ Featured",
                               style: const TextStyle(
                                 color: Colors.white,
-                                fontSize: 10,
+                                fontSize: 9.5,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -194,7 +198,7 @@ class _ProjectCardState extends State<ProjectCard> {
               // Content
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.all(16),
+                  padding: EdgeInsets.all(isMobile ? 12 : 16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -204,14 +208,14 @@ class _ProjectCardState extends State<ProjectCard> {
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
-                          fontSize: 17,
+                          fontSize: isMobile ? 15 : 17,
                           fontWeight: FontWeight.bold,
                           color: isDark
                               ? AppColors.textDarkPrimary
                               : AppColors.textLightPrimary,
                         ),
                       ),
-                      const SizedBox(height: 4),
+                      const SizedBox(height: 2),
                       Text(
                         widget.isArabic
                             ? project.subtitleAr
@@ -219,12 +223,12 @@ class _ProjectCardState extends State<ProjectCard> {
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
-                          fontSize: 12,
+                          fontSize: isMobile ? 11 : 12,
                           color: project.primaryColor,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      const SizedBox(height: 10),
+                      SizedBox(height: isMobile ? 6 : 10),
 
                       // Description with clean line clamping
                       Text(
@@ -234,50 +238,73 @@ class _ProjectCardState extends State<ProjectCard> {
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
-                          fontSize: 12.5,
+                          fontSize: isMobile ? 11.5 : 12.5,
                           color: isDark
                               ? AppColors.textDarkSecondary
                               : AppColors.textLightSecondary,
-                          height: 1.45,
+                          height: 1.4,
                         ),
                       ),
-                      const SizedBox(height: 12),
+                      SizedBox(height: isMobile ? 8 : 12),
 
                       // Tech Badges
                       Wrap(
-                        spacing: 6,
-                        runSpacing: 6,
-                        children: project.techStack.take(3).map((tech) {
-                          return Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 8, vertical: 3.5),
-                            decoration: BoxDecoration(
-                              color: isDark
-                                  ? AppColors.bgDarkSecondary
-                                  : AppColors.bgLightSecondary,
-                              borderRadius: BorderRadius.circular(6),
-                              border: Border.all(
+                        spacing: 5,
+                        runSpacing: 5,
+                        children: [
+                          ...project.techStack.take(3).map((tech) {
+                            return Container(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: isMobile ? 6 : 8,
+                                vertical: isMobile ? 2.5 : 3.5,
+                              ),
+                              decoration: BoxDecoration(
                                 color: isDark
-                                    ? AppColors.borderDark
-                                    : AppColors.borderLight,
+                                    ? AppColors.bgDarkSecondary
+                                    : AppColors.bgLightSecondary,
+                                borderRadius: BorderRadius.circular(6),
+                                border: Border.all(
+                                  color: isDark
+                                      ? AppColors.borderDark
+                                      : AppColors.borderLight,
+                                ),
+                              ),
+                              child: Text(
+                                tech,
+                                style: TextStyle(
+                                  fontSize: isMobile ? 9.5 : 10.5,
+                                  fontWeight: FontWeight.w600,
+                                  color: isDark
+                                      ? AppColors.textDarkPrimary
+                                      : AppColors.textLightPrimary,
+                                ),
+                              ),
+                            );
+                          }),
+                          if (project.techStack.length > 3)
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: isMobile ? 5 : 6,
+                                vertical: isMobile ? 2.5 : 3.5,
+                              ),
+                              decoration: BoxDecoration(
+                                color: project.primaryColor.withValues(alpha: 0.12),
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                              child: Text(
+                                "+${project.techStack.length - 3}",
+                                style: TextStyle(
+                                  fontSize: isMobile ? 9.5 : 10.5,
+                                  fontWeight: FontWeight.bold,
+                                  color: project.primaryColor,
+                                ),
                               ),
                             ),
-                            child: Text(
-                              tech,
-                              style: TextStyle(
-                                fontSize: 10.5,
-                                fontWeight: FontWeight.w600,
-                                color: isDark
-                                    ? AppColors.textDarkPrimary
-                                    : AppColors.textLightPrimary,
-                              ),
-                            ),
-                          );
-                        }).toList(),
+                        ],
                       ),
                       const Spacer(),
                       const Divider(height: 1),
-                      const SizedBox(height: 8),
+                      SizedBox(height: isMobile ? 4 : 8),
 
                       // Action Buttons
                       Row(
@@ -291,23 +318,23 @@ class _ProjectCardState extends State<ProjectCard> {
                                   widget.isArabic,
                                 );
                               },
-                              icon: const Icon(Icons.photo_library_outlined,
-                                  size: 16),
+                              icon: Icon(Icons.photo_library_outlined,
+                                  size: isMobile ? 14 : 16),
                               label: Text(
                                 widget.isArabic
                                     ? "تفاصيل وصور"
                                     : "Screens & Details",
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                  fontSize: 12,
+                                style: TextStyle(
+                                  fontSize: isMobile ? 11 : 12,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
                               style: TextButton.styleFrom(
                                 foregroundColor: project.primaryColor,
                                 padding:
-                                    const EdgeInsets.symmetric(horizontal: 4),
+                                    const EdgeInsets.symmetric(horizontal: 2),
                                 alignment: Alignment.centerLeft,
                               ),
                             ),
@@ -319,12 +346,12 @@ class _ProjectCardState extends State<ProjectCard> {
                               },
                               icon: const FaIcon(
                                 FontAwesomeIcons.googlePlay,
-                                size: 14,
+                                size: 13,
                                 color: Color(0xFF00E676),
                               ),
                               tooltip: "Google Play Store",
                               style: IconButton.styleFrom(
-                                padding: const EdgeInsets.all(6),
+                                padding: const EdgeInsets.all(4),
                               ),
                             ),
                           if (project.appStoreUrl != null)
@@ -334,25 +361,25 @@ class _ProjectCardState extends State<ProjectCard> {
                               },
                               icon: FaIcon(
                                 FontAwesomeIcons.apple,
-                                size: 17,
+                                size: 15,
                                 color: isDark ? Colors.white : Colors.black87,
                               ),
                               tooltip: "Apple App Store",
                               style: IconButton.styleFrom(
-                                padding: const EdgeInsets.all(6),
+                                padding: const EdgeInsets.all(4),
                               ),
                             ),
                           IconButton(
                             onPressed: () {
                               UrlHelper.openGitHub();
                             },
-                            icon: const FaIcon(FontAwesomeIcons.github, size: 16),
+                            icon: FaIcon(FontAwesomeIcons.github, size: isMobile ? 14 : 16),
                             tooltip: "GitHub Code",
                             style: IconButton.styleFrom(
                               foregroundColor: isDark
                                   ? AppColors.textDarkSecondary
                                   : AppColors.textLightSecondary,
-                              padding: const EdgeInsets.all(6),
+                              padding: const EdgeInsets.all(4),
                             ),
                           ),
                         ],

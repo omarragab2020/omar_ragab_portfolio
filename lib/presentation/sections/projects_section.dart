@@ -40,8 +40,10 @@ class _ProjectsSectionState extends State<ProjectsSection> {
       {"key": "Tools", "labelEn": "Tools", "labelAr": "الأدوات"},
     ];
 
+    final isMobileScreen = MediaQuery.of(context).size.width < 680;
+
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 36),
+      padding: EdgeInsets.symmetric(vertical: isMobileScreen ? 20 : 36),
       child: Column(
         children: [
           SectionTitle(
@@ -54,22 +56,26 @@ class _ProjectsSectionState extends State<ProjectsSection> {
                 : "Explore production-grade Flutter apps with real-time architectures, complex state management, and seamless UX.",
             icon: Icons.layers_rounded,
           ),
-          const SizedBox(height: 24),
+          SizedBox(height: isMobileScreen ? 14 : 24),
 
           // Categories Filter Tabs
           Wrap(
             alignment: WrapAlignment.center,
-            spacing: 6,
-            runSpacing: 8,
+            spacing: isMobileScreen ? 4 : 6,
+            runSpacing: isMobileScreen ? 6 : 8,
             children: categories.map((cat) {
               final isSelected = controller.selectedCategory == cat["key"];
 
               return FilterChip(
                 selected: isSelected,
+                padding: EdgeInsets.symmetric(
+                  horizontal: isMobileScreen ? 4 : 6,
+                  vertical: isMobileScreen ? 0 : 2,
+                ),
                 label: Text(
                   widget.isArabic ? cat["labelAr"]! : cat["labelEn"]!,
                   style: TextStyle(
-                    fontSize: 12,
+                    fontSize: isMobileScreen ? 11 : 12,
                     fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
                     color: isSelected
                         ? Colors.white
@@ -100,7 +106,7 @@ class _ProjectsSectionState extends State<ProjectsSection> {
               );
             }).toList(),
           ),
-          const SizedBox(height: 24),
+          SizedBox(height: isMobileScreen ? 14 : 24),
 
           // Responsive Display: Interactive Swipeable Carousel on Mobile, Grid on Desktop
           LayoutBuilder(
@@ -117,7 +123,7 @@ class _ProjectsSectionState extends State<ProjectsSection> {
                 return Column(
                   children: [
                     SizedBox(
-                      height: 440,
+                      height: 385,
                       child: PageView.builder(
                         controller: _pageController,
                         itemCount: projects.length,
@@ -129,8 +135,8 @@ class _ProjectsSectionState extends State<ProjectsSection> {
                         itemBuilder: (context, index) {
                           return Padding(
                             padding: const EdgeInsets.symmetric(
-                              horizontal: 6,
-                              vertical: 4,
+                              horizontal: 5,
+                              vertical: 2,
                             ),
                             child: ProjectCard(
                               project: projects[index],

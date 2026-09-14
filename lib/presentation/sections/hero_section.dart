@@ -25,9 +25,10 @@ class HeroSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final isDesktop = Responsive.isDesktop(context);
+    final isMobile = Responsive.isMobile(context);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 40),
+      padding: EdgeInsets.symmetric(vertical: isMobile ? 16 : 40),
       child: Column(
         children: [
           isDesktop
@@ -45,17 +46,248 @@ class HeroSection extends StatelessWidget {
                     ),
                   ],
                 )
-              : Column(
-                  children: [
-                    _buildHeroCard(context, isDark),
-                    const SizedBox(height: 36),
-                    _buildHeroInfo(context, isDark),
-                  ],
-                ),
+              : _buildMobileHero(context, isDark),
 
-          const SizedBox(height: 50),
+          SizedBox(height: isMobile ? 24 : 50),
 
           StatsSection(isArabic: isArabic),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildMobileHero(BuildContext context, bool isDark) {
+    final titlesList = isArabic
+        ? [
+            "مطور تطبيقات Flutter محترف 🚀",
+            "خبير إدارة الحالة BLoC & Cubit ⚡",
+            "مهندس نظم التوصيل والـ Real-time 📍",
+            "مطور كود نظيف وهيكلة قابلة للتوسع 🛠️",
+          ]
+        : [
+            "Mid-Level Flutter Mobile Engineer 🚀",
+            "State Management Specialist (BLoC/Cubit) ⚡",
+            "Real-time & Live Tracking Architect 📍",
+            "Clean Architecture & Modular Code Pro 🛠️",
+          ];
+
+    return GlassContainer(
+      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 22),
+      borderRadius: 24,
+      borderColor: AppColors.primary.withValues(alpha: 0.3),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          // Available Badge
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+            decoration: BoxDecoration(
+              color: AppColors.accent.withValues(alpha: 0.12),
+              borderRadius: BorderRadius.circular(30),
+              border: Border.all(
+                color: AppColors.accent.withValues(alpha: 0.4),
+                width: 1,
+              ),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  width: 7,
+                  height: 7,
+                  decoration: const BoxDecoration(
+                    color: AppColors.accent,
+                    shape: BoxShape.circle,
+                  ),
+                ),
+                const SizedBox(width: 6),
+                Text(
+                  isArabic
+                      ? "متاح للعمل (Full-time & Remote)"
+                      : "Available for Roles & Projects",
+                  style: const TextStyle(
+                    color: AppColors.accent,
+                    fontSize: 11,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 16),
+
+          // Avatar + Glow Ring
+          const ProfileAvatar(
+            size: 84,
+            showOnlineBadge: true,
+          ),
+          const SizedBox(height: 14),
+
+          // Name
+          ShaderMask(
+            shaderCallback: (bounds) =>
+                AppColors.heroGradient.createShader(bounds),
+            child: Text(
+              isArabic ? PortfolioData.nameAr : PortfolioData.nameEn,
+              style: const TextStyle(
+                fontSize: 26,
+                fontWeight: FontWeight.w900,
+                color: Colors.white,
+                letterSpacing: -0.5,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          const SizedBox(height: 6),
+
+          // Role Capsule & Location
+          Wrap(
+            alignment: WrapAlignment.center,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            spacing: 8,
+            runSpacing: 6,
+            children: [
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
+                decoration: BoxDecoration(
+                  color: AppColors.primary.withValues(alpha: 0.18),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Text(
+                  isArabic
+                      ? "مطور تطبيقات فلاتر (Mid-Level)"
+                      : "Mid-Level Flutter Developer",
+                  style: const TextStyle(
+                    fontSize: 11,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.primaryLight,
+                  ),
+                ),
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(Icons.location_on,
+                      size: 13, color: AppColors.accent),
+                  const SizedBox(width: 3),
+                  Text(
+                    isArabic ? "المنصورة، مصر" : "Egypt",
+                    style: TextStyle(
+                      fontSize: 11,
+                      color: isDark ? Colors.white70 : Colors.black87,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+
+          // Typewriter Animated Title
+          SizedBox(
+            height: 28,
+            child: AnimatedTextKit(
+              repeatForever: true,
+              animatedTexts: titlesList.map((t) {
+                return TypewriterAnimatedText(
+                  t,
+                  textAlign: TextAlign.center,
+                  textStyle: const TextStyle(
+                    fontSize: 13.5,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.secondary,
+                  ),
+                  speed: const Duration(milliseconds: 55),
+                );
+              }).toList(),
+            ),
+          ),
+          const SizedBox(height: 10),
+
+          // Concise Bio
+          Text(
+            isArabic ? PortfolioData.bioAr : PortfolioData.bioEn,
+            style: TextStyle(
+              fontSize: 13,
+              color: isDark
+                  ? AppColors.textDarkSecondary
+                  : AppColors.textLightSecondary,
+              height: 1.5,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 18),
+
+          // Action Buttons (Compact on Mobile)
+          Row(
+            children: [
+              Expanded(
+                child: ElevatedButton.icon(
+                  onPressed: onViewProjects,
+                  icon: const Icon(Icons.rocket_launch_rounded, size: 15),
+                  label: Text(
+                    isArabic ? "المشاريع (9)" : "Projects (9)",
+                    style: const TextStyle(fontSize: 12.5, fontWeight: FontWeight.bold),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.primary,
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(vertical: 11),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    elevation: 3,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: OutlinedButton.icon(
+                  onPressed: onContactMe,
+                  icon: const FaIcon(FontAwesomeIcons.paperPlane, size: 13),
+                  label: Text(
+                    isArabic ? "تواصل معي" : "Connect",
+                    style: const TextStyle(fontSize: 12.5, fontWeight: FontWeight.bold),
+                  ),
+                  style: OutlinedButton.styleFrom(
+                    foregroundColor:
+                        isDark ? Colors.white : AppColors.textLightPrimary,
+                    padding: const EdgeInsets.symmetric(vertical: 11),
+                    side: BorderSide(
+                      color: isDark ? AppColors.borderDark : AppColors.borderLight,
+                      width: 1.2,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+
+          // Social Row
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _buildSocialIcon(
+                  FontAwesomeIcons.github, () => UrlHelper.openGitHub(), true),
+              const SizedBox(width: 8),
+              _buildSocialIcon(
+                  FontAwesomeIcons.linkedinIn, () => UrlHelper.openLinkedIn(), true),
+              const SizedBox(width: 8),
+              _buildSocialIcon(
+                  FontAwesomeIcons.whatsapp, () => UrlHelper.openWhatsApp(), true),
+              const SizedBox(width: 8),
+              _buildSocialIcon(
+                  FontAwesomeIcons.envelope, () => UrlHelper.openEmail(), true),
+              const SizedBox(width: 8),
+              _buildSocialIcon(
+                  FontAwesomeIcons.phone, () => UrlHelper.openCall(), true),
+            ],
+          ),
         ],
       ),
     );
@@ -132,37 +364,22 @@ class HeroSection extends StatelessWidget {
         ),
         const SizedBox(height: 6),
 
-        // Name with Avatar next to it
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment:
-              isDesktop ? MainAxisAlignment.start : MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const ProfileAvatar(
-              size: 58,
-              showOnlineBadge: true,
+        // Name
+        ShaderMask(
+          shaderCallback: (bounds) =>
+              AppColors.heroGradient.createShader(bounds),
+          child: Text(
+            isArabic ? PortfolioData.nameAr : PortfolioData.nameEn,
+            style: TextStyle(
+              fontSize: isDesktop ? 46 : 32,
+              fontWeight: FontWeight.w900,
+              color: Colors.white,
+              letterSpacing: -1,
+              height: 1.1,
             ),
-            const SizedBox(width: 16),
-            Flexible(
-              child: ShaderMask(
-                shaderCallback: (bounds) =>
-                    AppColors.heroGradient.createShader(bounds),
-                child: Text(
-                  isArabic ? PortfolioData.nameAr : PortfolioData.nameEn,
-                  style: TextStyle(
-                    fontSize: isDesktop ? 46 : 32,
-                    fontWeight: FontWeight.w900,
-                    color: Colors.white,
-                    letterSpacing: -1,
-                    height: 1.1,
-                  ),
-                  textAlign:
-                      isDesktop ? TextAlign.start : TextAlign.center,
-                ),
-              ),
-            ),
-          ],
+            textAlign:
+                isDesktop ? TextAlign.start : TextAlign.center,
+          ),
         ),
         const SizedBox(height: 14),
 
@@ -268,13 +485,13 @@ class HeroSection extends StatelessWidget {
     );
   }
 
-  Widget _buildSocialIcon(FaIconData icon, VoidCallback onTap) {
+  Widget _buildSocialIcon(FaIconData icon, VoidCallback onTap, [bool isSmall = false]) {
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(10),
       child: Container(
-        width: 40,
-        height: 40,
+        width: isSmall ? 36 : 40,
+        height: isSmall ? 36 : 40,
         decoration: BoxDecoration(
           color: AppColors.primary.withValues(alpha: 0.1),
           borderRadius: BorderRadius.circular(10),
@@ -284,7 +501,7 @@ class HeroSection extends StatelessWidget {
           ),
         ),
         child: Center(
-          child: FaIcon(icon, size: 16, color: AppColors.primaryLight),
+          child: FaIcon(icon, size: isSmall ? 14 : 16, color: AppColors.primaryLight),
         ),
       ),
     );

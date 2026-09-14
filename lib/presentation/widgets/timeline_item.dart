@@ -1,7 +1,8 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../core/constants/portfolio_data.dart';
 import '../../core/theme/app_colors.dart';
+import '../../core/utils/responsive.dart';
 import 'glass_container.dart';
 
 class TimelineCard extends StatelessWidget {
@@ -21,224 +22,246 @@ class TimelineCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final isMobile = Responsive.isMobile(context);
 
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // Node & Line
-        Column(
-          children: [
-            Container(
-              width: 36,
-              height: 36,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                gradient: experience.isCurrent
-                    ? AppColors.heroGradient
-                    : const LinearGradient(
-                        colors: [AppColors.primary, AppColors.purpleNeon],
-                      ),
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.primary.withValues(alpha: 0.5),
-                    blurRadius: 10,
-                    offset: const Offset(0, 3),
-                  ),
-                ],
-              ),
-              child: const Center(
-                child: FaIcon(
-                  FontAwesomeIcons.briefcase,
-                  size: 14,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            if (!isLast)
+    return IntrinsicHeight(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          // Node & Dynamic Line
+          Column(
+            children: [
               Container(
-                width: 2,
-                height: 160,
+                width: isMobile ? 30 : 36,
+                height: isMobile ? 30 : 36,
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      AppColors.primary,
-                      AppColors.primary.withValues(alpha: 0.1),
-                    ],
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
+                  shape: BoxShape.circle,
+                  gradient: experience.isCurrent
+                      ? AppColors.heroGradient
+                      : const LinearGradient(
+                          colors: [AppColors.primary, AppColors.purpleNeon],
+                        ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.primary.withValues(alpha: 0.5),
+                      blurRadius: 10,
+                      offset: const Offset(0, 3),
+                    ),
+                  ],
+                ),
+                child: Center(
+                  child: FaIcon(
+                    FontAwesomeIcons.briefcase,
+                    size: isMobile ? 12 : 14,
+                    color: Colors.white,
                   ),
                 ),
               ),
-          ],
-        ),
-        const SizedBox(width: 20),
-
-        // Content
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 24),
-            child: GlassContainer(
-              padding: const EdgeInsets.all(20),
-              borderColor: experience.isCurrent ? AppColors.primaryLight : null,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Period Badge & Role
-                  Wrap(
-                    crossAxisAlignment: WrapCrossAlignment.center,
-                    spacing: 12,
-                    runSpacing: 8,
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 4),
-                        decoration: BoxDecoration(
-                          color: experience.isCurrent
-                              ? AppColors.accent.withValues(alpha: 0.15)
-                              : AppColors.primary.withValues(alpha: 0.15),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Text(
-                          isArabic ? experience.periodAr : experience.periodEn,
-                          style: TextStyle(
-                            color: experience.isCurrent
-                                ? AppColors.accent
-                                : AppColors.primaryLight,
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+              if (!isLast)
+                Expanded(
+                  child: Container(
+                    width: 2,
+                    margin: const EdgeInsets.symmetric(vertical: 4),
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          AppColors.primary,
+                          AppColors.primary.withValues(alpha: 0.1),
+                        ],
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
                       ),
-                      if (experience.isCurrent)
+                    ),
+                  ),
+                ),
+            ],
+          ),
+          SizedBox(width: isMobile ? 12 : 20),
+
+          // Content
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.only(bottom: isMobile ? 16 : 24),
+              child: GlassContainer(
+                padding: EdgeInsets.all(isMobile ? 14 : 20),
+                borderRadius: isMobile ? 16 : 20,
+                borderColor: experience.isCurrent ? AppColors.primaryLight : null,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Period Badge & Role
+                    Wrap(
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      spacing: 8,
+                      runSpacing: 6,
+                      children: [
                         Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 8, vertical: 2),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: isMobile ? 8 : 10,
+                            vertical: isMobile ? 3 : 4,
+                          ),
                           decoration: BoxDecoration(
-                            color: AppColors.accent,
-                            borderRadius: BorderRadius.circular(10),
+                            color: experience.isCurrent
+                                ? AppColors.accent.withValues(alpha: 0.15)
+                                : AppColors.primary.withValues(alpha: 0.15),
+                            borderRadius: BorderRadius.circular(20),
                           ),
                           child: Text(
-                            isArabic ? "الحالي" : "PRESENT",
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 10,
-                              fontWeight: FontWeight.w900,
+                            isArabic ? experience.periodAr : experience.periodEn,
+                            style: TextStyle(
+                              color: experience.isCurrent
+                                  ? AppColors.accent
+                                  : AppColors.primaryLight,
+                              fontSize: isMobile ? 11 : 12,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-
-                  // Role & Company
-                  Text(
-                    isArabic ? experience.roleAr : experience.roleEn,
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w800,
-                      color: isDark ? Colors.white : AppColors.textLightPrimary,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Row(
-                    children: [
-                      FaIcon(
-                        FontAwesomeIcons.building,
-                        size: 13,
-                        color: isDark
-                            ? AppColors.textDarkMuted
-                            : AppColors.textLightMuted,
-                      ),
-                      const SizedBox(width: 6),
-                      Text(
-                        isArabic
-                            ? experience.companyAr
-                            : experience.companyEn,
-                        style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.secondary,
-                        ),
-                      ),
-                      const SizedBox(width: 12),
-                      FaIcon(
-                        FontAwesomeIcons.locationDot,
-                        size: 12,
-                        color: isDark
-                            ? AppColors.textDarkMuted
-                            : AppColors.textLightMuted,
-                      ),
-                      const SizedBox(width: 4),
-                      Text(
-                        isArabic
-                            ? experience.locationAr
-                            : experience.locationEn,
-                        style: TextStyle(
-                          fontSize: 13,
-                          color: isDark
-                              ? AppColors.textDarkMuted
-                              : AppColors.textLightMuted,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-
-                  // Description
-                  Text(
-                    isArabic
-                        ? experience.descriptionAr
-                        : experience.descriptionEn,
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: isDark
-                          ? AppColors.textDarkSecondary
-                          : AppColors.textLightSecondary,
-                      height: 1.5,
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-
-                  // Highlights
-                  ...((isArabic
-                          ? experience.highlightsAr
-                          : experience.highlightsEn)
-                      .map(
-                    (h) => Padding(
-                      padding: const EdgeInsets.only(bottom: 6),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Padding(
-                            padding: EdgeInsets.only(top: 6),
-                            child: Icon(
-                              Icons.check_circle_outline,
-                              size: 14,
+                        if (experience.isCurrent)
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 7, vertical: 2),
+                            decoration: BoxDecoration(
                               color: AppColors.accent,
+                              borderRadius: BorderRadius.circular(10),
                             ),
-                          ),
-                          const SizedBox(width: 8),
-                          Expanded(
                             child: Text(
-                              h,
-                              style: TextStyle(
-                                fontSize: 13,
-                                color: isDark
-                                    ? AppColors.textDarkSecondary
-                                    : AppColors.textLightSecondary,
+                              isArabic ? "الحالي" : "PRESENT",
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 9.5,
+                                fontWeight: FontWeight.w900,
                               ),
                             ),
                           ),
-                        ],
+                      ],
+                    ),
+                    SizedBox(height: isMobile ? 6 : 10),
+
+                    // Role
+                    Text(
+                      isArabic ? experience.roleAr : experience.roleEn,
+                      style: TextStyle(
+                        fontSize: isMobile ? 15 : 18,
+                        fontWeight: FontWeight.w800,
+                        color: isDark ? Colors.white : AppColors.textLightPrimary,
                       ),
                     ),
-                  )),
-                ],
+                    const SizedBox(height: 3),
+
+                    // Company & Location
+                    Wrap(
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      spacing: 10,
+                      runSpacing: 4,
+                      children: [
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            FaIcon(
+                              FontAwesomeIcons.building,
+                              size: 11,
+                              color: isDark
+                                  ? AppColors.textDarkMuted
+                                  : AppColors.textLightMuted,
+                            ),
+                            const SizedBox(width: 4),
+                            Text(
+                              isArabic
+                                  ? experience.companyAr
+                                  : experience.companyEn,
+                              style: TextStyle(
+                                fontSize: isMobile ? 12 : 14,
+                                fontWeight: FontWeight.w600,
+                                color: AppColors.secondary,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            FaIcon(
+                              FontAwesomeIcons.locationDot,
+                              size: 11,
+                              color: isDark
+                                  ? AppColors.textDarkMuted
+                                  : AppColors.textLightMuted,
+                            ),
+                            const SizedBox(width: 3),
+                            Text(
+                              isArabic
+                                  ? experience.locationAr
+                                  : experience.locationEn,
+                              style: TextStyle(
+                                fontSize: isMobile ? 11.5 : 13,
+                                color: isDark
+                                  ? AppColors.textDarkMuted
+                                  : AppColors.textLightMuted,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: isMobile ? 8 : 12),
+
+                    // Description
+                    Text(
+                      isArabic
+                          ? experience.descriptionAr
+                          : experience.descriptionEn,
+                      style: TextStyle(
+                        fontSize: isMobile ? 12.5 : 14,
+                        color: isDark
+                            ? AppColors.textDarkSecondary
+                            : AppColors.textLightSecondary,
+                        height: 1.45,
+                      ),
+                    ),
+                    SizedBox(height: isMobile ? 6 : 10),
+
+                    // Highlights
+                    ...((isArabic
+                            ? experience.highlightsAr
+                            : experience.highlightsEn)
+                        .map(
+                      (h) => Padding(
+                        padding: const EdgeInsets.only(bottom: 4),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 4),
+                              child: Icon(
+                                Icons.check_circle_outline,
+                                size: isMobile ? 12 : 14,
+                                color: AppColors.accent,
+                              ),
+                            ),
+                            const SizedBox(width: 6),
+                            Expanded(
+                              child: Text(
+                                h,
+                                style: TextStyle(
+                                  fontSize: isMobile ? 11.5 : 13,
+                                  color: isDark
+                                      ? AppColors.textDarkSecondary
+                                      : AppColors.textLightSecondary,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    )),
+                  ],
+                ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

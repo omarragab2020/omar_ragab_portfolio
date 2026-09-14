@@ -26,6 +26,8 @@ class _SkillCardState extends State<SkillCard> {
     final skill = widget.skill;
     final brandColor = skill.color;
 
+    final isMobile = MediaQuery.of(context).size.width < 650;
+
     return MouseRegion(
       onEnter: (_) => setState(() => _isHovered = true),
       onExit: (_) => setState(() => _isHovered = false),
@@ -33,10 +35,10 @@ class _SkillCardState extends State<SkillCard> {
         duration: const Duration(milliseconds: 250),
         curve: Curves.easeOutCubic,
         transform: _isHovered
-            ? Matrix4.translationValues(0.0, -6.0, 0.0)
+            ? Matrix4.translationValues(0.0, -5.0, 0.0)
             : Matrix4.identity(),
         child: GlassContainer(
-          borderRadius: 18,
+          borderRadius: isMobile ? 14 : 18,
           borderColor: _isHovered
               ? brandColor.withValues(alpha: 0.8)
               : (isDark
@@ -47,11 +49,14 @@ class _SkillCardState extends State<SkillCard> {
               color: _isHovered
                   ? brandColor.withValues(alpha: 0.3)
                   : Colors.black.withValues(alpha: isDark ? 0.2 : 0.04),
-              blurRadius: _isHovered ? 20 : 10,
-              offset: Offset(0, _isHovered ? 8 : 4),
+              blurRadius: _isHovered ? 16 : 8,
+              offset: Offset(0, _isHovered ? 6 : 3),
             ),
           ],
-          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+          padding: EdgeInsets.symmetric(
+            horizontal: isMobile ? 10 : 14,
+            vertical: isMobile ? 10 : 12,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -62,8 +67,8 @@ class _SkillCardState extends State<SkillCard> {
                 children: [
                   // Brand Icon Container
                   Container(
-                    width: 36,
-                    height: 36,
+                    width: isMobile ? 28 : 36,
+                    height: isMobile ? 28 : 36,
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
@@ -73,10 +78,10 @@ class _SkillCardState extends State<SkillCard> {
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                       ),
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(isMobile ? 7 : 10),
                       border: Border.all(
                         color: brandColor.withValues(alpha: _isHovered ? 0.8 : 0.35),
-                        width: 1.2,
+                        width: 1.1,
                       ),
                       boxShadow: [
                         if (_isHovered)
@@ -89,12 +94,12 @@ class _SkillCardState extends State<SkillCard> {
                     child: Center(
                       child: Icon(
                         skill.icon,
-                        size: 18,
+                        size: isMobile ? 14 : 18,
                         color: brandColor,
                       ),
                     ),
                   ),
-                  const SizedBox(width: 10),
+                  SizedBox(width: isMobile ? 6 : 10),
 
                   // Title and Tech Tag
                   Expanded(
@@ -106,7 +111,7 @@ class _SkillCardState extends State<SkillCard> {
                           skill.name,
                           style: TextStyle(
                             fontWeight: FontWeight.w800,
-                            fontSize: 13.5,
+                            fontSize: isMobile ? 12 : 13.5,
                             color: isDark
                                 ? AppColors.textDarkPrimary
                                 : AppColors.textLightPrimary,
@@ -114,18 +119,18 @@ class _SkillCardState extends State<SkillCard> {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
-                        const SizedBox(height: 2),
+                        const SizedBox(height: 1),
                         Container(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 6, vertical: 1.5),
+                              horizontal: 5, vertical: 1),
                           decoration: BoxDecoration(
                             color: brandColor.withValues(alpha: 0.12),
-                            borderRadius: BorderRadius.circular(5),
+                            borderRadius: BorderRadius.circular(4),
                           ),
                           child: Text(
                             widget.isArabic ? skill.tagAr : skill.tagEn,
                             style: TextStyle(
-                              fontSize: 9.5,
+                              fontSize: isMobile ? 8.5 : 9.5,
                               fontWeight: FontWeight.w700,
                               color: brandColor,
                             ),
@@ -139,8 +144,10 @@ class _SkillCardState extends State<SkillCard> {
 
                   // Proficiency Chip
                   Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: isMobile ? 5 : 7,
+                      vertical: isMobile ? 2 : 3,
+                    ),
                     decoration: BoxDecoration(
                       color: isDark
                           ? AppColors.bgDarkSecondary
@@ -152,63 +159,43 @@ class _SkillCardState extends State<SkillCard> {
                             : AppColors.borderLight,
                       ),
                     ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Container(
-                          width: 5,
-                          height: 5,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: brandColor,
-                            boxShadow: [
-                              BoxShadow(
-                                color: brandColor.withValues(alpha: 0.8),
-                                blurRadius: 3,
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(width: 4),
-                        Text(
-                          "${(skill.level * 100).toInt()}%",
-                          style: TextStyle(
-                            fontSize: 10.5,
-                            fontWeight: FontWeight.bold,
-                            color: isDark
-                                ? Colors.white
-                                : AppColors.textLightPrimary,
-                          ),
-                        ),
-                      ],
+                    child: Text(
+                      "${(skill.level * 100).toInt()}%",
+                      style: TextStyle(
+                        fontSize: isMobile ? 9.5 : 10.5,
+                        fontWeight: FontWeight.bold,
+                        color: isDark
+                            ? Colors.white
+                            : AppColors.textLightPrimary,
+                      ),
                     ),
                   ),
                 ],
               ),
 
-              const SizedBox(height: 6),
+              const SizedBox(height: 4),
 
               // Engineering Note / Micro-Insight
               Text(
                 widget.isArabic ? skill.noteAr : skill.noteEn,
                 style: TextStyle(
-                  fontSize: 11.5,
+                  fontSize: isMobile ? 10 : 11.5,
                   color: isDark
                       ? AppColors.textDarkSecondary
                       : AppColors.textLightSecondary,
-                  height: 1.35,
+                  height: 1.3,
                 ),
-                maxLines: 2,
+                maxLines: isMobile ? 1 : 2,
                 overflow: TextOverflow.ellipsis,
               ),
 
-              const SizedBox(height: 8),
+              SizedBox(height: isMobile ? 4 : 8),
 
               // Glowing Progress Line
               Stack(
                 children: [
                   Container(
-                    height: 4,
+                    height: isMobile ? 3 : 4,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: isDark
@@ -220,7 +207,7 @@ class _SkillCardState extends State<SkillCard> {
                   FractionallySizedBox(
                     widthFactor: skill.level,
                     child: Container(
-                      height: 4,
+                      height: isMobile ? 3 : 4,
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                           colors: [

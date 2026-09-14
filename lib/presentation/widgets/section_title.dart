@@ -1,6 +1,7 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../core/theme/app_colors.dart';
+import '../../core/utils/responsive.dart';
 
 class SectionTitle extends StatelessWidget {
   final String title;
@@ -21,12 +22,13 @@ class SectionTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final isMobile = Responsive.isMobile(context);
 
     Widget? iconWidget;
     if (icon is IconData) {
-      iconWidget = Icon(icon as IconData, size: 14, color: AppColors.primaryLight);
+      iconWidget = Icon(icon as IconData, size: isMobile ? 12 : 14, color: AppColors.primaryLight);
     } else if (icon is FaIconData) {
-      iconWidget = FaIcon(icon as FaIconData, size: 14, color: AppColors.primaryLight);
+      iconWidget = FaIcon(icon as FaIconData, size: isMobile ? 12 : 14, color: AppColors.primaryLight);
     }
 
     return Column(
@@ -35,7 +37,10 @@ class SectionTitle extends StatelessWidget {
       children: [
         // Tag Badge
         Container(
-          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+          padding: EdgeInsets.symmetric(
+            horizontal: isMobile ? 10 : 14,
+            vertical: isMobile ? 4 : 6,
+          ),
           decoration: BoxDecoration(
             color: AppColors.primary.withValues(alpha: 0.12),
             borderRadius: BorderRadius.circular(30),
@@ -49,21 +54,21 @@ class SectionTitle extends StatelessWidget {
             children: [
               if (iconWidget != null) ...[
                 iconWidget,
-                const SizedBox(width: 6),
+                SizedBox(width: isMobile ? 4 : 6),
               ],
               Text(
                 tag.toUpperCase(),
-                style: const TextStyle(
+                style: TextStyle(
                   color: AppColors.primaryLight,
-                  fontSize: 12,
+                  fontSize: isMobile ? 10.5 : 12,
                   fontWeight: FontWeight.bold,
-                  letterSpacing: 1.2,
+                  letterSpacing: isMobile ? 0.8 : 1.2,
                 ),
               ),
             ],
           ),
         ),
-        const SizedBox(height: 12),
+        SizedBox(height: isMobile ? 8 : 12),
 
         // Main Title
         ShaderMask(
@@ -76,38 +81,39 @@ class SectionTitle extends StatelessWidget {
             title,
             textAlign: isCenter ? TextAlign.center : TextAlign.start,
             style: TextStyle(
-              fontSize: 32,
+              fontSize: isMobile ? 22 : 30,
               fontWeight: FontWeight.w900,
               color: isDark ? Colors.white : AppColors.textLightPrimary,
               letterSpacing: -0.5,
+              height: 1.2,
             ),
           ),
         ),
 
         // Subtitle
         if (subtitle != null) ...[
-          const SizedBox(height: 10),
+          SizedBox(height: isMobile ? 6 : 10),
           ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 680),
             child: Text(
               subtitle!,
               textAlign: isCenter ? TextAlign.center : TextAlign.start,
               style: TextStyle(
-                fontSize: 16,
+                fontSize: isMobile ? 13 : 15.5,
                 color: isDark
                     ? AppColors.textDarkSecondary
                     : AppColors.textLightSecondary,
-                height: 1.6,
+                height: 1.5,
               ),
             ),
           ),
         ],
-        const SizedBox(height: 14),
+        SizedBox(height: isMobile ? 10 : 14),
 
         // Gradient Bar
         Container(
-          width: 60,
-          height: 4,
+          width: isMobile ? 45 : 60,
+          height: isMobile ? 3 : 4,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(2),
             gradient: AppColors.heroGradient,

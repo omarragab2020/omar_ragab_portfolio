@@ -1,5 +1,6 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import '../controllers/portfolio_controller.dart';
 import '../../core/theme/app_colors.dart';
 
@@ -21,7 +22,7 @@ class _DevTerminalWidgetState extends State<DevTerminalWidget> {
       final controller = context.read<PortfolioController>();
       controller.executeTerminalCommand(text);
       _inputController.clear();
-      
+
       // Auto-scroll to bottom
       Future.delayed(const Duration(milliseconds: 100), () {
         if (_scrollController.hasClients) {
@@ -51,29 +52,27 @@ class _DevTerminalWidgetState extends State<DevTerminalWidget> {
     final terminalBg = isMatrix
         ? const Color(0xFF031A0B)
         : const Color(0xFF0D1117);
-    
+
     final promptColor = isMatrix
         ? const Color(0xFF22C55E)
         : AppColors.secondary;
-    
-    final textColor = isMatrix
-        ? const Color(0xFF4ADE80)
-        : const Color(0xFFE6EDF3);
+
+    final isMobile = MediaQuery.of(context).size.width < 650;
 
     return Container(
-      height: 380,
+      height: isMobile ? 260 : 380,
       decoration: BoxDecoration(
         color: terminalBg,
         borderRadius: BorderRadius.circular(14),
         border: Border.all(
-          color: isMatrix
-              ? const Color(0xFF15803D)
-              : AppColors.borderDark,
+          color: isMatrix ? const Color(0xFF15803D) : AppColors.borderDark,
           width: 1.2,
         ),
         boxShadow: [
           BoxShadow(
-            color: (isMatrix ? Colors.green : AppColors.primary).withValues(alpha: 0.2),
+            color: (isMatrix ? Colors.green : AppColors.primary).withValues(
+              alpha: 0.2,
+            ),
             blurRadius: 20,
             offset: const Offset(0, 8),
           ),
@@ -85,11 +84,17 @@ class _DevTerminalWidgetState extends State<DevTerminalWidget> {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
             decoration: BoxDecoration(
-              color: isMatrix ? const Color(0xFF052e16) : const Color(0xFF161B22),
-              borderRadius: const BorderRadius.vertical(top: Radius.circular(13)),
+              color: isMatrix
+                  ? const Color(0xFF052e16)
+                  : const Color(0xFF161B22),
+              borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(13),
+              ),
               border: Border(
                 bottom: BorderSide(
-                  color: isMatrix ? const Color(0xFF15803D) : AppColors.borderDark,
+                  color: isMatrix
+                      ? const Color(0xFF15803D)
+                      : AppColors.borderDark,
                   width: 1,
                 ),
               ),
@@ -99,11 +104,32 @@ class _DevTerminalWidgetState extends State<DevTerminalWidget> {
                 // Window dots
                 Row(
                   children: [
-                    Container(width: 11, height: 11, decoration: const BoxDecoration(color: Color(0xFFFF5F56), shape: BoxShape.circle)),
+                    Container(
+                      width: 11,
+                      height: 11,
+                      decoration: const BoxDecoration(
+                        color: Color(0xFFFF5F56),
+                        shape: BoxShape.circle,
+                      ),
+                    ),
                     const SizedBox(width: 7),
-                    Container(width: 11, height: 11, decoration: const BoxDecoration(color: Color(0xFFFFBD2E), shape: BoxShape.circle)),
+                    Container(
+                      width: 11,
+                      height: 11,
+                      decoration: const BoxDecoration(
+                        color: Color(0xFFFFBD2E),
+                        shape: BoxShape.circle,
+                      ),
+                    ),
                     const SizedBox(width: 7),
-                    Container(width: 11, height: 11, decoration: const BoxDecoration(color: Color(0xFF27C93F), shape: BoxShape.circle)),
+                    Container(
+                      width: 11,
+                      height: 11,
+                      decoration: const BoxDecoration(
+                        color: Color(0xFF27C93F),
+                        shape: BoxShape.circle,
+                      ),
+                    ),
                   ],
                 ),
                 const SizedBox(width: 14),
@@ -114,7 +140,9 @@ class _DevTerminalWidgetState extends State<DevTerminalWidget> {
                       fontFamily: "monospace",
                       fontSize: 12,
                       fontWeight: FontWeight.w600,
-                      color: isMatrix ? const Color(0xFF86EFAC) : const Color(0xFF8B949E),
+                      color: isMatrix
+                          ? const Color(0xFF86EFAC)
+                          : const Color(0xFF8B949E),
                     ),
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -132,9 +160,14 @@ class _DevTerminalWidgetState extends State<DevTerminalWidget> {
                             controller.executeTerminalCommand(cmd);
                           },
                           child: Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 6,
+                              vertical: 2,
+                            ),
                             decoration: BoxDecoration(
-                              color: (isMatrix ? Colors.green : AppColors.primary).withValues(alpha: 0.15),
+                              color:
+                                  (isMatrix ? Colors.green : AppColors.primary)
+                                      .withValues(alpha: 0.15),
                               borderRadius: BorderRadius.circular(4),
                             ),
                             child: Text(
@@ -199,7 +232,9 @@ class _DevTerminalWidgetState extends State<DevTerminalWidget> {
                           fontSize: 12,
                           color: entry.isError
                               ? Colors.redAccent
-                              : (isMatrix ? const Color(0xFF86EFAC) : const Color(0xFF9CA3AF)),
+                              : (isMatrix
+                                    ? const Color(0xFF86EFAC)
+                                    : const Color(0xFF9CA3AF)),
                           height: 1.4,
                         ),
                       ),
@@ -207,63 +242,6 @@ class _DevTerminalWidgetState extends State<DevTerminalWidget> {
                   ),
                 );
               },
-            ),
-          ),
-
-          // Input Line
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-            decoration: BoxDecoration(
-              color: isMatrix ? const Color(0xFF052e16) : const Color(0xFF161B22),
-              borderRadius: const BorderRadius.vertical(bottom: Radius.circular(13)),
-              border: Border(
-                top: BorderSide(
-                  color: isMatrix ? const Color(0xFF15803D) : AppColors.borderDark,
-                  width: 1,
-                ),
-              ),
-            ),
-            child: Row(
-              children: [
-                Text(
-                  "omar@flutter:~\$ ",
-                  style: TextStyle(
-                    fontFamily: "monospace",
-                    fontSize: 13,
-                    fontWeight: FontWeight.bold,
-                    color: promptColor,
-                  ),
-                ),
-                Expanded(
-                  child: TextField(
-                    controller: _inputController,
-                    focusNode: _focusNode,
-                    style: TextStyle(
-                      fontFamily: "monospace",
-                      fontSize: 13,
-                      color: textColor,
-                    ),
-                    cursorColor: promptColor,
-                    decoration: const InputDecoration(
-                      isDense: true,
-                      border: InputBorder.none,
-                      hintText: "type a command ('help', 'projects', 'quran', 'hire')...",
-                      hintStyle: TextStyle(
-                        fontFamily: "monospace",
-                        fontSize: 12,
-                        color: Color(0xFF4B5563),
-                      ),
-                    ),
-                    onSubmitted: (_) => _submitCommand(),
-                  ),
-                ),
-                IconButton(
-                  onPressed: _submitCommand,
-                  icon: Icon(Icons.send, size: 16, color: promptColor),
-                  tooltip: "Execute",
-                  splashRadius: 16,
-                ),
-              ],
             ),
           ),
         ],

@@ -51,51 +51,60 @@ class StatsSection extends StatelessWidget {
           itemCount: stats.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: isMobile ? 2 : (isTablet ? 2 : 4),
-            crossAxisSpacing: isMobile ? 10 : 16,
-            mainAxisSpacing: isMobile ? 10 : 16,
-            childAspectRatio: isMobile ? 1.6 : 1.35,
+            crossAxisSpacing: isMobile ? 8 : 16,
+            mainAxisSpacing: isMobile ? 8 : 16,
+            childAspectRatio: isMobile ? 1.75 : 1.35,
           ),
           itemBuilder: (context, index) {
             final item = stats[index];
             final color = item["color"] as Color;
 
             return GlassContainer(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+              padding: EdgeInsets.symmetric(
+                horizontal: isMobile ? 10 : 16,
+                vertical: isMobile ? 10 : 18,
+              ),
+              borderRadius: isMobile ? 16 : 20,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      color: color.withValues(alpha: 0.15),
-                      shape: BoxShape.circle,
-                    ),
-                    child: Icon(
-                      item["icon"] as IconData,
-                      color: color,
-                      size: 20,
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        padding: EdgeInsets.all(isMobile ? 5 : 8),
+                        decoration: BoxDecoration(
+                          color: color.withValues(alpha: 0.15),
+                          shape: BoxShape.circle,
+                        ),
+                        child: Icon(
+                          item["icon"] as IconData,
+                          color: color,
+                          size: isMobile ? 14 : 18,
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        item["value"] as String,
+                        style: TextStyle(
+                          fontSize: isMobile ? 20 : 26,
+                          fontWeight: FontWeight.w900,
+                          color: color,
+                          letterSpacing: -0.5,
+                        ),
+                      ),
+                    ],
                   ),
-                  const SizedBox(height: 12),
-                  Text(
-                    item["value"] as String,
-                    style: TextStyle(
-                      fontSize: 26,
-                      fontWeight: FontWeight.w900,
-                      color: color,
-                      letterSpacing: -0.5,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
+                  SizedBox(height: isMobile ? 4 : 8),
                   Text(
                     isArabic
                         ? item["labelAr"] as String
                         : item["labelEn"] as String,
                     textAlign: TextAlign.center,
-                    maxLines: 2,
+                    maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                      fontSize: 13,
+                      fontSize: isMobile ? 11 : 13,
                       fontWeight: FontWeight.w600,
                       color: Theme.of(context).brightness == Brightness.dark
                           ? AppColors.textDarkSecondary

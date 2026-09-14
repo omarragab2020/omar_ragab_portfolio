@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import '../../core/constants/portfolio_data.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/utils/responsive.dart';
@@ -16,9 +16,10 @@ class AboutSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final isDesktop = Responsive.isDesktop(context);
+    final isMobile = Responsive.isMobile(context);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 40),
+      padding: EdgeInsets.symmetric(vertical: isMobile ? 20 : 40),
       child: Column(
         children: [
           SectionTitle(
@@ -29,7 +30,7 @@ class AboutSection extends StatelessWidget {
                 : "Dedicated to crafting high-performance, beautiful mobile apps with clean, scalable code.",
             icon: Icons.person_pin_rounded,
           ),
-          const SizedBox(height: 36),
+          SizedBox(height: isMobile ? 20 : 36),
 
           isDesktop
               ? Row(
@@ -37,20 +38,20 @@ class AboutSection extends StatelessWidget {
                   children: [
                     Expanded(
                       flex: 5,
-                      child: _buildBioCard(context, isDark),
+                      child: _buildBioCard(context, isDark, isMobile),
                     ),
                     const SizedBox(width: 24),
                     Expanded(
                       flex: 5,
-                      child: _buildHighlightsGrid(context, isDark),
+                      child: _buildHighlightsGrid(context, isDark, isMobile),
                     ),
                   ],
                 )
               : Column(
                   children: [
-                    _buildBioCard(context, isDark),
-                    const SizedBox(height: 24),
-                    _buildHighlightsGrid(context, isDark),
+                    _buildBioCard(context, isDark, isMobile),
+                    const SizedBox(height: 16),
+                    _buildHighlightsGrid(context, isDark, isMobile),
                   ],
                 ),
         ],
@@ -58,37 +59,38 @@ class AboutSection extends StatelessWidget {
     );
   }
 
-  Widget _buildBioCard(BuildContext context, bool isDark) {
+  Widget _buildBioCard(BuildContext context, bool isDark, bool isMobile) {
     return GlassContainer(
-      padding: const EdgeInsets.all(26),
+      padding: EdgeInsets.all(isMobile ? 16 : 26),
+      borderRadius: isMobile ? 18 : 24,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              const ProfileAvatar(
-                size: 60,
+              ProfileAvatar(
+                size: isMobile ? 48 : 60,
                 showOnlineBadge: true,
               ),
-              const SizedBox(width: 14),
+              const SizedBox(width: 12),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       isArabic ? PortfolioData.nameAr : PortfolioData.nameEn,
-                      style: const TextStyle(
-                        fontSize: 18,
+                      style: TextStyle(
+                        fontSize: isMobile ? 16 : 18,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    const SizedBox(height: 3),
                     Text(
                       isArabic
                           ? "Mid-Level Flutter Developer | مهندس حلول برمجية"
                           : "Mid-Level Flutter Developer | Mobile Engineer",
-                      style: const TextStyle(
-                        fontSize: 12,
+                      style: TextStyle(
+                        fontSize: isMobile ? 11 : 12,
                         color: AppColors.primaryLight,
                         fontWeight: FontWeight.w600,
                       ),
@@ -98,58 +100,58 @@ class AboutSection extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 18),
+          SizedBox(height: isMobile ? 12 : 18),
           Text(
             isArabic ? PortfolioData.bioAr : PortfolioData.bioEn,
             style: TextStyle(
-              fontSize: 14.5,
+              fontSize: isMobile ? 13 : 14.5,
               color: isDark ? AppColors.textDarkSecondary : AppColors.textLightSecondary,
-              height: 1.7,
+              height: 1.55,
             ),
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: isMobile ? 14 : 20),
           const Divider(),
-          const SizedBox(height: 16),
+          SizedBox(height: isMobile ? 10 : 16),
 
           // Contact Details List
-          _buildInfoRow(Icons.email_outlined, isArabic ? "البريد الإلكتروني:" : "Email:", PortfolioData.email, () => UrlHelper.openEmail(), isDark),
-          const SizedBox(height: 12),
-          _buildInfoRow(Icons.phone_outlined, isArabic ? "الهاتف / واتساب:" : "Phone / WA:", PortfolioData.phone, () => UrlHelper.openWhatsApp(), isDark),
-          const SizedBox(height: 12),
-          _buildInfoRow(Icons.school_outlined, isArabic ? "التعليم الجامعي:" : "Education:", isArabic ? PortfolioData.educationAr : PortfolioData.educationEn, null, isDark),
-          const SizedBox(height: 12),
-          _buildInfoRow(Icons.location_on_outlined, isArabic ? "الموقع الجغرافي:" : "Location:", isArabic ? PortfolioData.locationAr : PortfolioData.locationEn, null, isDark),
+          _buildInfoRow(Icons.email_outlined, isArabic ? "البريد الإلكتروني:" : "Email:", PortfolioData.email, () => UrlHelper.openEmail(), isDark, isMobile),
+          SizedBox(height: isMobile ? 8 : 12),
+          _buildInfoRow(Icons.phone_outlined, isArabic ? "الهاتف / واتساب:" : "Phone / WA:", PortfolioData.phone, () => UrlHelper.openWhatsApp(), isDark, isMobile),
+          SizedBox(height: isMobile ? 8 : 12),
+          _buildInfoRow(Icons.school_outlined, isArabic ? "التعليم الجامعي:" : "Education:", isArabic ? PortfolioData.educationAr : PortfolioData.educationEn, null, isDark, isMobile),
+          SizedBox(height: isMobile ? 8 : 12),
+          _buildInfoRow(Icons.location_on_outlined, isArabic ? "الموقع الجغرافي:" : "Location:", isArabic ? PortfolioData.locationAr : PortfolioData.locationEn, null, isDark, isMobile),
         ],
       ),
     );
   }
 
-  Widget _buildInfoRow(IconData icon, String label, String value, VoidCallback? onTap, bool isDark) {
+  Widget _buildInfoRow(IconData icon, String label, String value, VoidCallback? onTap, bool isDark, bool isMobile) {
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(8),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 4),
+        padding: const EdgeInsets.symmetric(vertical: 2),
         child: Row(
           children: [
-            Icon(icon, size: 18, color: AppColors.primaryLight),
-            const SizedBox(width: 10),
+            Icon(icon, size: isMobile ? 15 : 18, color: AppColors.primaryLight),
+            const SizedBox(width: 8),
             Text(
               label,
               style: TextStyle(
-                fontSize: 13,
+                fontSize: isMobile ? 11.5 : 13,
                 fontWeight: FontWeight.w600,
                 color: isDark ? Colors.white70 : Colors.black87,
               ),
             ),
-            const SizedBox(width: 8),
+            const SizedBox(width: 6),
             Expanded(
               child: Text(
                 value,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
-                  fontSize: 13,
+                  fontSize: isMobile ? 11.5 : 13,
                   color: onTap != null
                       ? AppColors.primaryLight
                       : (isDark ? AppColors.textDarkSecondary : AppColors.textLightSecondary),
@@ -163,7 +165,7 @@ class AboutSection extends StatelessWidget {
     );
   }
 
-  Widget _buildHighlightsGrid(BuildContext context, bool isDark) {
+  Widget _buildHighlightsGrid(BuildContext context, bool isDark, bool isMobile) {
     final highlights = [
       {
         "icon": Icons.architecture_rounded,
@@ -199,51 +201,52 @@ class AboutSection extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemCount: highlights.length,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        crossAxisSpacing: 16,
-        mainAxisSpacing: 16,
-        childAspectRatio: 1.15,
+        crossAxisSpacing: isMobile ? 8 : 16,
+        mainAxisSpacing: isMobile ? 8 : 16,
+        childAspectRatio: isMobile ? 1.3 : 1.15,
       ),
       itemBuilder: (context, index) {
         final item = highlights[index];
         return GlassContainer(
-          padding: const EdgeInsets.all(18),
+          padding: EdgeInsets.all(isMobile ? 12 : 18),
+          borderRadius: isMobile ? 16 : 20,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                padding: const EdgeInsets.all(8),
+                padding: EdgeInsets.all(isMobile ? 6 : 8),
                 decoration: BoxDecoration(
                   color: AppColors.primary.withValues(alpha: 0.15),
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(8),
                 ),
                 child: Icon(
                   item["icon"] as IconData,
-                  size: 20,
+                  size: isMobile ? 16 : 20,
                   color: AppColors.primaryLight,
                 ),
               ),
-              const SizedBox(height: 12),
+              SizedBox(height: isMobile ? 8 : 12),
               Text(
                 isArabic ? item["titleAr"] as String : item["titleEn"] as String,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                  fontSize: 14,
+                style: TextStyle(
+                  fontSize: isMobile ? 12 : 14,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(height: 6),
+              const SizedBox(height: 4),
               Expanded(
                 child: Text(
                   isArabic ? item["descAr"] as String : item["descEn"] as String,
-                  maxLines: 3,
+                  maxLines: isMobile ? 2 : 3,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    fontSize: 12,
+                    fontSize: isMobile ? 10.5 : 12,
                     color: isDark ? AppColors.textDarkSecondary : AppColors.textLightSecondary,
-                    height: 1.4,
+                    height: 1.35,
                   ),
                 ),
               ),
