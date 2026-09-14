@@ -12,35 +12,11 @@ class DevTerminalWidget extends StatefulWidget {
 }
 
 class _DevTerminalWidgetState extends State<DevTerminalWidget> {
-  final TextEditingController _inputController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
-  final FocusNode _focusNode = FocusNode();
-
-  void _submitCommand() {
-    final text = _inputController.text;
-    if (text.trim().isNotEmpty) {
-      final controller = context.read<PortfolioController>();
-      controller.executeTerminalCommand(text);
-      _inputController.clear();
-
-      // Auto-scroll to bottom
-      Future.delayed(const Duration(milliseconds: 100), () {
-        if (_scrollController.hasClients) {
-          _scrollController.animateTo(
-            _scrollController.position.maxScrollExtent,
-            duration: const Duration(milliseconds: 200),
-            curve: Curves.easeOut,
-          );
-        }
-      });
-    }
-  }
 
   @override
   void dispose() {
-    _inputController.dispose();
     _scrollController.dispose();
-    _focusNode.dispose();
     super.dispose();
   }
 
@@ -56,6 +32,10 @@ class _DevTerminalWidgetState extends State<DevTerminalWidget> {
     final promptColor = isMatrix
         ? const Color(0xFF22C55E)
         : AppColors.secondary;
+
+    final textColor = isMatrix
+        ? const Color(0xFF86EFAC)
+        : AppColors.textDarkPrimary;
 
     final isMobile = MediaQuery.of(context).size.width < 650;
 
