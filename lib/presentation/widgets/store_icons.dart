@@ -123,7 +123,7 @@ class _GooglePlayPainter extends CustomPainter {
       oldDelegate.isMultiColor != isMultiColor;
 }
 
-/// Standalone Apple Icon using FontAwesome / Material vector
+/// Standalone Apple Icon drawn directly via vector CustomPainter (100% reliable on web without font dependencies)
 class AppleIcon extends StatelessWidget {
   final double size;
   final Color? color;
@@ -138,10 +138,61 @@ class AppleIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final iconColor = color ?? (isDark ? Colors.white : Colors.black87);
-    return FaIcon(
-      FontAwesomeIcons.apple,
-      size: size,
-      color: iconColor,
+
+    return SizedBox(
+      width: size,
+      height: size,
+      child: CustomPaint(
+        painter: _ApplePainter(color: iconColor),
+      ),
     );
   }
+}
+
+class _ApplePainter extends CustomPainter {
+  final Color color;
+
+  _ApplePainter({required this.color});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = color
+      ..style = PaintingStyle.fill
+      ..isAntiAlias = true;
+
+    final w = size.width;
+    final h = size.height;
+
+    // 1. Apple Leaf (Top)
+    final leafPath = Path();
+    leafPath.moveTo(w * 0.54, h * 0.19);
+    leafPath.cubicTo(w * 0.54, h * 0.10, w * 0.61, h * 0.01, w * 0.72, 0.0);
+    leafPath.cubicTo(w * 0.73, h * 0.09, w * 0.66, h * 0.18, w * 0.54, h * 0.19);
+    leafPath.close();
+    canvas.drawPath(leafPath, paint);
+
+    // 2. Apple Body with standard bite cutout
+    final bodyPath = Path();
+    bodyPath.moveTo(w * 0.88, h * 0.74);
+    bodyPath.cubicTo(w * 0.83, h * 0.85, w * 0.77, h * 0.95, w * 0.68, h * 0.95);
+    bodyPath.cubicTo(w * 0.60, h * 0.95, w * 0.56, h * 0.89, w * 0.47, h * 0.89);
+    bodyPath.cubicTo(w * 0.38, h * 0.89, w * 0.34, h * 0.95, w * 0.26, h * 0.95);
+    bodyPath.cubicTo(w * 0.17, h * 0.95, w * 0.11, h * 0.84, w * 0.06, h * 0.74);
+    bodyPath.cubicTo(w * 0.01, h * 0.53, 0.0, h * 0.38, w * 0.08, h * 0.28);
+    bodyPath.cubicTo(w * 0.15, h * 0.19, w * 0.26, h * 0.19, w * 0.35, h * 0.21);
+    bodyPath.cubicTo(w * 0.44, h * 0.23, w * 0.51, h * 0.19, w * 0.58, h * 0.19);
+    bodyPath.cubicTo(w * 0.67, h * 0.19, w * 0.76, h * 0.24, w * 0.81, h * 0.30);
+    // Right side bite curve
+    bodyPath.cubicTo(w * 0.72, h * 0.36, w * 0.72, h * 0.49, w * 0.80, h * 0.55);
+    bodyPath.cubicTo(w * 0.85, h * 0.59, w * 0.91, h * 0.61, w * 0.94, h * 0.62);
+    bodyPath.cubicTo(w * 0.92, h * 0.66, w * 0.90, h * 0.70, w * 0.88, h * 0.74);
+    bodyPath.close();
+
+    canvas.drawPath(bodyPath, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant _ApplePainter oldDelegate) =>
+      oldDelegate.color != color;
 }
