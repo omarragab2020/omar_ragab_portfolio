@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-/// Crisp, standalone vector icon for Google Play Store with official colors or monochrome fallback.
+/// Crisp vector icon for Google Play Store with official 4-color geometry or monochrome icon.
 class GooglePlayIcon extends StatelessWidget {
   final double size;
   final Color? color;
@@ -15,6 +16,14 @@ class GooglePlayIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (!isMultiColor && color != null) {
+      return FaIcon(
+        FontAwesomeIcons.googlePlay,
+        size: size,
+        color: color,
+      );
+    }
+
     return SizedBox(
       width: size,
       height: size,
@@ -49,9 +58,9 @@ class _GooglePlayPainter extends CustomPainter {
         ..isAntiAlias = true;
 
       final path = Path()
-        ..moveTo(w * 0.10, h * 0.05)
-        ..lineTo(w * 0.90, h * 0.50)
-        ..lineTo(w * 0.10, h * 0.95)
+        ..moveTo(w * 0.12, h * 0.06)
+        ..lineTo(w * 0.88, h * 0.50)
+        ..lineTo(w * 0.12, h * 0.94)
         ..close();
 
       canvas.drawPath(path, paint);
@@ -114,7 +123,7 @@ class _GooglePlayPainter extends CustomPainter {
       oldDelegate.isMultiColor != isMultiColor;
 }
 
-/// Standalone Apple Icon using Flutter's built-in Material icon
+/// Standalone Apple Icon using FontAwesome / Material vector
 class AppleIcon extends StatelessWidget {
   final double size;
   final Color? color;
@@ -128,10 +137,11 @@ class AppleIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    return Icon(
-      Icons.apple,
+    final iconColor = color ?? (isDark ? Colors.white : Colors.black87);
+    return FaIcon(
+      FontAwesomeIcons.apple,
       size: size,
-      color: color ?? (isDark ? Colors.white : Colors.black87),
+      color: iconColor,
     );
   }
 }
