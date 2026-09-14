@@ -164,8 +164,7 @@ class _ProjectCardState extends State<ProjectCard> {
                                 if (project.appStoreUrl != null)
                                   const Padding(
                                     padding: EdgeInsets.only(right: 3),
-                                    child: Icon(
-                                      Icons.apple,
+                                    child: AppleIcon(
                                       size: 11,
                                       color: Colors.white,
                                     ),
