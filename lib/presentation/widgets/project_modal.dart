@@ -4,6 +4,7 @@ import '../../core/constants/portfolio_data.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/utils/responsive.dart';
 import '../../core/utils/url_helper.dart';
+import 'store_icons.dart';
 
 class ProjectModal extends StatefulWidget {
   final ProjectModel project;
@@ -453,20 +454,18 @@ class _ProjectModalState extends State<ProjectModal> {
               if (project.playStoreUrl != null)
                 ElevatedButton.icon(
                   onPressed: () => UrlHelper.launchURL(project.playStoreUrl!),
-                  icon: const FaIcon(
-                    FontAwesomeIcons.googlePlay,
-                    size: 13,
-                    color: Color(0xFF00E676),
+                  icon: const GooglePlayIcon(
+                    size: 15,
                   ),
                   label: Text(
                     widget.isArabic ? "Google Play" : "Google Play",
-                    style: const TextStyle(fontSize: 12),
+                    style: const TextStyle(fontSize: 12.5, fontWeight: FontWeight.bold),
                   ),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF01875F).withValues(alpha: 0.18),
+                    backgroundColor: const Color(0xFF01875F).withValues(alpha: 0.22),
                     foregroundColor: const Color(0xFF00E676),
-                    side: const BorderSide(color: Color(0xFF01875F)),
-                    padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                    side: const BorderSide(color: Color(0xFF00E676), width: 1.2),
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 11),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -475,20 +474,19 @@ class _ProjectModalState extends State<ProjectModal> {
               if (project.appStoreUrl != null)
                 ElevatedButton.icon(
                   onPressed: () => UrlHelper.launchURL(project.appStoreUrl!),
-                  icon: const FaIcon(
-                    FontAwesomeIcons.apple,
-                    size: 15,
+                  icon: const AppleIcon(
+                    size: 18,
                     color: Colors.white,
                   ),
                   label: Text(
                     widget.isArabic ? "App Store" : "App Store",
-                    style: const TextStyle(fontSize: 12),
+                    style: const TextStyle(fontSize: 12.5, fontWeight: FontWeight.bold),
                   ),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blueGrey.withValues(alpha: 0.25),
+                    backgroundColor: Colors.white.withValues(alpha: 0.15),
                     foregroundColor: Colors.white,
-                    side: const BorderSide(color: Colors.white38),
-                    padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                    side: const BorderSide(color: Colors.white70, width: 1.2),
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 11),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),

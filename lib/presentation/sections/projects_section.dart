@@ -32,6 +32,7 @@ class _ProjectsSectionState extends State<ProjectsSection> {
 
     final categories = [
       {"key": "All", "labelEn": "All (9)", "labelAr": "الكل (9)"},
+      {"key": "Stores", "labelEn": "App Stores (5) 🔥", "labelAr": "متاجر التطبيقات (5) 🔥"},
       {"key": "Delivery", "labelEn": "Delivery", "labelAr": "التوصيل"},
       {"key": "Real-time", "labelEn": "Real-time", "labelAr": "الحجوزات"},
       {"key": "E-commerce", "labelEn": "E-Commerce", "labelAr": "المتاجر"},
@@ -123,7 +124,7 @@ class _ProjectsSectionState extends State<ProjectsSection> {
                 return Column(
                   children: [
                     SizedBox(
-                      height: 385,
+                      height: 410,
                       child: PageView.builder(
                         controller: _pageController,
                         itemCount: projects.length,

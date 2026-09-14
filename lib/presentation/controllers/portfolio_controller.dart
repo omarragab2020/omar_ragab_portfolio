@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import '../../core/constants/portfolio_data.dart';
 import '../../core/utils/url_helper.dart';
 
@@ -38,14 +38,32 @@ class PortfolioController extends ChangeNotifier {
   List<TerminalEntry> get terminalHistory => _terminalHistory;
   bool get isMatrixMode => _isMatrixMode;
 
-  // Filtered Projects
+  // Filtered Projects (prioritizes Live Store apps at the top)
   List<ProjectModel> get filteredProjects {
+    List<ProjectModel> list;
     if (_selectedCategory == "All") {
-      return PortfolioData.projects;
+      list = List.from(PortfolioData.projects);
+    } else if (_selectedCategory == "Stores") {
+      list = PortfolioData.projects
+          .where((p) => p.playStoreUrl != null || p.appStoreUrl != null)
+          .toList();
+    } else {
+      list = PortfolioData.projects
+          .where((p) => p.category.toLowerCase() == _selectedCategory.toLowerCase())
+          .toList();
     }
-    return PortfolioData.projects
-        .where((p) => p.category.toLowerCase() == _selectedCategory.toLowerCase())
-        .toList();
+
+    // Sort to guarantee store-published projects always appear first
+    list.sort((a, b) {
+      final aStore = (a.playStoreUrl != null ? 1 : 0) + (a.appStoreUrl != null ? 1 : 0);
+      final bStore = (b.playStoreUrl != null ? 1 : 0) + (b.appStoreUrl != null ? 1 : 0);
+      if (aStore != bStore) {
+        return bStore.compareTo(aStore);
+      }
+      return 0;
+    });
+
+    return list;
   }
 
   // Setters / Actions

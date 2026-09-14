@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../core/theme/app_colors.dart';
@@ -206,6 +207,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       isArabic: isAr,
                       onScrollToTop: () => _scrollToKey(_heroKey, 0),
                     ),
+
+                    // Mobile Dock Safe Clearance (prevents dock from covering bottom content & footer icons)
+                    if (MediaQuery.of(context).size.width < 768)
+                      const SizedBox(height: 85),
                   ],
                 ),
               ),
@@ -228,44 +233,49 @@ class _HomeScreenState extends State<HomeScreen> {
                 left: 16,
                 right: 16,
                 child: Center(
-                  child: Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
-                    decoration: BoxDecoration(
-                      color: isDark
-                          ? const Color(0xFF0D1117).withValues(alpha: 0.92)
-                          : Colors.white.withValues(alpha: 0.95),
-                      borderRadius: BorderRadius.circular(30),
-                      border: Border.all(
-                        color: isDark
-                            ? AppColors.borderDark
-                            : AppColors.borderLight,
-                        width: 1.2,
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: AppColors.primary.withValues(alpha: 0.28),
-                          blurRadius: 20,
-                          offset: const Offset(0, 6),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(30),
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 16, sigmaY: 16),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                        decoration: BoxDecoration(
+                          color: isDark
+                              ? const Color(0xFF0D1117).withValues(alpha: 0.88)
+                              : Colors.white.withValues(alpha: 0.90),
+                          borderRadius: BorderRadius.circular(30),
+                          border: Border.all(
+                            color: isDark
+                                ? AppColors.borderDark
+                                : AppColors.borderLight,
+                            width: 1.2,
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: AppColors.primary.withValues(alpha: 0.28),
+                              blurRadius: 20,
+                              offset: const Offset(0, 6),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        _buildMobileNavIcon(0, Icons.home_rounded,
-                            isAr ? "الرئيسية" : "Home", controller.activeNavIndex, isDark),
-                        _buildMobileNavIcon(1, Icons.person_rounded,
-                            isAr ? "عني" : "About", controller.activeNavIndex, isDark),
-                        _buildMobileNavIcon(2, Icons.work_rounded,
-                            isAr ? "الخبرات" : "Career", controller.activeNavIndex, isDark),
-                        _buildMobileNavIcon(3, Icons.layers_rounded,
-                            isAr ? "المشاريع" : "Projects", controller.activeNavIndex, isDark),
-                        _buildMobileNavIcon(4, Icons.code_rounded,
-                            isAr ? "المهارات" : "Skills", controller.activeNavIndex, isDark),
-                        _buildMobileNavIcon(5, Icons.mail_rounded,
-                            isAr ? "تواصل" : "Contact", controller.activeNavIndex, isDark),
-                      ],
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            _buildMobileNavIcon(0, Icons.home_rounded,
+                                isAr ? "الرئيسية" : "Home", controller.activeNavIndex, isDark),
+                            _buildMobileNavIcon(1, Icons.person_rounded,
+                                isAr ? "عني" : "About", controller.activeNavIndex, isDark),
+                            _buildMobileNavIcon(2, Icons.work_rounded,
+                                isAr ? "الخبرات" : "Career", controller.activeNavIndex, isDark),
+                            _buildMobileNavIcon(3, Icons.layers_rounded,
+                                isAr ? "المشاريع" : "Projects", controller.activeNavIndex, isDark),
+                            _buildMobileNavIcon(4, Icons.code_rounded,
+                                isAr ? "المهارات" : "Skills", controller.activeNavIndex, isDark),
+                            _buildMobileNavIcon(5, Icons.mail_rounded,
+                                isAr ? "تواصل" : "Contact", controller.activeNavIndex, isDark),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 ),

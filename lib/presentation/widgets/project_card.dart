@@ -5,6 +5,7 @@ import '../../core/theme/app_colors.dart';
 import '../../core/utils/url_helper.dart';
 import 'glass_container.dart';
 import 'project_modal.dart';
+import 'store_icons.dart';
 
 class ProjectCard extends StatefulWidget {
   final ProjectModel project;
@@ -134,9 +135,11 @@ class _ProjectCardState extends State<ProjectCard> {
                           Container(
                             margin: const EdgeInsets.only(right: 6),
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 7, vertical: 3),
+                                horizontal: 8, vertical: 3.5),
                             decoration: BoxDecoration(
-                              color: const Color(0xFF00C853),
+                              gradient: const LinearGradient(
+                                colors: [Color(0xFF00C853), Color(0xFF009688)],
+                              ),
                               borderRadius: BorderRadius.circular(20),
                               boxShadow: [
                                 BoxShadow(
@@ -149,15 +152,31 @@ class _ProjectCardState extends State<ProjectCard> {
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                const Icon(Icons.check,
-                                    size: 9, color: Colors.white),
-                                const SizedBox(width: 3),
+                                if (project.playStoreUrl != null)
+                                  const Padding(
+                                    padding: EdgeInsets.only(right: 3),
+                                    child: GooglePlayIcon(
+                                      size: 10,
+                                      isMultiColor: false,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                if (project.appStoreUrl != null)
+                                  const Padding(
+                                    padding: EdgeInsets.only(right: 3),
+                                    child: Icon(
+                                      Icons.apple,
+                                      size: 11,
+                                      color: Colors.white,
+                                    ),
+                                  ),
                                 Text(
-                                  widget.isArabic ? "لايف" : "LIVE",
+                                  widget.isArabic ? "متاح بالمتجر" : "ON STORE",
                                   style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 9,
                                     fontWeight: FontWeight.w900,
+                                    letterSpacing: 0.3,
                                   ),
                                 ),
                               ],
@@ -340,33 +359,40 @@ class _ProjectCardState extends State<ProjectCard> {
                             ),
                           ),
                           if (project.playStoreUrl != null)
-                            IconButton(
-                              onPressed: () {
-                                UrlHelper.launchURL(project.playStoreUrl!);
-                              },
-                              icon: const FaIcon(
-                                FontAwesomeIcons.googlePlay,
-                                size: 13,
-                                color: Color(0xFF00E676),
-                              ),
-                              tooltip: "Google Play Store",
-                              style: IconButton.styleFrom(
-                                padding: const EdgeInsets.all(4),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 4),
+                              child: IconButton(
+                                onPressed: () {
+                                  UrlHelper.launchURL(project.playStoreUrl!);
+                                },
+                                icon: const GooglePlayIcon(size: 15),
+                                tooltip: "Google Play Store",
+                                style: IconButton.styleFrom(
+                                  padding: const EdgeInsets.all(5),
+                                  backgroundColor: const Color(0xFF01875F)
+                                      .withValues(alpha: 0.12),
+                                ),
                               ),
                             ),
                           if (project.appStoreUrl != null)
-                            IconButton(
-                              onPressed: () {
-                                UrlHelper.launchURL(project.appStoreUrl!);
-                              },
-                              icon: FaIcon(
-                                FontAwesomeIcons.apple,
-                                size: 15,
-                                color: isDark ? Colors.white : Colors.black87,
-                              ),
-                              tooltip: "Apple App Store",
-                              style: IconButton.styleFrom(
-                                padding: const EdgeInsets.all(4),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 4),
+                              child: IconButton(
+                                onPressed: () {
+                                  UrlHelper.launchURL(project.appStoreUrl!);
+                                },
+                                icon: AppleIcon(
+                                  size: 16,
+                                  color: isDark ? Colors.white : Colors.black87,
+                                ),
+                                tooltip: "Apple App Store",
+                                style: IconButton.styleFrom(
+                                  padding: const EdgeInsets.all(5),
+                                  backgroundColor: (isDark
+                                          ? Colors.white
+                                          : Colors.black)
+                                      .withValues(alpha: 0.08),
+                                ),
                               ),
                             ),
                           IconButton(

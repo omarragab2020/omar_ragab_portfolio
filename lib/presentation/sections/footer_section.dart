@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../core/constants/portfolio_data.dart';
 import '../../core/theme/app_colors.dart';
@@ -22,7 +22,12 @@ class FooterSection extends StatelessWidget {
     final isMobile = Responsive.isMobile(context);
 
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 36, horizontal: 24),
+      padding: EdgeInsets.only(
+        top: 32,
+        left: 20,
+        right: 20,
+        bottom: isMobile ? 45 : 32,
+      ),
       decoration: BoxDecoration(
         color: isDark ? AppColors.bgDarkSecondary : AppColors.bgLightSecondary,
         border: Border(
@@ -94,36 +99,35 @@ class FooterSection extends StatelessWidget {
                         : AppColors.textLightMuted,
                   ),
                 ),
-                const SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                const SizedBox(height: 14),
+                Wrap(
+                  spacing: 10,
+                  runSpacing: 8,
+                  alignment: WrapAlignment.center,
                   children: [
-                    IconButton(
+                    _buildSocialButton(
                       onPressed: () => UrlHelper.openGitHub(),
-                      icon: const FaIcon(FontAwesomeIcons.github, size: 15),
-                      padding: const EdgeInsets.all(8),
-                      constraints: const BoxConstraints(),
+                      icon: FontAwesomeIcons.github,
+                      tooltip: "GitHub",
+                      isDark: isDark,
                     ),
-                    const SizedBox(width: 8),
-                    IconButton(
+                    _buildSocialButton(
                       onPressed: () => UrlHelper.openLinkedIn(),
-                      icon: const FaIcon(FontAwesomeIcons.linkedinIn, size: 15),
-                      padding: const EdgeInsets.all(8),
-                      constraints: const BoxConstraints(),
+                      icon: FontAwesomeIcons.linkedinIn,
+                      tooltip: "LinkedIn",
+                      isDark: isDark,
                     ),
-                    const SizedBox(width: 8),
-                    IconButton(
+                    _buildSocialButton(
                       onPressed: () => UrlHelper.openWhatsApp(),
-                      icon: const FaIcon(FontAwesomeIcons.whatsapp, size: 15),
-                      padding: const EdgeInsets.all(8),
-                      constraints: const BoxConstraints(),
+                      icon: FontAwesomeIcons.whatsapp,
+                      tooltip: "WhatsApp",
+                      isDark: isDark,
                     ),
-                    const SizedBox(width: 8),
-                    IconButton(
+                    _buildSocialButton(
                       onPressed: () => UrlHelper.openEmail(),
-                      icon: const FaIcon(FontAwesomeIcons.envelope, size: 15),
-                      padding: const EdgeInsets.all(8),
-                      constraints: const BoxConstraints(),
+                      icon: FontAwesomeIcons.envelope,
+                      tooltip: "Email",
+                      isDark: isDark,
                     ),
                   ],
                 ),
@@ -149,29 +153,32 @@ class FooterSection extends StatelessWidget {
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    IconButton(
+                    _buildSocialButton(
                       onPressed: () => UrlHelper.openGitHub(),
-                      icon: const FaIcon(FontAwesomeIcons.github, size: 15),
-                      padding: const EdgeInsets.all(8),
-                      constraints: const BoxConstraints(),
+                      icon: FontAwesomeIcons.github,
+                      tooltip: "GitHub",
+                      isDark: isDark,
                     ),
-                    IconButton(
+                    const SizedBox(width: 8),
+                    _buildSocialButton(
                       onPressed: () => UrlHelper.openLinkedIn(),
-                      icon: const FaIcon(FontAwesomeIcons.linkedinIn, size: 15),
-                      padding: const EdgeInsets.all(8),
-                      constraints: const BoxConstraints(),
+                      icon: FontAwesomeIcons.linkedinIn,
+                      tooltip: "LinkedIn",
+                      isDark: isDark,
                     ),
-                    IconButton(
+                    const SizedBox(width: 8),
+                    _buildSocialButton(
                       onPressed: () => UrlHelper.openWhatsApp(),
-                      icon: const FaIcon(FontAwesomeIcons.whatsapp, size: 15),
-                      padding: const EdgeInsets.all(8),
-                      constraints: const BoxConstraints(),
+                      icon: FontAwesomeIcons.whatsapp,
+                      tooltip: "WhatsApp",
+                      isDark: isDark,
                     ),
-                    IconButton(
+                    const SizedBox(width: 8),
+                    _buildSocialButton(
                       onPressed: () => UrlHelper.openEmail(),
-                      icon: const FaIcon(FontAwesomeIcons.envelope, size: 15),
-                      padding: const EdgeInsets.all(8),
-                      constraints: const BoxConstraints(),
+                      icon: FontAwesomeIcons.envelope,
+                      tooltip: "Email",
+                      isDark: isDark,
                     ),
                   ],
                 ),
@@ -179,6 +186,32 @@ class FooterSection extends StatelessWidget {
             ),
           ],
         ],
+      ),
+    );
+  }
+
+  Widget _buildSocialButton({
+    required VoidCallback onPressed,
+    required FaIconData icon,
+    required String tooltip,
+    required bool isDark,
+  }) {
+    return IconButton(
+      onPressed: onPressed,
+      icon: FaIcon(icon, size: 14),
+      tooltip: tooltip,
+      style: IconButton.styleFrom(
+        backgroundColor: isDark
+            ? AppColors.bgDarkCard
+            : AppColors.bgLightCard,
+        foregroundColor: isDark ? Colors.white70 : Colors.black87,
+        padding: const EdgeInsets.all(9),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+          side: BorderSide(
+            color: isDark ? AppColors.borderDark : AppColors.borderLight,
+          ),
+        ),
       ),
     );
   }
