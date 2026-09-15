@@ -1,5 +1,5 @@
 {
-  "buildCommand": "if [ ! -d \"flutter\" ]; then git clone -b stable --depth 1 https://github.com/flutter/flutter.git; fi && flutter/bin/flutter config --enable-web && flutter/bin/flutter build web --release --tree-shake-icons --web-renderer html",
+  "buildCommand": "if [ ! -d \"flutter\" ]; then git clone -b stable --depth 1 https://github.com/flutter/flutter.git; fi && flutter/bin/flutter config --enable-web && flutter/bin/flutter build web --release --tree-shake-icons",
   "outputDirectory": "build/web",
   "cleanUrls": true,
   "headers": [
