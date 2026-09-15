@@ -426,45 +426,7 @@ class PortfolioData {
       impactEn: "Live on Google Play Store; delivered seamless remote exam sessions and video lecture streaming to active students.",
       impactAr: "منشور على Google Play؛ يخدم مئات الطلاب في متابعة الشروحات وإجراء الاختبارات التنافسية بنجاح.",
     ),
-    // 6. RHM Booking & Hospitality
-    ProjectModel(
-      id: "rhm_booking",
-      titleEn: "RHM Booking & Hospitality Ecosystem",
-      titleAr: "منظومة حجز الشاليهات والمنتجعات (RHM Booking)",
-      subtitleEn: "Dual-App Platform (Guest Booking & Provider Dashboard)",
-      subtitleAr: "منظومة ثنائية (تطبيق حجز النزلاء + لوحة تحكم المزودين وأصحاب العقارات)",
-      descriptionEn: "An enterprise-grade dual-application ecosystem for chalet, resort, and event facility discovery and reservations. Comprises a customer booking application featuring interactive map browsing with live price tags and date filters, paired with a specialized Provider Admin Dashboard featuring real-time booking push notifications via Pusher Channels, interactive visual calendar scheduler, reservation status pipelines, and revenue analytics charts.",
-      descriptionAr: "منظومة برمجية متقدمة من تطبيقين لحجز الشاليهات والمنتجعات وقاعات المناسبات. تشتمل على تطبيق للعملاء يتيح التصفح التفاعلي على الخريطة مع عرض الأسعار المباشرة، متصلاً بلوحة تحكم للمزودين تتلقى إشعارات الحجز اللحظية عبر Pusher، مع تقويم مرئي وجداول إحصائيات مالية.",
-      featuresEn: [
-        "Dual-application architecture sharing core domain entities and unified authentication services",
-        "Interactive map browsing with custom chalet price-tag pins and radius filtering",
-        "Provider calendar scheduler with drag-and-drop booking blocks and instant date lockouts",
-        "Real-time reservation push notifications with instant accept/reject action pipelines via Pusher",
-        "Financial reporting dashboard with monthly revenue breakdown charts and payout requests",
-      ],
-      featuresAr: [
-        "هيكلية تطبيقين مترابطين تشترك في الطبقات الأساسية مع التوثيق الموحد",
-        "تصفح تفاعلي بالخريطة مع دبابيس تسعير مخصصة وتصفية حسب النطاق الجغرافي والتواريخ",
-        "تقويم ذكي لأصحاب الشاليهات لجدولة الحجوزات وحظر الأيام المشغولة فوراً",
-        "إشعارات حجز فورية عبر قنوات Pusher مع إمكانية القبول أو الرفض اللحظي",
-        "لوحة تقارير مالية تفاعلية تعرض المخططات البيانية للإيرادات وطلبات التحويل",
-      ],
-      techStack: ["Flutter", "Pusher Channels", "Google Maps", "BLoC/Cubit", "fl_chart", "Clean Architecture", "REST APIs"],
-      category: "Real-time",
-      icon: Icons.hotel_rounded,
-      primaryColor: Color(0xFF3B82F6),
-      isFeatured: true,
-      imagePath: "assets/projects/rhm_booking.png",
-      galleryImages: [
-        "assets/projects/rhm_booking.png",
-      ],
-      githubUrl: "https://github.com/omarragab2020",
-      architectureEn: "Clean Architecture with BLoC Pattern, Pusher WebSocket Event Handlers, and Shared Domain Repositories across dual apps.",
-      architectureAr: "معمارية Clean Architecture مع BLoC والتعامل مع أحداث Pusher اللحظية ومستودعات بيانات مشتركة بين التطبيقين.",
-      impactEn: "Zero double-booking conflicts achieved via real-time Pusher lock engine; streamlined resort management.",
-      impactAr: "منع التعارض في الحجوزات بنسبة 100% بفضل مزامنة Pusher اللحظية وأتمتة إدارة المنتجعات.",
-    ),
-    // 7. Tawfeer 360
+    // 6. Tawfeer 360
     ProjectModel(
       id: "tawfeer_360",
       titleEn: "Tawfeer 360 Deals & Vouchers",
