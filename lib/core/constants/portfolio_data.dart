@@ -306,37 +306,44 @@ class PortfolioData {
     // 2. Engeez Customer (Live Google Play & Apple App Store)
     ProjectModel(
       id: "engeez_customer",
-      playStoreUrl: "https://play.google.com/store/apps/details?id=com.neuss.shipping&pcampaignid=web_share",
-      appStoreUrl: "https://apps.apple.com/jo/app/engeez-%D8%A7%D9%86%D8%AC%D8%B2/id6755639468",
-      titleEn: "Engeez Customer - On-Demand Essentials",
-      titleAr: "تطبيق إنجز (Engeez Customer) - لطلب وتوصيل المنتجات",
-      subtitleEn: "City-wide Food, Grocery & Retail Ordering App on App Store & Google Play",
+      playStoreUrl:
+          "https://play.google.com/store/apps/details?id=com.neuss.shipping&pcampaignid=web_share",
+      appStoreUrl:
+          "https://apps.apple.com/jo/app/engeez-%D8%A7%D9%86%D8%AC%D8%B2/id6755639468",
+      titleEn: "Engeez Customer - On-Demand Shipping & Parcel Delivery",
+      titleAr: "تطبيق إنجز للعملاء (Engeez Customer) - لطلب وشحن الطرود والمنتجات",
+      subtitleEn:
+          "Multi-Role Shipping Wizard with Offline MapLibre Vector Tiles & Real-Time Tracking",
       subtitleAr:
-          "تطبيق شامل لطلب الطعام والبقالة والمستلزمات اليومية على المتجرين",
-      descriptionEn: "A high-performance consumer delivery application published on Apple App Store and Google Play, providing an effortless ordering experience for food, grocery, and daily essentials across city-wide multi-branch vendors. Features instant fuzzy search, responsive cart modifiers, interactive GPS map address pin selector with saved presets, coupon checkout engine, and a live step-by-step order progress timeline.",
-      descriptionAr: "تطبيق طلب وتوصيل استهلاكي منشور على متجري Google Play و Apple App Store، يوفر تجربة طلب سلسة للمطاعم والبقالة والاحتياجات اليومية. يشمل بحثاً ذكياً، وسلة مشتريات ديناميكية، وتحديد الموقع الجغرافي وحفظ العناوين، ومتابعة فورية لمراحل الطلب والسائق على الخريطة.",
+          "معالج شحن متعدد الأدوار مع خرائط فيكتور دون إنترنت (PMTiles) ومتابعة لحظية للشحنات",
+      descriptionEn:
+          "A next-generation on-demand courier and parcel delivery consumer application published on Apple App Store and Google Play. Engineered for individuals and merchants to dispatch goods seamlessly across Jordan. Features an intuitive 5-step shipping wizard (Sender/Receiver/Third-Party Organizer roles, categorized shipment types: Documents, Clothes, Electronics, Food & Groceries), offline Jordan vector map rendering using MapLibre GL & PMTiles, dynamic address book management with reverse geocoding, live order timeline status tracking (In Process -> On the Way -> Delivered), and comprehensive customer analytics overview with digital wallet integration.",
+      descriptionAr:
+          "تطبيق متطور لطلب وإرسال الشحنات والطرود السريعة منشور على متجري Google Play و Apple App Store. صُمم لخدمة الأفراد والتجار في شحن البضائع بسلاسة عبر جميع محافظات الأردن. يتميز بمعالج إنشاء شحنات ذكي من 5 خطوات (يدعم دور الراسل، المستلم، أو منسق الشحنة لطرف ثالث، مع تصنيف الطرود: وثائق، ملابس، إلكترونيات، طعام وبقالة)، وخرائط فيكتور محلية متقدمة عبر MapLibre GL و PMTiles، مع سجل عناوين ذكي، وتتبع حي لمراحل وتفاصيل الشحنة، ولوحة إحصائيات متكاملة ومحفظة إلكترونية.",
       featuresEn: [
-        "Fuzzy search & real-time restaurant catalog filtering by cuisine, rating, and distance",
-        "Dynamic cart engine supporting customizable meal options, add-ons, and special notes",
-        "Interactive map location picker with reverse geocoding and address labeling (Home, Work)",
-        "Live order status tracker with driver location visualization and estimated arrival countdown",
-        "Digital wallet integration, promo code validation, and automated payment receipts",
+        "5-Step intuitive shipment creation wizard supporting Sender, Receiver, and Third-Party organizer roles",
+        "Categorized shipment profiles (Documents, Clothes, Electronics, Food & Groceries) with dynamic pricing",
+        "High-performance vector map tile rendering with offline Jordan PMTiles & MapLibre GL",
+        "Interactive Address Book with saved presets, Governorates & Areas geocoding selector",
+        "Live shipment progress breakdown dashboard (In Process, On the Way, Delivered)",
+        "Integrated Barcode & QR Code generator for shipment identity tags & receipts",
       ],
       featuresAr: [
-        "بحث فوري وتصفية ذكية للمطاعم والمنتجات حسب التقييم والمسافة ونوع الأطعمة",
-        "سلة مشتريات ديناميكية تدعم تخصيص الوجبات، الإضافات، والملاحظات الخاصة",
-        "محدد مواقع تفاعلي على الخريطة لحفظ العناوين وتسميتها (المنزل، العمل)",
-        "تتبع حي لمسار وحالة الطلب مع عداد زمني تقديري لوصول الكابتن",
-        "محفظة رقمية مدمجة، والتحقق من كوبونات الخصم، وتوليد الفواتير الإلكترونية",
+        "معالج إنشاء شحنات ذكي من 5 خطوات يدعم خيارات (أنا الراسل، أنا المستلم، تنظيم الشحنة لشخص آخر، أو القوالب الجاهزة)",
+        "تصنيف دقيق لأنواع الشحنات (وثائق، ملابس، إلكترونيات، طعام وبقالة) مع احتساب فوري للتكلفة",
+        "خرائط فيكتور فائقة السرعة تعمل بدون إنترنت عبر MapLibre GL ومخططات Jordan PMTiles",
+        "دفتر عناوين تفاعلي لحفظ الأماكن المفضلة وتحديد المحافظات والمديريات جغرافياً",
+        "لوحة إحصائيات ومتابعة حية لمراحل الشحنة (قيد المعالجة ⬅️ في الطريق إليك ⬅️ تم التوصيل)",
+        "توليد وتضمين أكواد الباركود ورموز QR لكل شحنة لسهولة التتبع والتوثيق",
       ],
       techStack: [
-        "Flutter",
-        "App Store Release",
-        "Google Play Release",
-        "GetX",
-        "Dio REST Engine",
-        "Google Maps",
-        "Firebase FCM",
+        "Flutter & Dart",
+        "App Store & Google Play",
+        "MapLibre GL & PMTiles",
+        "GetX Architecture",
+        "Mobile Scanner & Barcode",
+        "Pinput (Phone OTP)",
+        "Flutter Secure Storage",
         "Clean Architecture",
       ],
       category: "Delivery",
@@ -344,12 +351,23 @@ class PortfolioData {
       primaryColor: Color(0xFF8B5CF6),
       isFeatured: true,
       imagePath: "assets/projects/engeez.png",
-      galleryImages: ["assets/projects/engeez.png"],
+      galleryImages: [
+        "assets/projects/engeez.png",
+        "assets/projects/engeez_cust_1.png",
+        "assets/projects/engeez_cust_2.png",
+        "assets/projects/engeez_cust_3.png",
+        "assets/projects/engeez_cust_4.png",
+        "assets/projects/engeez_cust_5.png",
+      ],
       githubUrl: "https://github.com/omarragab2020",
-      architectureEn: "Layered Clean Architecture with Dio Interceptors for JWT Refresh Tokens, Functional Either<Failure, Success> error wrappers, and Reactive GetX.",
-      architectureAr: "معمارية نظيفة متعددة الطبقات مع Dio Interceptors لتجديد التوكن التلقائي ومعالجة الأخطاء بنظام Either وإدارة الحالة بـ GetX.",
-      impactEn: "Live on Google Play & App Store with 99.8% crash-free session rate and frictionless checkout experience.",
-      impactAr: "منشور على المتجرين بنسبة جلسات خالية من الأعطال 99.8% وتجربة دفع وتسوق سريعة وموثوقة.",
+      architectureEn:
+          "Modular GetX architecture layered with domain-separated controllers (Shipments, AddressBook, Wallet, Analytics). Integrates local vector map PMTiles caching to eliminate external tile server load and ensure smooth 60fps rendering.",
+      architectureAr:
+          "معمارية GetX نمطية مقسمة إلى وحدات تحكم مخصصة (الشحنات، سجل العناوين، المحفظة، الإحصائيات). مع دمج خرائط PMTiles محلياً لتقليل استهلاك الإنترنت وتسريع التصفح بسلاسة 60fps.",
+      impactEn:
+          "Live on App Store & Google Play with thousands of successfully created on-demand parcels and seamless checkout.",
+      impactAr:
+          "منشور على المتجرين بخدمة آلاف الشحنات الناجحة وتجربة مستخدم سهلة وسريعة لطلب التوصيل.",
     ),
     // 3. Neuss Time Tracker (Live Apple App Store)
     ProjectModel(
