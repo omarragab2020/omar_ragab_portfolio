@@ -238,36 +238,46 @@ class PortfolioData {
     // 1. Engeez Driver (Live Google Play & Apple App Store)
     ProjectModel(
       id: "engeez_delivery",
-      playStoreUrl: "https://play.google.com/store/apps/details?id=com.neuss.engeezdriverapp&pcampaignid=web_share",
+      playStoreUrl:
+          "https://play.google.com/store/apps/details?id=com.neuss.engeezdriverapp&pcampaignid=web_share",
       appStoreUrl: "https://apps.apple.com/jo/app/engeez-driver/id6758239812",
-      titleEn: "Engeez Driver - Live Delivery & Logistics",
-      titleAr: "تطبيق السائق (Engeez Driver) - للتوصيل واللوجستيات",
-      subtitleEn: "Dual-Store Driver App with Live GPS Navigation & WebSocket Dispatching",
-      subtitleAr: "تطبيق السائقين على المتجرين مع تتبع GPS وتوزيع الطلبات عبر WebSocket",
-      descriptionEn: "A mission-critical enterprise driver dispatch application published on both Google Play and Apple App Store. Powers real-time order acceptance pipelines, turn-by-turn Google Maps polyline navigation, live driver battery-optimized background telemetry, offline cached order states, and multi-vendor parcel handoff protocols.",
-      descriptionAr: "تطبيق متكامل لإدارة واستقبال طلبات التوصيل منشور على متجري Google Play و Apple App Store. يعتمد على نظام إسناد لحظي، وملاحة دقيقة عبر خرائط Google، مع تتبع موقع السائق في الخلفية بأقل استهلاك للبطارية، والعمل بدون إنترنت للتسليمات.",
+      titleEn: "Engeez Driver - Real-Time Logistics & Dispatch Platform",
+      titleAr:
+          "تطبيق إنجز للسائقين (Engeez Driver) - منظومة التوصيل واللوجستيات اللحظية",
+      subtitleEn:
+          "Enterprise Driver App with Background GPS Telemetry, Socket.IO & Price Negotiation",
+      subtitleAr:
+          "تطبيق السائقين التجاري مع التتبع الحي في الخلفية والملاحة والتفاوض اللحظي على الأسعار",
+      descriptionEn:
+          "A mission-critical enterprise driver dispatch and courier logistics platform published on Google Play and Apple App Store. Engineered for multi-category on-demand delivery (Express, Documents, Electronics, Food). Features high-frequency Socket.IO real-time order dispatching with audio alarm popups, battery-optimized background GPS telemetry service, interactive multi-stage order tracking (Start to Sender -> Confirm Pickup -> Start to Receiver -> Confirm Delivery), live in-app price negotiation engine, barcode & QR package scanner, digital Cash on Delivery (COD) collection ledger, and driver daily KPI rating metrics.",
+      descriptionAr:
+          "تطبيق تجاري متكامل لإدارة واستقبال شحنات التوصيل اللوجستية منشور رسمياً على متجري Google Play و Apple App Store. يدعم الشحنات المتنوعة (Express، مستندات، أجهزة إلكترونية، وطعام). يعتمد على توزيع الطلبات اللحظي عبر Socket.IO مع تنبيهات صوتية واهتزازية فورية، وتتبع موقع السائق في الخلفية بأقل استهلاك للبطارية، ومتابعة دقيقة لمراحل الشحنة، ونظام تفاوض لحظي على الأسعار بين السائق والعميل، مع مسح الباركود والـ QR للشحنات، ومحفظة مالية لإدارة التحصيل النقدي (COD) وإحصائيات الـ KPI اليومية.",
       featuresEn: [
-        "Real-time order dispatching and instant push audio alerts via Pusher & WebSockets",
-        "Interactive route navigation using Google Maps API with auto-rerouting and distance matrix",
-        "Earnings ledger, daily trip audit history, and live digital tip payouts",
-        "Robust offline caching for pending deliveries using Hive & SQLite fallback",
-        "Battery-efficient background location stream pinging with adaptive interval throttling",
+        "Real-time Socket.IO dispatching with audible push alerts and fast Accept/Reject decision pipelines",
+        "Battery-efficient background GPS telemetry stream with adaptive pinging intervals (Flutter Background Service)",
+        "End-to-End order progression workflow (Start to Sender, Confirm Pickup, Start to Receiver, Confirm Delivery)",
+        "Real-time in-app price bidding & negotiation controller between driver and client",
+        "Integrated Barcode & QR Code camera scanner for package handoff verification",
+        "Cash on Delivery (COD) collection ledger, daily earnings summary, and performance KPI analytics",
       ],
       featuresAr: [
-        "إسناد الطلبات واستقبال التنبيهات الصوتية اللحظية عبر Pusher و WebSockets",
-        "ملاحة تفاعلية دقيقة وتوجيه ذكي عبر مسارات خرائط Google Maps مع حساب المسافات",
-        "سجل مالي مفصل، وإحصائيات الرحلات اليومية مع نظام الإكراميات والمحفظة",
-        "تخزين محلي قوي لحالات الطلبات غير المكتملة عند انقطاع الإنترنت عبر Hive و SQLite",
-        "تتبع موقع السائق في الخلفية عبر Streams مع توفير استهلاك البطارية",
+        "إسناد الطلبات اللحظي عبر Socket.IO مع تنبيهات صوتية منبهة وقبول/رفض فوري للطلبات",
+        "خدمة تتبع موقع السائق في الخلفية عبر GPS بأعلى دقة وتوفير فائق للبطارية (Background Service)",
+        "تدفق كامل ومحكم لمراحل التوصيل (الانطلاق للمرسل ⬅️ استلام الشحنة ⬅️ الانطلاق للمستلم ⬅️ تأكيد التسليم)",
+        "محرك تفاوض حي ومزايدة على الأسعار بين السائق والعميل للشحنات الخاصة والمستعجلة",
+        "ماسح باركود ورموز QR مدمج للتحقق من أرقام الشحنات وسلامة تسليم الطرود",
+        "محفظة مالية لتحصيل المبالغ النقدية (COD) وسجل أرباح مفصل وإحصائيات أداء الـ KPI",
       ],
       techStack: [
-        "Flutter",
-        "Google Play Release",
-        "App Store Release",
-        "Google Maps SDK",
-        "WebSockets",
-        "Pusher",
-        "Hive",
+        "Flutter & Dart",
+        "Google Play & App Store",
+        "Socket.IO Real-Time",
+        "Flutter Background Service",
+        "Geolocator GPS Streams",
+        "GetX State Architecture",
+        "Mobile Scanner (QR/Barcode)",
+        "Firebase Cloud Messaging",
+        "Biometric Auth (LocalAuth)",
         "Clean Architecture",
       ],
       category: "Delivery",
@@ -275,12 +285,23 @@ class PortfolioData {
       primaryColor: Color(0xFF00C853),
       isFeatured: true,
       imagePath: "assets/projects/engeez.png",
-      galleryImages: ["assets/projects/engeez.png"],
+      galleryImages: [
+        "assets/projects/engeez.png",
+        "assets/projects/engeez_driver_1.png",
+        "assets/projects/engeez_driver_2.png",
+        "assets/projects/engeez_driver_3.png",
+        "assets/projects/engeez_driver_4.png",
+        "assets/projects/engeez_driver_5.png",
+      ],
       githubUrl: "https://github.com/omarragab2020",
-      architectureEn: "Clean Architecture (Domain/Data/Presentation), Repository Pattern, Reactive BLoC State Management, and Service Locator DI via GetIt.",
-      architectureAr: "معمارية Clean Architecture (Domain/Data/Presentation) مع نمط المستودع وإدارة الحالة التفاعلية عبر BLoC وحقن التبعيات عبر GetIt.",
-      impactEn: "Published on App Store & Google Play. Reduced order dispatch latency by 65% across hundreds of active drivers in Jordan.",
-      impactAr: "منشور على المتجرين وخفض زمن إسناد الطلبات بنسبة 65% لعدة مئات من السائقين في الأردن.",
+      architectureEn:
+          "Modular GetX State Architecture decoupled into specialized controllers (Home, Orders, Tracking, Negotiation, Wallet, KPI). Utilizes background isolates for GPS telemetry, secure token storage, and persistent Socket.IO event listeners.",
+      architectureAr:
+          "معمارية GetX نمطية مقسمة إلى وحدات تحكم متخصصة (الطلبات، التتبع، التفاوض، المحفظة، تقييم الأداء). تعتمد على معالجة متوازية (Isolates) في الخلفية لتتبع الـ GPS مع إدارة آمنة للتوكن واتصال Socket.IO مستقر.",
+      impactEn:
+          "Published on Google Play & App Store; handling hundreds of live logistics shipments daily across Jordan with 99.8% on-time delivery rate.",
+      impactAr:
+          "منشور على المتجرين؛ يدير مئات الشحنات اللوجستية اليومية في الأردن بنسبة تسليم ناجح 99.8% وسرعة استجابة فائقة.",
     ),
     // 2. Engeez Customer (Live Google Play & Apple App Store)
     ProjectModel(
