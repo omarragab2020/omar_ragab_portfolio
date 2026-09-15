@@ -367,10 +367,11 @@ class _ProjectModalState extends State<ProjectModal> {
             child: Container(
               height: isMobile ? 180 : 260,
               width: double.infinity,
-              color: isDark ? Colors.black26 : Colors.grey.shade200,
+              color: Colors.white,
+              padding: EdgeInsets.all(isMobile ? 16 : 24),
               child: Image.asset(
                 images[_selectedImageIndex % images.length],
-                fit: BoxFit.cover,
+                fit: BoxFit.contain,
                 errorBuilder: (ctx, err, stack) => Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -406,19 +407,21 @@ class _ProjectModalState extends State<ProjectModal> {
                       width: 60,
                       height: 50,
                       decoration: BoxDecoration(
+                        color: Colors.white,
                         borderRadius: BorderRadius.circular(8),
                         border: Border.all(
                           color: isSelected
                               ? AppColors.primary
-                              : Colors.transparent,
+                              : Colors.grey.shade300,
                           width: 2,
                         ),
                       ),
+                      padding: const EdgeInsets.all(4),
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(6),
+                        borderRadius: BorderRadius.circular(4),
                         child: Image.asset(
                           images[index],
-                          fit: BoxFit.cover,
+                          fit: BoxFit.contain,
                           errorBuilder: (context, error, stackTrace) =>
                               const Icon(Icons.image, size: 16),
                         ),

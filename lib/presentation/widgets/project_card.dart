@@ -67,13 +67,14 @@ class _ProjectCardState extends State<ProjectCard> {
                     child: Container(
                       height: isMobile ? 135 : 160,
                       width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: project.primaryColor.withValues(alpha: 0.12),
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
                       ),
+                      padding: EdgeInsets.all(isMobile ? 14 : 20),
                       child: project.imagePath.isNotEmpty
                           ? Image.asset(
                               project.imagePath,
-                              fit: BoxFit.cover,
+                              fit: BoxFit.contain,
                               errorBuilder: (context, error, stackTrace) {
                                 return Center(
                                   child: Icon(
