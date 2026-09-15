@@ -126,15 +126,19 @@ class ExperienceModel {
 class PortfolioData {
   static const String nameEn = "Omar Ragab";
   static const String nameAr = "عمر رجب";
-  static const String titleEn = "Mid-Level Flutter Developer | Mobile Software Engineer";
-  static const String titleAr = "مطور تطبيقات فلاتر (Mid-Level) | مهندس برمجيات الموبايل";
+  static const String titleEn =
+      "Mid-Level Flutter Developer | Mobile Software Engineer";
+  static const String titleAr =
+      "مطور تطبيقات فلاتر (Mid-Level) | مهندس برمجيات الموبايل";
   static const String email = "omarragab712000@gmail.com";
   static const String phone = "+201018027405";
   static const String displayPhone = "01018027405";
   static const String locationEn = "Mansoura, Egypt (Open to Remote Globally)";
-  static const String locationAr = "المنصورة، مصر (متاح للعمل عن بُعد محلياً وعالمياً)";
+  static const String locationAr =
+      "المنصورة، مصر (متاح للعمل عن بُعد محلياً وعالمياً)";
   static const String githubUrl = "https://github.com/omarragab2020";
-  static const String linkedinUrl = "https://linkedin.com/in/omar-ragab-347200212";
+  static const String linkedinUrl =
+      "https://linkedin.com/in/omar-ragab-347200212";
   static const String whatsappUrl = "https://wa.me/201018027405";
   static const String profileImage = "assets/images/omar_profile.jpg";
 
@@ -150,8 +154,10 @@ class PortfolioData {
       "وتكاملات الـ REST APIs و Firebase و Supabase. "
       "متمكن من العمل الفعّال ضمن فرق العمل عن بُعد (Remote Teams)، وتحويل تصاميم Figma بدقة متناهية مع كود نظيف وسهل الصيانة وقابل للتوسع.";
 
-  static const String educationEn = "B.S. in Computer Science - Mansoura University (2018 - 2022)";
-  static const String educationAr = "بكالوريوس علوم الحاسب - جامعة المنصورة (2018 - 2022)";
+  static const String educationEn =
+      "B.S. in Computer Science - Mansoura University (2018 - 2022)";
+  static const String educationAr =
+      "بكالوريوس علوم الحاسب - جامعة المنصورة (2018 - 2022)";
 
   static const int yearsOfExperience = 2;
   static const int totalProjects = 10;
@@ -254,15 +260,22 @@ class PortfolioData {
         "تخزين محلي قوي لحالات الطلبات غير المكتملة عند انقطاع الإنترنت عبر Hive و SQLite",
         "تتبع موقع السائق في الخلفية عبر Streams مع توفير استهلاك البطارية",
       ],
-      techStack: ["Flutter", "Google Play Release", "App Store Release", "Google Maps SDK", "WebSockets", "Pusher", "Hive", "Clean Architecture"],
+      techStack: [
+        "Flutter",
+        "Google Play Release",
+        "App Store Release",
+        "Google Maps SDK",
+        "WebSockets",
+        "Pusher",
+        "Hive",
+        "Clean Architecture",
+      ],
       category: "Delivery",
       icon: Icons.delivery_dining_rounded,
       primaryColor: Color(0xFF00C853),
       isFeatured: true,
       imagePath: "assets/projects/engeez.png",
-      galleryImages: [
-        "assets/projects/engeez.png",
-      ],
+      galleryImages: ["assets/projects/engeez.png"],
       githubUrl: "https://github.com/omarragab2020",
       architectureEn: "Clean Architecture (Domain/Data/Presentation), Repository Pattern, Reactive BLoC State Management, and Service Locator DI via GetIt.",
       architectureAr: "معمارية Clean Architecture (Domain/Data/Presentation) مع نمط المستودع وإدارة الحالة التفاعلية عبر BLoC وحقن التبعيات عبر GetIt.",
@@ -277,7 +290,8 @@ class PortfolioData {
       titleEn: "Engeez Customer - On-Demand Essentials",
       titleAr: "تطبيق إنجز (Engeez Customer) - لطلب وتوصيل المنتجات",
       subtitleEn: "City-wide Food, Grocery & Retail Ordering App on App Store & Google Play",
-      subtitleAr: "تطبيق شامل لطلب الطعام والبقالة والمستلزمات اليومية على المتجرين",
+      subtitleAr:
+          "تطبيق شامل لطلب الطعام والبقالة والمستلزمات اليومية على المتجرين",
       descriptionEn: "A high-performance consumer delivery application published on Apple App Store and Google Play, providing an effortless ordering experience for food, grocery, and daily essentials across city-wide multi-branch vendors. Features instant fuzzy search, responsive cart modifiers, interactive GPS map address pin selector with saved presets, coupon checkout engine, and a live step-by-step order progress timeline.",
       descriptionAr: "تطبيق طلب وتوصيل استهلاكي منشور على متجري Google Play و Apple App Store، يوفر تجربة طلب سلسة للمطاعم والبقالة والاحتياجات اليومية. يشمل بحثاً ذكياً، وسلة مشتريات ديناميكية، وتحديد الموقع الجغرافي وحفظ العناوين، ومتابعة فورية لمراحل الطلب والسائق على الخريطة.",
       featuresEn: [
@@ -294,15 +308,22 @@ class PortfolioData {
         "تتبع حي لمسار وحالة الطلب مع عداد زمني تقديري لوصول الكابتن",
         "محفظة رقمية مدمجة، والتحقق من كوبونات الخصم، وتوليد الفواتير الإلكترونية",
       ],
-      techStack: ["Flutter", "App Store Release", "Google Play Release", "GetX", "Dio REST Engine", "Google Maps", "Firebase FCM", "Clean Architecture"],
+      techStack: [
+        "Flutter",
+        "App Store Release",
+        "Google Play Release",
+        "GetX",
+        "Dio REST Engine",
+        "Google Maps",
+        "Firebase FCM",
+        "Clean Architecture",
+      ],
       category: "Delivery",
       icon: Icons.shopping_bag_rounded,
       primaryColor: Color(0xFF8B5CF6),
       isFeatured: true,
       imagePath: "assets/projects/engeez.png",
-      galleryImages: [
-        "assets/projects/engeez.png",
-      ],
+      galleryImages: ["assets/projects/engeez.png"],
       githubUrl: "https://github.com/omarragab2020",
       architectureEn: "Layered Clean Architecture with Dio Interceptors for JWT Refresh Tokens, Functional Either<Failure, Success> error wrappers, and Reactive GetX.",
       architectureAr: "معمارية نظيفة متعددة الطبقات مع Dio Interceptors لتجديد التوكن التلقائي ومعالجة الأخطاء بنظام Either وإدارة الحالة بـ GetX.",
@@ -312,11 +333,14 @@ class PortfolioData {
     // 3. Neuss Time Tracker (Live Apple App Store)
     ProjectModel(
       id: "time_tracker",
-      appStoreUrl: "https://apps.apple.com/jo/app/neuss-time-tracker/id6761728653",
+      appStoreUrl:
+          "https://apps.apple.com/jo/app/neuss-time-tracker/id6761728653",
       titleEn: "Neuss Time Tracker Pro",
       titleAr: "تطبيق تايم تراكر (Neuss Time Tracker Pro)",
-      subtitleEn: "Employee Work Hour Logger & Vacation Workflow on Apple App Store",
-      subtitleAr: "نظام تسجيل ساعات العمل والإجازات للموظفين معتمد على متجر App Store",
+      subtitleEn:
+          "Employee Work Hour Logger & Vacation Workflow on Apple App Store",
+      subtitleAr:
+          "نظام تسجيل ساعات العمل والإجازات للموظفين معتمد على متجر App Store",
       descriptionEn: "A dedicated employee productivity and attendance tracking application engineered with GetX and published on Apple App Store. Allows workers to clock in/out with live session timers, track break durations, review past work shifts by interactive calendar dates, reset active sessions, and submit annual or hourly leave requests with real-time approval status monitoring.",
       descriptionAr: "تطبيق لإدارة حضور وإنتاجية الموظفين مبني بواسطة GetX ومنشور رسمياً على متجر Apple App Store. يتيح تسجيل الحضور والانصراف بعداد زمني دقيق، واحتساب فترات الاستراحة، ومراجعة سجلات العمل السابقة عبر تقويم تفاعلي، وتقديم طلبات الإجازات السنوية أو الساعية.",
       featuresEn: [
@@ -331,15 +355,20 @@ class PortfolioData {
         "نظام تقديم طلبات الإجازات والأذونات الساعية ومتابعة حالة الموافقة من الإدارة",
         "الملف الشخصي للموظف مع حفظ السجلات والأذونات محلياً بأمان",
       ],
-      techStack: ["Flutter", "GetX", "App Store Release", "Local SQLite", "Interactive Calendar", "Clean Architecture"],
+      techStack: [
+        "Flutter",
+        "GetX",
+        "App Store Release",
+        "Local SQLite",
+        "Interactive Calendar",
+        "Clean Architecture",
+      ],
       category: "Tools",
       icon: Icons.timer_rounded,
       primaryColor: Color(0xFF6366F1),
       isFeatured: true,
       imagePath: "assets/projects/time_tracker.png",
-      galleryImages: [
-        "assets/projects/time_tracker.png",
-      ],
+      galleryImages: ["assets/projects/time_tracker.png"],
       githubUrl: "https://github.com/omarragab2020",
       architectureEn: "Clean Domain Architecture with Local SQLite Shift Database, Time Calculation Services, and Reactive GetX Bindings.",
       architectureAr: "معمارية Clean Architecture مع قاعدة بيانات SQLite لتخزين الورديات وخدمات حساب الوقت مع GetX Bindings.",
@@ -349,7 +378,8 @@ class PortfolioData {
     // 4. Manhaj Quran (Live Google Play Store)
     ProjectModel(
       id: "quran_manhaj_app",
-      playStoreUrl: "https://play.google.com/store/apps/details?id=com.omar.qurankareem2",
+      playStoreUrl:
+          "https://play.google.com/store/apps/details?id=com.omar.qurankareem2",
       titleEn: "Manhaj - Al-Mus-haf Al-Mugawwad & Islamic Curriculum",
       titleAr: "تطبيق منهج (المصحف المجود والمنهج الإسلامي الشامل)",
       subtitleEn: "Full Quran Super-App with Tajweed, Tafseer, Salah, Audio & Offline Curriculums",
@@ -372,15 +402,22 @@ class PortfolioData {
         "سبحة إلكترونية ذكية تدعم الاهتزاز التفاعلي وتحديد الأهداف اليومية للأذكار",
         "مناهج تعليمية إسلامية في العقيدة والفقه والتجويد والسيرة النبوية",
       ],
-      techStack: ["Flutter", "Google Play Release", "BLoC/Cubit", "just_audio & audio_service", "SQLite", "Hive", "WorkManager", "Clean Architecture"],
+      techStack: [
+        "Flutter",
+        "Google Play Release",
+        "BLoC/Cubit",
+        "just_audio & audio_service",
+        "SQLite",
+        "Hive",
+        "WorkManager",
+        "Clean Architecture",
+      ],
       category: "Islamic",
       icon: Icons.menu_book_rounded,
       primaryColor: Color(0xFF10B981),
       isFeatured: true,
       imagePath: "assets/projects/quran_manhaj.png",
-      galleryImages: [
-        "assets/projects/quran_manhaj.png",
-      ],
+      galleryImages: ["assets/projects/quran_manhaj.png"],
       githubUrl: "https://github.com/omarragab2020",
       architectureEn: "Clean Architecture (Domain/Data/Presentation), BLoC/Cubit state management, SQLite relational indexes, Hive fast key-value storage, and Background AudioHandler service.",
       architectureAr: "معمارية Clean Architecture مع BLoC وقاعدة بيانات SQLite لفهارس الآيات و Hive للبيانات السريعة ومشغل صوتي في الخلفية عبر AudioService.",
@@ -390,10 +427,12 @@ class PortfolioData {
     // 5. Scholar Edu (Live Google Play Store)
     ProjectModel(
       id: "scholar_edu",
-      playStoreUrl: "https://play.google.com/store/apps/details?id=com.omar.scholar_edu",
+      playStoreUrl:
+          "https://play.google.com/store/apps/details?id=com.omar.scholar_edu",
       titleEn: "Scholar Edu - EdTech Smart Learning Hub",
       titleAr: "تطبيق سكولار إديو (Scholar Edu) - منصة التعليم الذكية",
-      subtitleEn: "Smart Learning Hub with Supabase, Video Streaming & Timed Quizzes",
+      subtitleEn:
+          "Smart Learning Hub with Supabase, Video Streaming & Timed Quizzes",
       subtitleAr: "منصة تعليمية ذكية تعتمد على Supabase مع بث الفيديو والاختبارات الموقوتة",
       descriptionEn: "A modern education technology platform published on Google Play, designed to bridge students and teachers seamlessly through Supabase. Students select their academic stage and curriculum to access structured recorded video lectures, followed by automated timed competitive quizzes, instant question feedback, and gamified student leaderboards that keep learning engaging and effective.",
       descriptionAr: "منصة تعليمية تفاعلية منشورة على متجر Google Play مربوطة بقاعدة بيانات Supabase السحابية. يختار الطالب مرحلته الدراسية للوصول للمحاضرات المرئية عالية الدقة، والاختبارات التنافسية المؤقتة مع التصحيح الفوري ولوحات الشرف للمتفوقين.",
@@ -411,15 +450,21 @@ class PortfolioData {
         "لوحة شرف للمتفوقين، ونظام أوسمة الإنجاز، وتقارير أداء دورية للطالب",
         "توثيق أمني لحظي عبر Supabase Auth وتخزين سحابي آمن للمحتوى والدروس",
       ],
-      techStack: ["Flutter", "Google Play Release", "Supabase", "Video Player", "Chewie", "GetX", "Clean Architecture"],
+      techStack: [
+        "Flutter",
+        "Google Play Release",
+        "Supabase",
+        "Video Player",
+        "Chewie",
+        "GetX",
+        "Clean Architecture",
+      ],
       category: "Education",
       icon: Icons.school_rounded,
       primaryColor: Color(0xFF06B6D4),
       isFeatured: true,
       imagePath: "assets/projects/scholar_edu.png",
-      galleryImages: [
-        "assets/projects/scholar_edu.png",
-      ],
+      galleryImages: ["assets/projects/scholar_edu.png"],
       githubUrl: "https://github.com/omarragab2020",
       architectureEn: "Clean Architecture with Supabase Real-Time Client, Secure Token Storage, Repository Pattern, and Modular Route Middleware.",
       architectureAr: "معمارية نظيفة تعتمد على Supabase Real-Time Client ونمط Repository مع حماية وتوجيه المسارات بالـ Middleware.",
@@ -432,7 +477,8 @@ class PortfolioData {
       titleEn: "Tawfeer 360 Deals & Vouchers",
       titleAr: "تطبيق توفير 360 (عروض الخصومات والكوبونات)",
       subtitleEn: "Multi-Role Offers App with QR Redemption & Maps",
-      subtitleAr: "منصة عروض متكاملة متعددة الأدوار مع استبدال الكوبونات برمز QR",
+      subtitleAr:
+          "منصة عروض متكاملة متعددة الأدوار مع استبدال الكوبونات برمز QR",
       descriptionEn: "A robust cross-platform mobile marketplace application built with Flutter and GetX for deals and voucher redemption. Features a 3-tier Role-Based Access Control system (Super Admin, Merchant Providers, and Customers). Integrates Firebase Auth, Cloud Messaging (FCM), multipart HTTP payment proof uploads, voucher inventory management, dual map support (Google Maps & OpenStreetMap), and instant in-store QR code offer redemption scanning.",
       descriptionAr: "تطبيق متكامل للعروض والخصومات وقسائم الشراء مبني بـ Flutter و GetX. يتضمن نظام تحكم بصلاحيات متعددة (مدير النظام، التجار، والعملاء)، مع رفع إيصالات الدفع بنظام Multipart، والتحقق الفوري من الكوبونات داخل المتاجر عبر مسح كود الـ QR.",
       featuresEn: [
@@ -449,15 +495,21 @@ class PortfolioData {
         "عميل HTTP Multipart لرفع إيصالات التحويل البنكي وتوثيق سجلات التجار بأمان",
         "إشعارات موجهة ذكية للمستخدمين بالعروض القريبة جغرافياً",
       ],
-      techStack: ["Flutter", "GetX", "QR Scanner", "Google Maps & OSM", "Multipart HTTP", "Firebase FCM", "Clean Architecture"],
+      techStack: [
+        "Flutter",
+        "GetX",
+        "QR Scanner",
+        "Google Maps & OSM",
+        "Multipart HTTP",
+        "Firebase FCM",
+        "Clean Architecture",
+      ],
       category: "E-commerce",
       icon: Icons.local_offer_rounded,
       primaryColor: Color(0xFFF59E0B),
       isFeatured: false,
       imagePath: "assets/projects/tawfeer_360.jpg",
-      galleryImages: [
-        "assets/projects/tawfeer_360.jpg",
-      ],
+      galleryImages: ["assets/projects/tawfeer_360.jpg"],
       githubUrl: "https://github.com/omarragab2020",
       architectureEn: "Modular GetX State Architecture with Role-Based Navigation Guards, Custom Http Multipart Handlers, and Reactive QR Stream Controllers.",
       architectureAr: "معمارية GetX نمطية مع حماية التوجيه حسب الأدوار ومعالجات رفع الملفات Multipart ومتحكمات الـ QR Stream.",
@@ -487,15 +539,20 @@ class PortfolioData {
         "نظام نقاط ومكافآت تحفيزي يتيح تحويل النقاط لرصيد أو تحويلها بين المستخدمين",
         "سجل كامل للطلبات السابقة مع إمكانية إعادة الطلب بضغطة زر وتتبع مسار الشحن",
       ],
-      techStack: ["Flutter", "GetX", "Digital Wallet Engine", "OTP Phone Auth", "Multi-Store Architecture", "REST APIs"],
+      techStack: [
+        "Flutter",
+        "GetX",
+        "Digital Wallet Engine",
+        "OTP Phone Auth",
+        "Multi-Store Architecture",
+        "REST APIs",
+      ],
       category: "E-commerce",
       icon: Icons.store_rounded,
       primaryColor: Color(0xFFEC4899),
       isFeatured: false,
       imagePath: "assets/projects/nuess_shop.png",
-      galleryImages: [
-        "assets/projects/nuess_shop.png",
-      ],
+      galleryImages: ["assets/projects/nuess_shop.png"],
       githubUrl: "https://github.com/omarragab2020",
       architectureEn: "Modular GetX State Management with Wallet Transaction Ledgers, Multi-Store Cart Sync, and Secure Local Storage.",
       architectureAr: "إدارة حالة عبر GetX مع سجلات المعاملات المالية للمحفظة ومزامنة السلة مع المتاجر المتعددة وتخزين محلي آمن.",
@@ -508,7 +565,8 @@ class PortfolioData {
       titleEn: "Al Muhanes Fleet & Telemetry",
       titleAr: "تطبيق أسطول المهندس (لإدارة المركبات ومحطات المعالجة)",
       subtitleEn: "Multilingual Station Map & Driver Fleet Tracking",
-      subtitleAr: "نظام تتبع أسطول النقل ومحطات المعالجة مدعوم بأربع لغات عالمية",
+      subtitleAr:
+          "نظام تتبع أسطول النقل ومحطات المعالجة مدعوم بأربع لغات عالمية",
       descriptionEn: "An enterprise industrial application engineered in Flutter supporting 4 languages (Arabic, English, Urdu, and Hindi with automatic RTL/LTR orientation). Visualizes wastewater discharge stations on custom Flutter Map tiles with real-time station telemetry data, vehicle-to-driver linking, role-based login (Driver vs. Account Manager), historical trip analytics, and Gmail OTP password reset verification.",
       descriptionAr: "تطبيق لإدارة العمليات اللوجستية الميدانية يدعم 4 لغات (العربية، الإنجليزية، الأوردو، والهندية مع تغيير اتجاه الواجهة تلقائياً). يعرض محطات التفريغ وبياناتها الحية على خرائط Flutter Map، مع ربط المركبات بالسائقين وإحصائيات الرحلات والتحقق بـ OTP.",
       featuresEn: [
@@ -525,15 +583,20 @@ class PortfolioData {
         "نظام دخول متعدد الصلاحيات يفصل مهام السائقين عن لوحة المشرفين والمدراء",
         "نظام استعادة كلمات المرور والتحقق بالبريد الإلكتروني عبر SMTP OTP",
       ],
-      techStack: ["Flutter", "GetX", "Flutter Map", "Multi-Language (4)", "SMTP OTP", "Clean Architecture"],
+      techStack: [
+        "Flutter",
+        "GetX",
+        "Flutter Map",
+        "Multi-Language (4)",
+        "SMTP OTP",
+        "Clean Architecture",
+      ],
       category: "Tools",
       icon: Icons.local_shipping_rounded,
       primaryColor: Color(0xFF14B8A6),
       isFeatured: false,
       imagePath: "assets/projects/al_muhanes.png",
-      galleryImages: [
-        "assets/projects/al_muhanes.png",
-      ],
+      galleryImages: ["assets/projects/al_muhanes.png"],
       githubUrl: "https://github.com/omarragab2020",
       architectureEn: "Domain-Driven Clean Architecture with Locale Translation Delegates, Map Tile Caching Layers, and Role-Based Route Navigation.",
       architectureAr: "معمارية نظيفة موجهة بالدومين مع طبقات تخزين الخرائط ومندوبي الترجمة للغات الأربع وإدارة التنقل حسب الصلاحيات.",
@@ -579,7 +642,8 @@ class PortfolioData {
           tagEn: "SOLID • Domain • Data",
           tagAr: "مبادئ SOLID • طبقات الدومين والبيانات",
           noteEn: "Separation of concerns (Domain, Data, Presentation) for 100% testability.",
-          noteAr: "فصل كامل للمسؤوليات لضمان سهولة الفحص والاختبار وتوسعة التطبيق.",
+          noteAr:
+              "فصل كامل للمسؤوليات لضمان سهولة الفحص والاختبار وتوسعة التطبيق.",
         ),
         SkillModel(
           name: "Responsive & Adaptive UI",
@@ -601,7 +665,8 @@ class PortfolioData {
           tagEn: "CustomPainters • Shaders",
           tagAr: "رسم مخصص • حركات متقدمة",
           noteEn: "Custom Canvas painting, micro-animations, glassmorphism and glowing effects.",
-          noteAr: "رسم واجهات تفاعلية مخصصة وتأثيرات زجاجية وإضاءات نيون ناعمة.",
+          noteAr:
+              "رسم واجهات تفاعلية مخصصة وتأثيرات زجاجية وإضاءات نيون ناعمة.",
         ),
       ],
     ),
@@ -630,7 +695,8 @@ class PortfolioData {
           tagEn: "GetBuilder • Bindings • Routes",
           tagAr: "تحكم سريع • ربط التبعيات • تنقل",
           noteEn: "Rapid controller bindings, reactive Rx variables, and decoupled routing.",
-          noteAr: "بناء وحدات تحكم سريعة مع متغيرات تفاعلية وتنقلات برمجية مرنة.",
+          noteAr:
+              "بناء وحدات تحكم سريعة مع متغيرات تفاعلية وتنقلات برمجية مرنة.",
         ),
         SkillModel(
           name: "Provider & Riverpod",
@@ -640,7 +706,8 @@ class PortfolioData {
           color: Color(0xFF3B82F6),
           tagEn: "ChangeNotifier • AutoDispose",
           tagAr: "إدارة التبعيات الحديثة",
-          noteEn: "Compile-safe dependency graph with scoped lifetime management.",
+          noteEn:
+              "Compile-safe dependency graph with scoped lifetime management.",
           noteAr: "إدارة آمنة للحالة وحقن التبعيات مع دورة حياة محددة وفعالة.",
         ),
         SkillModel(
@@ -670,7 +737,8 @@ class PortfolioData {
           tagEn: "Interceptors • JWT Refresh • Retrofit",
           tagAr: "اعتراض الطلبات • تجديد التوكن",
           noteEn: "Robust HTTP client with auto token renewal, retry policies & error wrappers.",
-          noteAr: "بناء عميل شبكي متكامل يتعامل مع الأخطاء وتجديد التوكن التلقائي.",
+          noteAr:
+              "بناء عميل شبكي متكامل يتعامل مع الأخطاء وتجديد التوكن التلقائي.",
         ),
         SkillModel(
           name: "WebSockets & Pusher Channels",
