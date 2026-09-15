@@ -1,7 +1,36 @@
 {
-  "buildCommand": "if [ ! -d \"flutter\" ]; then git clone -b stable --depth 1 https://github.com/flutter/flutter.git; fi && flutter/bin/flutter config --enable-web && flutter/bin/flutter build web --release",
+  "buildCommand": "if [ ! -d \"flutter\" ]; then git clone -b stable --depth 1 https://github.com/flutter/flutter.git; fi && flutter/bin/flutter config --enable-web && flutter/bin/flutter build web --release --tree-shake-icons",
   "outputDirectory": "build/web",
   "cleanUrls": true,
+  "headers": [
+    {
+      "source": "/(.*)\\.(js|wasm|css|png|jpg|jpeg|gif|svg|ico|json|ttf|woff|woff2)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/flutter_service_worker.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, no-store, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/index.html",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, no-store, must-revalidate"
+        }
+      ]
+    }
+  ],
   "rewrites": [
     {
       "source": "/(.*)",

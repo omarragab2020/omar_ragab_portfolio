@@ -27,7 +27,7 @@ jobs:
         run: flutter pub get
 
       - name: Build Web
-        run: flutter build web --release --base-href "/omar_ragab_portfolio/"
+        run: flutter build web --release --tree-shake-icons --base-href "/omar_ragab_portfolio/"
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
