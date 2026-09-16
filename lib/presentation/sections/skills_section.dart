@@ -41,19 +41,11 @@ class _SkillsSectionState extends State<SkillsSection> {
         children: [
           SectionTitle(
             tag: widget.isArabic ? "الخبرات والمهارات" : "Technical Skills",
-            title: widget.isArabic
-                ? "المهارات وبنية الأنظمة البرمجية"
-                : "Skills, Frameworks & Architecture",
-            subtitle: widget.isArabic
-                ? "تفصيل متكامل للتقنيات وأدوات إدارة الحالة، والاتصال اللحظي والأنظمة السحابية المعتمدة في مشاريعي."
-                : "A categorized deep-dive into the mobile frameworks, state machines, real-time engines, and DevOps pipelines I master.",
+            title: widget.isArabic ? "تقنياتي" : "My Tech Stack",
+            subtitle: null,
             icon: Icons.code_rounded,
           ),
-          SizedBox(height: isMobile ? 18 : 32),
-
-          // Core Superpowers Banner (4 Pillars)
-          _buildSuperpowersRow(context, isDark, isDesktop, isMobile),
-          SizedBox(height: isMobile ? 18 : 32),
+          SizedBox(height: isMobile ? 14 : 24),
 
           // Interactive Category Filter Tabs (responsive compact wrap)
           LayoutBuilder(
@@ -185,7 +177,9 @@ class _SkillsSectionState extends State<SkillsSection> {
     );
   }
 
-  Widget _buildSuperpowersRow(BuildContext context, bool isDark,
+  // Removed superpowers row - section is now compact
+  // ignore: unused_element
+  Widget _buildSuperpowersRow_UNUSED(BuildContext context, bool isDark,
       bool isDesktop, bool isMobile) {
     final pillars = [
       {

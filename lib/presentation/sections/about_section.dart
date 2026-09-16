@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/utils/responsive.dart';
-import '../widgets/glass_container.dart';
 import '../widgets/section_title.dart';
 
 class AboutSection extends StatelessWidget {
@@ -11,118 +10,159 @@ class AboutSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    final isDesktop = Responsive.isDesktop(context);
     final isMobile = Responsive.isMobile(context);
 
+    final highlights = [
+      {
+        "icon": Icons.architecture_rounded,
+        "titleEn": "Clean Architecture",
+        "titleAr": "Clean Architecture",
+        "color": const Color(0xFF6366F1),
+      },
+      {
+        "icon": Icons.speed_rounded,
+        "titleEn": "Real-Time Apps",
+        "titleAr": "تطبيقات Real-Time",
+        "color": const Color(0xFFF97316),
+      },
+      {
+        "icon": Icons.layers_rounded,
+        "titleEn": "BLoC & Cubit",
+        "titleAr": "BLoC & Cubit",
+        "color": const Color(0xFF10B981),
+      },
+      {
+        "icon": Icons.verified_user_rounded,
+        "titleEn": "CI/CD & Stores",
+        "titleAr": "نشر ومتاجر",
+        "color": const Color(0xFF00D2FF),
+      },
+      {
+        "icon": Icons.offline_bolt_rounded,
+        "titleEn": "Offline-First",
+        "titleAr": "Offline-First",
+        "color": const Color(0xFFEC4899),
+      },
+      {
+        "icon": Icons.map_rounded,
+        "titleEn": "Maps & GPS",
+        "titleAr": "خرائط وـ GPS",
+        "color": const Color(0xFFF59E0B),
+      },
+    ];
+
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: isMobile ? 20 : 40),
+      padding: EdgeInsets.symmetric(vertical: isMobile ? 16 : 32),
       child: Column(
         children: [
           SectionTitle(
             tag: isArabic ? "من أنا" : "About Me",
-            title: isArabic ? "شغف في هندسة وتطوير النظم" : "Passionate Mobile Engineer",
+            title: isArabic ? "شغف بهندسة التطبيقات" : "Passionate Mobile Engineer",
             subtitle: isArabic
-                ? "خبرة تطبيقية متعمقة في بناء وتطوير التطبيقات التجارية بمستويات أداء متقدمة وتجربة مستخدم ساحرة."
-                : "Dedicated to crafting high-performance, beautiful mobile apps with clean, scalable code.",
+                ? "خبرة في بناء تطبيقات تجارية عالية الأداء."
+                : "Building high-performance, beautiful mobile apps.",
             icon: Icons.person_pin_rounded,
           ),
-          SizedBox(height: isMobile ? 20 : 36),
-          _buildHighlightsGrid(context, isDark, isMobile, isDesktop),
+          SizedBox(height: isMobile ? 16 : 24),
+
+          // Compact horizontal-wrap chip grid
+          Wrap(
+            alignment: WrapAlignment.center,
+            spacing: isMobile ? 8 : 10,
+            runSpacing: isMobile ? 8 : 10,
+            children: highlights.map((item) {
+              final color = item["color"] as Color;
+              return _SkillChip(
+                icon: item["icon"] as IconData,
+                label: isArabic ? item["titleAr"] as String : item["titleEn"] as String,
+                color: color,
+                isMobile: isMobile,
+              );
+            }).toList(),
+          ),
         ],
       ),
     );
   }
+}
 
-  Widget _buildHighlightsGrid(BuildContext context, bool isDark, bool isMobile, bool isDesktop) {
-    final highlights = [
-      {
-        "icon": Icons.architecture_rounded,
-        "titleEn": "Clean Architecture & SOLID",
-        "titleAr": "Clean Architecture ومبادئ SOLID",
-        "descEn": "Expertise in layer separation (Domain, Data, Presentation) with dependency inversion.",
-        "descAr": "هيكلة معمارية مفصولة الطبقات مع سهولة الاختبار والصيانة وتوسيع النظم.",
-      },
-      {
-        "icon": Icons.speed_rounded,
-        "titleEn": "High-Performance Real-Time",
-        "titleAr": "أداء فائق ونظم Real-Time",
-        "descEn": "WebSocket streams, GPS live tracking, audio byte caching, and smooth 60fps UI.",
-        "descAr": "تتبع خرائط مباشر، استهلاك رشيد للبطارية، ومحركات صوتية ذكية دون تهنيج.",
-      },
-      {
-        "icon": Icons.layers_rounded,
-        "titleEn": "BLoC & Cubit Mastery",
-        "titleAr": "إتقان BLoC و Cubit",
-        "descEn": "Strict unidirectional data flow, reactive state management, and memory leak prevention.",
-        "descAr": "إدارة تدفق البيانات وتحديث الواجهات بحرية ودون إعادة بناء غير ضرورية.",
-      },
-      {
-        "icon": Icons.verified_user_rounded,
-        "titleEn": "Production-Ready & CI/CD",
-        "titleAr": "جاهزية الإنتاج والـ CI/CD",
-        "descEn": "Automated deployments, store releases, testing suites, and modular packages.",
-        "descAr": "خبرة كاملة في نشر التطبيقات على App Store و Google Play وبناء مسارات الـ CI/CD.",
-      },
-    ];
+class _SkillChip extends StatefulWidget {
+  final IconData icon;
+  final String label;
+  final Color color;
+  final bool isMobile;
 
-    return GridView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: highlights.length,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: isDesktop ? 4 : (isMobile ? 2 : 2),
-        crossAxisSpacing: isMobile ? 10 : 16,
-        mainAxisSpacing: isMobile ? 10 : 16,
-        childAspectRatio: isDesktop ? 1.15 : (isMobile ? 1.05 : 1.2),
-      ),
-      itemBuilder: (context, index) {
-        final item = highlights[index];
-        return GlassContainer(
-          padding: EdgeInsets.all(isMobile ? 12 : 18),
-          borderRadius: isMobile ? 16 : 20,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                padding: EdgeInsets.all(isMobile ? 7 : 9),
-                decoration: BoxDecoration(
-                  color: AppColors.primary.withValues(alpha: 0.15),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Icon(
-                  item["icon"] as IconData,
-                  size: isMobile ? 18 : 22,
-                  color: AppColors.primaryLight,
-                ),
-              ),
-              SizedBox(height: isMobile ? 10 : 14),
-              Text(
-                isArabic ? item["titleAr"] as String : item["titleEn"] as String,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  fontSize: isMobile ? 12.5 : 14.5,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 6),
-              Expanded(
-                child: Text(
-                  isArabic ? item["descAr"] as String : item["descEn"] as String,
-                  maxLines: isMobile ? 3 : 4,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    fontSize: isMobile ? 11 : 12,
-                    color: isDark ? AppColors.textDarkSecondary : AppColors.textLightSecondary,
-                    height: 1.4,
-                  ),
-                ),
-              ),
-            ],
+  const _SkillChip({
+    required this.icon,
+    required this.label,
+    required this.color,
+    required this.isMobile,
+  });
+
+  @override
+  State<_SkillChip> createState() => _SkillChipState();
+}
+
+class _SkillChipState extends State<_SkillChip> {
+  bool _hovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    return MouseRegion(
+      onEnter: (_) => setState(() => _hovered = true),
+      onExit: (_) => setState(() => _hovered = false),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 180),
+        padding: EdgeInsets.symmetric(
+          horizontal: widget.isMobile ? 12 : 14,
+          vertical: widget.isMobile ? 7 : 8,
+        ),
+        decoration: BoxDecoration(
+          color: _hovered
+              ? widget.color.withValues(alpha: 0.18)
+              : (isDark
+                  ? AppColors.bgDarkCard.withValues(alpha: 0.7)
+                  : AppColors.bgLightCard),
+          borderRadius: BorderRadius.circular(50),
+          border: Border.all(
+            color: _hovered
+                ? widget.color.withValues(alpha: 0.7)
+                : widget.color.withValues(alpha: 0.25),
+            width: 1.2,
           ),
-        );
-      },
+          boxShadow: _hovered
+              ? [
+                  BoxShadow(
+                    color: widget.color.withValues(alpha: 0.25),
+                    blurRadius: 10,
+                    spreadRadius: 0,
+                  ),
+                ]
+              : null,
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(widget.icon,
+                size: widget.isMobile ? 13 : 15, color: widget.color),
+            const SizedBox(width: 6),
+            Text(
+              widget.label,
+              style: TextStyle(
+                fontSize: widget.isMobile ? 12 : 13,
+                fontWeight: FontWeight.w600,
+                color: _hovered
+                    ? widget.color
+                    : (isDark
+                        ? AppColors.textDarkSecondary
+                        : AppColors.textLightSecondary),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
