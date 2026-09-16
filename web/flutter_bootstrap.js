@@ -1,3 +1,6 @@
+// @ts-nocheck
+// This file uses Flutter build-time template syntax ({{ }}) which is replaced
+// by the Flutter toolchain before serving. IDE lint errors here are expected and harmless.
 {{flutter_js}}
 
 {{flutter_build_config}}

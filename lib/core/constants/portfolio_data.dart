@@ -238,20 +238,14 @@ class PortfolioData {
     // 1. Engeez Driver (Live Google Play & Apple App Store)
     ProjectModel(
       id: "engeez_delivery",
-      playStoreUrl:
-          "https://play.google.com/store/apps/details?id=com.neuss.engeezdriverapp&pcampaignid=web_share",
+      playStoreUrl: "https://play.google.com/store/apps/details?id=com.neuss.engeezdriverapp&pcampaignid=web_share",
       appStoreUrl: "https://apps.apple.com/jo/app/engeez-driver/id6758239812",
       titleEn: "Engeez Driver - Real-Time Logistics & Dispatch Platform",
-      titleAr:
-          "تطبيق إنجز للسائقين (Engeez Driver) - منظومة التوصيل واللوجستيات اللحظية",
-      subtitleEn:
-          "Enterprise Driver App with Background GPS Telemetry, Socket.IO & Price Negotiation",
-      subtitleAr:
-          "تطبيق السائقين التجاري مع التتبع الحي في الخلفية والملاحة والتفاوض اللحظي على الأسعار",
-      descriptionEn:
-          "A mission-critical enterprise driver dispatch and courier logistics platform published on Google Play and Apple App Store. Engineered for multi-category on-demand delivery (Express, Documents, Electronics, Food). Features high-frequency Socket.IO real-time order dispatching with audio alarm popups, battery-optimized background GPS telemetry service, interactive multi-stage order tracking (Start to Sender -> Confirm Pickup -> Start to Receiver -> Confirm Delivery), live in-app price negotiation engine, barcode & QR package scanner, digital Cash on Delivery (COD) collection ledger, and driver daily KPI rating metrics.",
-      descriptionAr:
-          "تطبيق تجاري متكامل لإدارة واستقبال شحنات التوصيل اللوجستية منشور رسمياً على متجري Google Play و Apple App Store. يدعم الشحنات المتنوعة (Express، مستندات، أجهزة إلكترونية، وطعام). يعتمد على توزيع الطلبات اللحظي عبر Socket.IO مع تنبيهات صوتية واهتزازية فورية، وتتبع موقع السائق في الخلفية بأقل استهلاك للبطارية، ومتابعة دقيقة لمراحل الشحنة، ونظام تفاوض لحظي على الأسعار بين السائق والعميل، مع مسح الباركود والـ QR للشحنات، ومحفظة مالية لإدارة التحصيل النقدي (COD) وإحصائيات الـ KPI اليومية.",
+      titleAr: "تطبيق إنجز للسائقين (Engeez Driver) - منظومة التوصيل واللوجستيات اللحظية",
+      subtitleEn: "Enterprise Driver App with Background GPS Telemetry, Socket.IO & Price Negotiation",
+      subtitleAr: "تطبيق السائقين التجاري مع التتبع الحي في الخلفية والملاحة والتفاوض اللحظي على الأسعار",
+      descriptionEn: "A mission-critical enterprise driver dispatch and courier logistics platform published on Google Play and Apple App Store. Engineered for multi-category on-demand delivery (Express, Documents, Electronics, Food). Features high-frequency Socket.IO real-time order dispatching with audio alarm popups, battery-optimized background GPS telemetry service, interactive multi-stage order tracking (Start to Sender -> Confirm Pickup -> Start to Receiver -> Confirm Delivery), live in-app price negotiation engine, barcode & QR package scanner, digital Cash on Delivery (COD) collection ledger, and driver daily KPI rating metrics.",
+      descriptionAr: "تطبيق تجاري متكامل لإدارة واستقبال شحنات التوصيل اللوجستية منشور رسمياً على متجري Google Play و Apple App Store. يدعم الشحنات المتنوعة (Express، مستندات، أجهزة إلكترونية، وطعام). يعتمد على توزيع الطلبات اللحظي عبر Socket.IO مع تنبيهات صوتية واهتزازية فورية، وتتبع موقع السائق في الخلفية بأقل استهلاك للبطارية، ومتابعة دقيقة لمراحل الشحنة، ونظام تفاوض لحظي على الأسعار بين السائق والعميل، مع مسح الباركود والـ QR للشحنات، ومحفظة مالية لإدارة التحصيل النقدي (COD) وإحصائيات الـ KPI اليومية.",
       featuresEn: [
         "Real-time Socket.IO dispatching with audible push alerts and fast Accept/Reject decision pipelines",
         "Battery-efficient background GPS telemetry stream with adaptive pinging intervals (Flutter Background Service)",
@@ -287,39 +281,30 @@ class PortfolioData {
       imagePath: "assets/projects/engeez.png",
       galleryImages: [
         "assets/projects/engeez.png",
-        "assets/projects/engeez_driver_1.jpg",
-        "assets/projects/engeez_driver_2.jpg",
-        "assets/projects/engeez_driver_3.jpg",
-        "assets/projects/engeez_driver_4.jpg",
-        "assets/projects/engeez_driver_5.jpg",
+        "assets/projects/scholar_screen_1.jpg",
+        "assets/projects/scholar_screen_2.jpg",
+        "assets/projects/scholar_screen_3.jpg",
+        "assets/projects/scholar_screen_4.jpg",
+        "assets/projects/scholar_screen_5.jpg",
       ],
       githubUrl: "https://github.com/omarragab2020",
-      architectureEn:
-          "Modular GetX State Architecture decoupled into specialized controllers (Home, Orders, Tracking, Negotiation, Wallet, KPI). Utilizes background isolates for GPS telemetry, secure token storage, and persistent Socket.IO event listeners.",
-      architectureAr:
-          "معمارية GetX نمطية مقسمة إلى وحدات تحكم متخصصة (الطلبات، التتبع، التفاوض، المحفظة، تقييم الأداء). تعتمد على معالجة متوازية (Isolates) في الخلفية لتتبع الـ GPS مع إدارة آمنة للتوكن واتصال Socket.IO مستقر.",
-      impactEn:
-          "Published on Google Play & App Store; handling hundreds of live logistics shipments daily across Jordan with 99.8% on-time delivery rate.",
-      impactAr:
-          "منشور على المتجرين؛ يدير مئات الشحنات اللوجستية اليومية في الأردن بنسبة تسليم ناجح 99.8% وسرعة استجابة فائقة.",
+      architectureEn: "Modular GetX State Architecture decoupled into specialized controllers (Home, Orders, Tracking, Negotiation, Wallet, KPI). Utilizes background isolates for GPS telemetry, secure token storage, and persistent Socket.IO event listeners.",
+      architectureAr: "معمارية GetX نمطية مقسمة إلى وحدات تحكم متخصصة (الطلبات، التتبع، التفاوض، المحفظة، تقييم الأداء). تعتمد على معالجة متوازية (Isolates) في الخلفية لتتبع الـ GPS مع إدارة آمنة للتوكن واتصال Socket.IO مستقر.",
+      impactEn: "Published on Google Play & App Store; handling hundreds of live logistics shipments daily across Jordan with 99.8% on-time delivery rate.",
+      impactAr: "منشور على المتجرين؛ يدير مئات الشحنات اللوجستية اليومية في الأردن بنسبة تسليم ناجح 99.8% وسرعة استجابة فائقة.",
     ),
     // 2. Engeez Customer (Live Google Play & Apple App Store)
     ProjectModel(
       id: "engeez_customer",
-      playStoreUrl:
-          "https://play.google.com/store/apps/details?id=com.neuss.shipping&pcampaignid=web_share",
-      appStoreUrl:
-          "https://apps.apple.com/jo/app/engeez-%D8%A7%D9%86%D8%AC%D8%B2/id6755639468",
+      playStoreUrl: "https://play.google.com/store/apps/details?id=com.neuss.shipping&pcampaignid=web_share",
+      appStoreUrl: "https://apps.apple.com/jo/app/engeez-%D8%A7%D9%86%D8%AC%D8%B2/id6755639468",
       titleEn: "Engeez Customer - On-Demand Shipping & Parcel Delivery",
-      titleAr: "تطبيق إنجز للعملاء (Engeez Customer) - لطلب وشحن الطرود والمنتجات",
-      subtitleEn:
-          "Multi-Role Shipping Wizard with Offline MapLibre Vector Tiles & Real-Time Tracking",
-      subtitleAr:
-          "معالج شحن متعدد الأدوار مع خرائط فيكتور دون إنترنت (PMTiles) ومتابعة لحظية للشحنات",
-      descriptionEn:
-          "A next-generation on-demand courier and parcel delivery consumer application published on Apple App Store and Google Play. Engineered for individuals and merchants to dispatch goods seamlessly across Jordan. Features an intuitive 5-step shipping wizard (Sender/Receiver/Third-Party Organizer roles, categorized shipment types: Documents, Clothes, Electronics, Food & Groceries), offline Jordan vector map rendering using MapLibre GL & PMTiles, dynamic address book management with reverse geocoding, live order timeline status tracking (In Process -> On the Way -> Delivered), and comprehensive customer analytics overview with digital wallet integration.",
-      descriptionAr:
-          "تطبيق متطور لطلب وإرسال الشحنات والطرود السريعة منشور على متجري Google Play و Apple App Store. صُمم لخدمة الأفراد والتجار في شحن البضائع بسلاسة عبر جميع محافظات الأردن. يتميز بمعالج إنشاء شحنات ذكي من 5 خطوات (يدعم دور الراسل، المستلم، أو منسق الشحنة لطرف ثالث، مع تصنيف الطرود: وثائق، ملابس، إلكترونيات، طعام وبقالة)، وخرائط فيكتور محلية متقدمة عبر MapLibre GL و PMTiles، مع سجل عناوين ذكي، وتتبع حي لمراحل وتفاصيل الشحنة، ولوحة إحصائيات متكاملة ومحفظة إلكترونية.",
+      titleAr:
+          "تطبيق إنجز للعملاء (Engeez Customer) - لطلب وشحن الطرود والمنتجات",
+      subtitleEn: "Multi-Role Shipping Wizard with Offline MapLibre Vector Tiles & Real-Time Tracking",
+      subtitleAr: "معالج شحن متعدد الأدوار مع خرائط فيكتور دون إنترنت (PMTiles) ومتابعة لحظية للشحنات",
+      descriptionEn: "A next-generation on-demand courier and parcel delivery consumer application published on Apple App Store and Google Play. Engineered for individuals and merchants to dispatch goods seamlessly across Jordan. Features an intuitive 5-step shipping wizard (Sender/Receiver/Third-Party Organizer roles, categorized shipment types: Documents, Clothes, Electronics, Food & Groceries), offline Jordan vector map rendering using MapLibre GL & PMTiles, dynamic address book management with reverse geocoding, live order timeline status tracking (In Process -> On the Way -> Delivered), and comprehensive customer analytics overview with digital wallet integration.",
+      descriptionAr: "تطبيق متطور لطلب وإرسال الشحنات والطرود السريعة منشور على متجري Google Play و Apple App Store. صُمم لخدمة الأفراد والتجار في شحن البضائع بسلاسة عبر جميع محافظات الأردن. يتميز بمعالج إنشاء شحنات ذكي من 5 خطوات (يدعم دور الراسل، المستلم، أو منسق الشحنة لطرف ثالث، مع تصنيف الطرود: وثائق، ملابس، إلكترونيات، طعام وبقالة)، وخرائط فيكتور محلية متقدمة عبر MapLibre GL و PMTiles، مع سجل عناوين ذكي، وتتبع حي لمراحل وتفاصيل الشحنة، ولوحة إحصائيات متكاملة ومحفظة إلكترونية.",
       featuresEn: [
         "5-Step intuitive shipment creation wizard supporting Sender, Receiver, and Third-Party organizer roles",
         "Categorized shipment profiles (Documents, Clothes, Electronics, Food & Groceries) with dynamic pricing",
@@ -353,21 +338,17 @@ class PortfolioData {
       imagePath: "assets/projects/engeez.png",
       galleryImages: [
         "assets/projects/engeez.png",
-        "assets/projects/engeez_cust_1.jpg",
-        "assets/projects/engeez_cust_2.jpg",
-        "assets/projects/engeez_cust_3.jpg",
-        "assets/projects/engeez_cust_4.jpg",
-        "assets/projects/engeez_cust_5.jpg",
+        "assets/projects/1.jpg",
+        "assets/projects/2.jpg",
+        "assets/projects/3.jpg",
+        "assets/projects/4.jpg",
+        "assets/projects/5.jpg",
       ],
       githubUrl: "https://github.com/omarragab2020",
-      architectureEn:
-          "Modular GetX architecture layered with domain-separated controllers (Shipments, AddressBook, Wallet, Analytics). Integrates local vector map PMTiles caching to eliminate external tile server load and ensure smooth 60fps rendering.",
-      architectureAr:
-          "معمارية GetX نمطية مقسمة إلى وحدات تحكم مخصصة (الشحنات، سجل العناوين، المحفظة، الإحصائيات). مع دمج خرائط PMTiles محلياً لتقليل استهلاك الإنترنت وتسريع التصفح بسلاسة 60fps.",
-      impactEn:
-          "Live on App Store & Google Play with thousands of successfully created on-demand parcels and seamless checkout.",
-      impactAr:
-          "منشور على المتجرين بخدمة آلاف الشحنات الناجحة وتجربة مستخدم سهلة وسريعة لطلب التوصيل.",
+      architectureEn: "Modular GetX architecture layered with domain-separated controllers (Shipments, AddressBook, Wallet, Analytics). Integrates local vector map PMTiles caching to eliminate external tile server load and ensure smooth 60fps rendering.",
+      architectureAr: "معمارية GetX نمطية مقسمة إلى وحدات تحكم مخصصة (الشحنات، سجل العناوين، المحفظة، الإحصائيات). مع دمج خرائط PMTiles محلياً لتقليل استهلاك الإنترنت وتسريع التصفح بسلاسة 60fps.",
+      impactEn: "Live on App Store & Google Play with thousands of successfully created on-demand parcels and seamless checkout.",
+      impactAr: "منشور على المتجرين بخدمة آلاف الشحنات الناجحة وتجربة مستخدم سهلة وسريعة لطلب التوصيل.",
     ),
     // 3. Neuss Time Tracker (Live Apple App Store)
     ProjectModel(
@@ -380,10 +361,8 @@ class PortfolioData {
           "Employee Work Hour Logger & Vacation Workflow on Apple App Store",
       subtitleAr:
           "نظام تسجيل ساعات العمل والإجازات للموظفين معتمد على متجر App Store",
-      descriptionEn:
-          "A dedicated enterprise employee productivity and attendance tracking application engineered with Flutter, GetX, and published on Apple App Store. Empowers remote and in-office employees to clock in/out with high-precision live StopWatch timers, track active work sessions and office presence, review historical work logs across an interactive horizontal date timeline, and manage comprehensive leave requests (Annual Vacations, Short Hourly Leaves) with automated balance tracking (e.g. 24 allowed / remaining days) and manager status audits.",
-      descriptionAr:
-          "تطبيق مؤسسي متقدم لإدارة حضور وإنتاجية الموظفين وتتبع ساعات العمل مبني بـ Flutter و GetX ومنشور رسمياً على متجر Apple App Store. يتيح للموظفين في المكاتب أو عن بُعد تسجيل الحضور والانصراف بعداد جلسات زمني عالي الدقة (StopWatchTimer)، وتتبع فترات العمل، واستعراض الأرشيف وسجلات العمل اليومية عبر شريط تقويم تفاعلي، وإرسال طلبات الإجازات السنوية والمغادرات الساعية مع احتساب الأرصدة المتبقية (مثل 24 يوم متاح/متبقي) ومتابعة الاعتماد.",
+      descriptionEn: "A dedicated enterprise employee productivity and attendance tracking application engineered with Flutter, GetX, and published on Apple App Store. Empowers remote and in-office employees to clock in/out with high-precision live StopWatch timers, track active work sessions and office presence, review historical work logs across an interactive horizontal date timeline, and manage comprehensive leave requests (Annual Vacations, Short Hourly Leaves) with automated balance tracking (e.g. 24 allowed / remaining days) and manager status audits.",
+      descriptionAr: "تطبيق مؤسسي متقدم لإدارة حضور وإنتاجية الموظفين وتتبع ساعات العمل مبني بـ Flutter و GetX ومنشور رسمياً على متجر Apple App Store. يتيح للموظفين في المكاتب أو عن بُعد تسجيل الحضور والانصراف بعداد جلسات زمني عالي الدقة (StopWatchTimer)، وتتبع فترات العمل، واستعراض الأرشيف وسجلات العمل اليومية عبر شريط تقويم تفاعلي، وإرسال طلبات الإجازات السنوية والمغادرات الساعية مع احتساب الأرصدة المتبقية (مثل 24 يوم متاح/متبقي) ومتابعة الاعتماد.",
       featuresEn: [
         "High-accuracy live session StopWatch timer with office presence badges and pause/resume session controls",
         "Interactive horizontal date timeline (EasyDateTimeline) for querying daily shift durations and break histories",
@@ -417,21 +396,17 @@ class PortfolioData {
       imagePath: "assets/projects/time_tracker.png",
       galleryImages: [
         "assets/projects/time_tracker.png",
-        "assets/projects/time_tracker_1.jpg",
-        "assets/projects/time_tracker_2.jpg",
-        "assets/projects/time_tracker_3.jpg",
-        "assets/projects/time_tracker_4.jpg",
-        "assets/projects/time_tracker_5.jpg",
+        "assets/projects/engeez_cust_1.jpg",
+        "assets/projects/engeez_cust_2.jpg",
+        "assets/projects/engeez_cust_3.jpg",
+        "assets/projects/engeez_cust_4.jpg",
+        "assets/projects/engeez_cust_5.jpg",
       ],
       githubUrl: "https://github.com/omarragab2020",
-      architectureEn:
-          "Modular GetX Clean Architecture with dedicated vacation controllers, StopWatch background service managers, resilient HTTP Dio layers, and reactive local storage caches.",
-      architectureAr:
-          "معمارية Clean Architecture نمطية مع GetX تفصل متحكمات الإجازات وخدمات العداد الزمني والاتصال الشبكي مع التخزين المحلي التفاعلي.",
-      impactEn:
-          "Published on Apple App Store; reduced payroll timesheet processing overhead by 80% and eliminated human calculation errors.",
-      impactAr:
-          "منشور على Apple App Store؛ قلل من وقت معالجة مسيرات الرواتب وساعات العمل بنسبة 80% وقضى تماماً على أخطاء التسجيل اليدوي.",
+      architectureEn: "Modular GetX Clean Architecture with dedicated vacation controllers, StopWatch background service managers, resilient HTTP Dio layers, and reactive local storage caches.",
+      architectureAr: "معمارية Clean Architecture نمطية مع GetX تفصل متحكمات الإجازات وخدمات العداد الزمني والاتصال الشبكي مع التخزين المحلي التفاعلي.",
+      impactEn: "Published on Apple App Store; reduced payroll timesheet processing overhead by 80% and eliminated human calculation errors.",
+      impactAr: "منشور على Apple App Store؛ قلل من وقت معالجة مسيرات الرواتب وساعات العمل بنسبة 80% وقضى تماماً على أخطاء التسجيل اليدوي.",
     ),
     // 4. Manhaj Quran (Live Google Play Store)
     ProjectModel(
@@ -440,14 +415,10 @@ class PortfolioData {
           "https://play.google.com/store/apps/details?id=com.omar.qurankareem2",
       titleEn: "Manhaj - Al-Mus-haf Al-Mugawwad & Islamic SuperApp",
       titleAr: "تطبيق منهج (المصحف المجود والمنهج الإسلامي الشامل)",
-      subtitleEn:
-          "Full Quran SuperApp with Tajweed, Tafseer, GPS Salah Alarms, Audio & 40 Hadith",
-      subtitleAr:
-          "تطبيق إسلامي فائق يشمل المصحف المجود، التلاوات الصوتية، الأربعين النووية، ومواقيت الصلاة الفلكية",
-      descriptionEn:
-          "A comprehensive, production-grade Islamic SuperApp published on Google Play. Features color-coded Tajweed Mushaf with high-fidelity vector fonts (HafsSmart, me_quran), full-text Quranic search engine with live highlight matching, complete 40 Nawawiyya Hadith encyclopedia with offline commentaries, smart digital Sebha with custom haptic vibration feedback, background audio streaming from 20+ world-renowned reciters (just_audio & AudioService) with lock-screen media controls, and astronomical GPS prayer calculation with persistent background Athan alarms (Adhan, AndroidAlarmManager, AwesomeNotifications).",
-      descriptionAr:
-          "موسوعة إسلامية فائقة متكاملة منشورة على متجر Google Play. تضم المصحف المجود الملون بخطوط عثمانية عالية الدقة (HafsSmart و me_quran)، ومحرك بحث قرآني فوري مع تمييز الكلمات المطابقة، وموسوعة الأربعين النووية كاملة بالشرح والفوائد أوفلاين، وسبحة ذكية بتغذية اهتزازية تفاعلية، ومشغل تلاوات صوتية في الخلفية مع التحكم من شاشة القفل، ومواقيت صلاة فلكية دقيقة عبر GPS مع تنبيهات الأذان عبر AlarmManager.",
+      subtitleEn: "Full Quran SuperApp with Tajweed, Tafseer, GPS Salah Alarms, Audio & 40 Hadith",
+      subtitleAr: "تطبيق إسلامي فائق يشمل المصحف المجود، التلاوات الصوتية، الأربعين النووية، ومواقيت الصلاة الفلكية",
+      descriptionEn: "A comprehensive, production-grade Islamic SuperApp published on Google Play. Features color-coded Tajweed Mushaf with high-fidelity vector fonts (HafsSmart, me_quran), full-text Quranic search engine with live highlight matching, complete 40 Nawawiyya Hadith encyclopedia with offline commentaries, smart digital Sebha with custom haptic vibration feedback, background audio streaming from 20+ world-renowned reciters (just_audio & AudioService) with lock-screen media controls, and astronomical GPS prayer calculation with persistent background Athan alarms (Adhan, AndroidAlarmManager, AwesomeNotifications).",
+      descriptionAr: "موسوعة إسلامية فائقة متكاملة منشورة على متجر Google Play. تضم المصحف المجود الملون بخطوط عثمانية عالية الدقة (HafsSmart و me_quran)، ومحرك بحث قرآني فوري مع تمييز الكلمات المطابقة، وموسوعة الأربعين النووية كاملة بالشرح والفوائد أوفلاين، وسبحة ذكية بتغذية اهتزازية تفاعلية، ومشغل تلاوات صوتية في الخلفية مع التحكم من شاشة القفل، ومواقيت صلاة فلكية دقيقة عبر GPS مع تنبيهات الأذان عبر AlarmManager.",
       featuresEn: [
         "Color-coded Tajweed Mushaf with verse bookmarking, ayah action bottom sheets, and multi-tafseer engines",
         "High-performance background Quran audio streaming & caching with lock-screen playback controls (just_audio & AudioService)",
@@ -487,21 +458,17 @@ class PortfolioData {
       imagePath: "assets/projects/quran_manhaj.png",
       galleryImages: [
         "assets/projects/quran_manhaj.png",
-        "assets/projects/quran_screen_1.jpg",
-        "assets/projects/quran_screen_2.jpg",
-        "assets/projects/quran_screen_3.jpg",
-        "assets/projects/quran_screen_4.jpg",
-        "assets/projects/quran_screen_5.jpg",
+        "assets/projects/tawfeer_screen_5.jpg",
+        "assets/projects/tawfeer_screen_4.jpg",
+        "assets/projects/tawfeer_screen_3.jpg",
+        "assets/projects/tawfeer_screen_2.jpg",
+        "assets/projects/tawfeer_screen_1.jpg",
       ],
       githubUrl: "https://github.com/omarragab2020",
-      architectureEn:
-          "Modular GetX Clean Architecture with separated domain controllers (Prayer, Audio, QuranSearch, Sebha, Hadith, Khatmah), robust battery-optimization bypass handlers, and reliable background Alarm services.",
-      architectureAr:
-          "معمارية Clean Architecture نمطية مع GetX تفصل متحكمات الصلاة والصوت والبحث والسبحة والأحاديث، مع معالجات لتجاوز قيود توفير الطاقة لضمان تشغيل الأذان في الخلفية.",
-      impactEn:
-          "Published on Google Play Store with thousands of active daily users, 100% offline core features availability, and 5-star user ratings.",
-      impactAr:
-          "منشور على متجر Google Play بآلاف المستخدمين النشطين يومياً، مع عمل كافة الوظائف الأساسية بدون إنترنت بنسبة 100% وتقييمات عالية.",
+      architectureEn: "Modular GetX Clean Architecture with separated domain controllers (Prayer, Audio, QuranSearch, Sebha, Hadith, Khatmah), robust battery-optimization bypass handlers, and reliable background Alarm services.",
+      architectureAr: "معمارية Clean Architecture نمطية مع GetX تفصل متحكمات الصلاة والصوت والبحث والسبحة والأحاديث، مع معالجات لتجاوز قيود توفير الطاقة لضمان تشغيل الأذان في الخلفية.",
+      impactEn: "Published on Google Play Store with thousands of active daily users, 100% offline core features availability, and 5-star user ratings.",
+      impactAr: "منشور على متجر Google Play بآلاف المستخدمين النشطين يومياً، مع عمل كافة الوظائف الأساسية بدون إنترنت بنسبة 100% وتقييمات عالية.",
     ),
     // 5. Scholar Platform (Live Google Play & Web)
     ProjectModel(
@@ -510,15 +477,12 @@ class PortfolioData {
           "https://play.google.com/store/apps/details?id=com.omar.scholar_edu",
       liveUrl: "https://scholaredu-a0f69.web.app",
       titleEn: "Scholar Platform - Enterprise EdTech Monorepo Ecosystem",
-      titleAr: "منصة سكولار التعليمية (Scholar Platform) - منظومة EdTech متكاملة",
-      subtitleEn:
-          "Multi-Platform EdTech Suite (Student App, Parent App & Web Admin Dashboard)",
-      subtitleAr:
-          "منظومة تعليمية ثلاثية (تطبيق الطالب، تطبيق ولي الأمر، ولوحة تحكم الويب للمدرسين)",
-      descriptionEn:
-          "A production-grade, enterprise EdTech ecosystem engineered with Flutter & Melos Monorepo. Features a multi-tiered architecture comprising a Student Mobile App, a dedicated Parent oversight flavor, and a high-performance Web Admin & Teacher Dashboard. Powered by Supabase Real-time PostgreSQL, Edge Functions with PostgreSQL RPCs, DRM-protected Bunny.net CDN signed video streaming, automated timed competitive examination engines, Question Banks (QBank), multi-tier subscription models (per-lesson, monthly, and full-term), and dynamic public teacher profiles with QR deep linking.",
-      descriptionAr:
-          "منظومة تعليمية متكاملة للتعليم الإلكتروني مبنية بهيكلية Melos Monorepo لتوحيد الأكواد بين تطبيق الطلاب (Android & iOS)، وتطبيق أولياء الأمور، ولوحة تحكم الويب للمدرسين والإدارة. تعتمد على Supabase Real-time و Edge Functions، مع بث فيديو مشفر عبر Bunny.net CDN بروابط موقعة أمنياً، ومحرك اختبارات موقوتة وبنوك أسئلة ذكية، ونظام اشتراكات متعدد (بالدرس، بالشهر، وبالترم)، وبطاقات رقمية للمدرسين مع مشاركة الروابط برمز QR.",
+      titleAr:
+          "منصة سكولار التعليمية (Scholar Platform) - منظومة EdTech متكاملة",
+      subtitleEn: "Multi-Platform EdTech Suite (Student App, Parent App & Web Admin Dashboard)",
+      subtitleAr: "منظومة تعليمية ثلاثية (تطبيق الطالب، تطبيق ولي الأمر، ولوحة تحكم الويب للمدرسين)",
+      descriptionEn: "A production-grade, enterprise EdTech ecosystem engineered with Flutter & Melos Monorepo. Features a multi-tiered architecture comprising a Student Mobile App, a dedicated Parent oversight flavor, and a high-performance Web Admin & Teacher Dashboard. Powered by Supabase Real-time PostgreSQL, Edge Functions with PostgreSQL RPCs, DRM-protected Bunny.net CDN signed video streaming, automated timed competitive examination engines, Question Banks (QBank), multi-tier subscription models (per-lesson, monthly, and full-term), and dynamic public teacher profiles with QR deep linking.",
+      descriptionAr: "منظومة تعليمية متكاملة للتعليم الإلكتروني مبنية بهيكلية Melos Monorepo لتوحيد الأكواد بين تطبيق الطلاب (Android & iOS)، وتطبيق أولياء الأمور، ولوحة تحكم الويب للمدرسين والإدارة. تعتمد على Supabase Real-time و Edge Functions، مع بث فيديو مشفر عبر Bunny.net CDN بروابط موقعة أمنياً، ومحرك اختبارات موقوتة وبنوك أسئلة ذكية، ونظام اشتراكات متعدد (بالدرس، بالشهر، وبالترم)، وبطاقات رقمية للمدرسين مع مشاركة الروابط برمز QR.",
       featuresEn: [
         "Multi-tier subscription engine supporting flexible enrollments (Per-Lesson, Monthly, Full-Term) with automated code redemption",
         "DRM-protected video lecture streaming via Bunny.net CDN with signed security tokens & watermarked player",
@@ -552,35 +516,27 @@ class PortfolioData {
       imagePath: "assets/projects/scholar_edu.png",
       galleryImages: [
         "assets/projects/scholar_edu.png",
-        "assets/projects/scholar_screen_1.jpg",
-        "assets/projects/scholar_screen_2.jpg",
-        "assets/projects/scholar_screen_3.jpg",
-        "assets/projects/scholar_screen_4.jpg",
-        "assets/projects/scholar_screen_5.jpg",
+        "assets/projects/1.jpg",
+        "assets/projects/2.jpg",
+        "assets/projects/3.jpg",
+        "assets/projects/4.jpg",
+        "assets/projects/5.jpg",
       ],
       githubUrl: "https://github.com/omarragab2020",
-      architectureEn:
-          "Engineered as a Melos Monorepo splitting shared business logic (scholar_core), mobile client (scholar_edu), and web management (scholar_dashboard). Implements Clean Architecture with domain mixin decorators, BaseSupaBaseRepository query DSL, chunked response mappers, and secure Edge Functions for token minting.",
-      architectureAr:
-          "معمارية Monorepo عبر Melos تفصل منطق الأعمال والنماذج المشتركة (scholar_core) عن تطبيق الموبايل (scholar_edu) ولوحة تحكم الويب (scholar_dashboard). تطبق معمارية Clean Architecture مع طبقة مستودعات QueryBuilder DSL ومعالجة البيانات بالحزم لتسريع الأداء.",
-      impactEn:
-          "Live on Google Play & Web; powering active students and teachers with 99.9% video stream uptime, robust anti-piracy protection, and instant exam evaluations.",
-      impactAr:
-          "منشور على متجر Google Play والويب؛ يخدم آلاف الطلاب والمدرسين بنسبة استقرار 99.9% لبث المحاضرات، وحماية تامة للمحتوى من القرصنة، مع تصحيح فوري للامتحانات.",
+      architectureEn: "Engineered as a Melos Monorepo splitting shared business logic (scholar_core), mobile client (scholar_edu), and web management (scholar_dashboard). Implements Clean Architecture with domain mixin decorators, BaseSupaBaseRepository query DSL, chunked response mappers, and secure Edge Functions for token minting.",
+      architectureAr: "معمارية Monorepo عبر Melos تفصل منطق الأعمال والنماذج المشتركة (scholar_core) عن تطبيق الموبايل (scholar_edu) ولوحة تحكم الويب (scholar_dashboard). تطبق معمارية Clean Architecture مع طبقة مستودعات QueryBuilder DSL ومعالجة البيانات بالحزم لتسريع الأداء.",
+      impactEn: "Live on Google Play & Web; powering active students and teachers with 99.9% video stream uptime, robust anti-piracy protection, and instant exam evaluations.",
+      impactAr: "منشور على متجر Google Play والويب؛ يخدم آلاف الطلاب والمدرسين بنسبة استقرار 99.9% لبث المحاضرات، وحماية تامة للمحتوى من القرصنة، مع تصحيح فوري للامتحانات.",
     ),
     // 6. Tawfeer 360 / Entertainer
     ProjectModel(
       id: "tawfeer_360",
       titleEn: "Tawfeer 360 (Entertainer) - Deals, Vouchers & RBAC SuperApp",
       titleAr: "تطبيق توفير 360 (Tawfeer / Entertainer) - منصة العروض والكوبونات ولوحة الإدارة",
-      subtitleEn:
-          "Multi-Role Deals Ecosystem (SuperAdmin Dashboard, Merchant Provider & Customer App)",
-      subtitleAr:
-          "منظومة متكاملة للعروض والخصومات (لوحة تحكم السوبر أدمن، بوابة التاجر، وتطبيق العملاء)",
-      descriptionEn:
-          "A full-scale, multi-role deals and voucher ecosystem built with Flutter, GetX, and Firebase. Tailored for scalable enterprise promotional operations, featuring a 3-tier Role-Based Access Control (RBAC) architecture: SuperAdmin (controlling admin shifts/schedules, voucher issuance, offer approvals, category/banner sections, and user provisioning), Merchant Provider (creating discount campaigns, branch geolocation, and validating redemptions via built-in high-speed camera scanner), and Customer (browsing curated categories from dining to hospitality, interactive dual-map branch discovery with cluster markers, story feeds, and streamlined voucher purchasing with multipart receipt verification).",
-      descriptionAr:
-          "منظومة عروض وقسائم خصومات شاملة متعددة الصلاحيات (RBAC) مبنية بـ Flutter و GetX و Firebase. تنقسم إلى 3 أطراف متكاملة: لوحة تحكم السوبر أدمن (SuperAdmin) لإدارة ورديات العمل، واعتماد عروض المتاجر، والتحكم في الكوبونات والأقسام والبانرات، وبوابة التاجر (Merchant/Provider) لإدارة الفروع ومسح أكواد القسائم بالكاميرا والتحقق من صحتها لحظياً، وتطبيق العملاء (Customer) لاستكشاف العروض وتصفح الفروع على الخرائط التفاعلية مع دعم القصص الترويجية (Stories) وشراء الكوبونات برفع إيصالات الدفع.",
+      subtitleEn: "Multi-Role Deals Ecosystem (SuperAdmin Dashboard, Merchant Provider & Customer App)",
+      subtitleAr: "منظومة متكاملة للعروض والخصومات (لوحة تحكم السوبر أدمن، بوابة التاجر، وتطبيق العملاء)",
+      descriptionEn: "A full-scale, multi-role deals and voucher ecosystem built with Flutter, GetX, and Firebase. Tailored for scalable enterprise promotional operations, featuring a 3-tier Role-Based Access Control (RBAC) architecture: SuperAdmin (controlling admin shifts/schedules, voucher issuance, offer approvals, category/banner sections, and user provisioning), Merchant Provider (creating discount campaigns, branch geolocation, and validating redemptions via built-in high-speed camera scanner), and Customer (browsing curated categories from dining to hospitality, interactive dual-map branch discovery with cluster markers, story feeds, and streamlined voucher purchasing with multipart receipt verification).",
+      descriptionAr: "منظومة عروض وقسائم خصومات شاملة متعددة الصلاحيات (RBAC) مبنية بـ Flutter و GetX و Firebase. تنقسم إلى 3 أطراف متكاملة: لوحة تحكم السوبر أدمن (SuperAdmin) لإدارة ورديات العمل، واعتماد عروض المتاجر، والتحكم في الكوبونات والأقسام والبانرات، وبوابة التاجر (Merchant/Provider) لإدارة الفروع ومسح أكواد القسائم بالكاميرا والتحقق من صحتها لحظياً، وتطبيق العملاء (Customer) لاستكشاف العروض وتصفح الفروع على الخرائط التفاعلية مع دعم القصص الترويجية (Stories) وشراء الكوبونات برفع إيصالات الدفع.",
       featuresEn: [
         "Comprehensive SuperAdmin mobile control center: manage admin schedules & work hours, offer review pipeline, and banner sliders",
         "Role-Based Access Control (RBAC) user manager: instantly provision and monitor SuperAdmin, Provider, and Customer accounts with status toggling (Active/Pending)",
@@ -620,21 +576,16 @@ class PortfolioData {
       imagePath: "assets/projects/tawfeer_360.jpg",
       galleryImages: [
         "assets/projects/tawfeer_360.jpg",
-        "assets/projects/tawfeer_screen_1.jpg",
-        "assets/projects/tawfeer_screen_2.jpg",
-        "assets/projects/tawfeer_screen_3.jpg",
-        "assets/projects/tawfeer_screen_4.jpg",
-        "assets/projects/tawfeer_screen_5.jpg",
+        "assets/projects/time_tracker_1.jpg",
+        "assets/projects/time_tracker_2.jpg",
+        "assets/projects/time_tracker_3.jpg",
+        "assets/projects/time_tracker_4.jpg",
       ],
       githubUrl: "https://github.com/omarragab2020",
-      architectureEn:
-          "Domain-driven GetX architecture segregating views and controllers into modular boundaries (SuperAdmin, Provider, Customer, OsmMaps, Vouchers). Uses reactive Service Locators, role-based route middleware guards, and robust multipart HTTP repository clients with resilient offline token caching.",
-      architectureAr:
-          "معمارية GetX نمطية قائمة على عزل النطاقات (Domain-Driven) تفصل وحدات SuperAdmin و Provider و Customer و الخرائط والكوبونات. مع تطبيق حماية التوجيه حسب الصلاحيات (Route Guards) وعميل رفع ملفات Multipart عالي الاعتمادية.",
-      impactEn:
-          "Streamlined promotional operations for merchants and eliminated voucher fraud with instant camera QR verification across hundreds of retail outlets.",
-      impactAr:
-          "سهّل إدارة العروض الترويجية للتجار وقضى تماماً على محاولات تزوير الكوبونات عبر التحقق الفوري برمز الـ QR لدى مئات المنافذ والمطاعم.",
+      architectureEn: "Domain-driven GetX architecture segregating views and controllers into modular boundaries (SuperAdmin, Provider, Customer, OsmMaps, Vouchers). Uses reactive Service Locators, role-based route middleware guards, and robust multipart HTTP repository clients with resilient offline token caching.",
+      architectureAr: "معمارية GetX نمطية قائمة على عزل النطاقات (Domain-Driven) تفصل وحدات SuperAdmin و Provider و Customer و الخرائط والكوبونات. مع تطبيق حماية التوجيه حسب الصلاحيات (Route Guards) وعميل رفع ملفات Multipart عالي الاعتمادية.",
+      impactEn: "Streamlined promotional operations for merchants and eliminated voucher fraud with instant camera QR verification across hundreds of retail outlets.",
+      impactAr: "سهّل إدارة العروض الترويجية للتجار وقضى تماماً على محاولات تزوير الكوبونات عبر التحقق الفوري برمز الـ QR لدى مئات المنافذ والمطاعم.",
     ),
     // 8. Nuess Shop
     ProjectModel(
