@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="/omar_ragab_portfolio/">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Omar Ragab - Flutter Developer Portfolio | Mobile App Engineer">
+  <meta name="theme-color" content="#0B0F19">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Omar Ragab">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png?v=4">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png?v=4"/>
+  <link rel="shortcut icon" type="image/png" href="favicon.png?v=4"/>
+
+  <!-- Critical resource preloads for instant startup -->
+  <link rel="preload" href="flutter_bootstrap.js" as="script" crossorigin>
+  <link rel="preload" href="main.dart.js" as="script" crossorigin>
+
+  <!-- Preconnect for Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+  <title>Omar Ragab | Flutter Developer</title>
+  <link rel="manifest" href="manifest.json">
+
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      background-color: #0B0F19;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+    #loading-screen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: #0B0F19;
+      z-index: 999999;
+      transition: opacity 0.35s ease-out;
+      gap: 20px;
+    }
+    .loader-avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      border: 2.5px solid #00F0FF;
+      box-shadow: 0 0 22px rgba(0,240,255,0.35);
+      object-fit: cover;
+      animation: avatarPulse 1.6s ease-in-out infinite alternate;
+    }
+    .loader-name {
+      color: #ffffff;
+      font-size: 15px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      letter-spacing: 0.08em;
+      font-weight: 500;
+      opacity: 0.75;
+    }
+    .progress-track {
+      width: 140px;
+      height: 3px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #00F0FF, #7B5CFA);
+      border-radius: 99px;
+      animation: progressFill 2.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    @keyframes avatarPulse {
+      from { transform: scale(0.95); box-shadow: 0 0 12px rgba(0,240,255,0.25); }
+      to   { transform: scale(1.05); box-shadow: 0 0 28px rgba(0,240,255,0.55); }
+    }
+    @keyframes progressFill {
+      0%   { width: 0%; }
+      40%  { width: 55%; }
+      75%  { width: 80%; }
+      95%  { width: 92%; }
+      100% { width: 92%; }
+    }
+  </style>
+</head>
+<body>
+  <div id="loading-screen">
+    <img class="loader-avatar" src="favicon.png?v=4" alt="Omar Ragab">
+    <div class="progress-track">
+      <div class="progress-bar" id="progress-bar"></div>
+    </div>
+    <span class="loader-name">Omar Ragab</span>
+  </div>
+
+  <script src="flutter_bootstrap.js" async></script>
+  <script>
+    window.addEventListener('flutter-first-frame', function () {
+      var screen = document.getElementById('loading-screen');
+      var bar = document.getElementById('progress-bar');
+      if (bar) bar.style.width = '100%';
+      if (screen) {
+        screen.style.opacity = '0';
+        setTimeout(function() {
+          if (screen.parentNode) screen.parentNode.removeChild(screen);
+        }, 350);
+      }
+    });
+  </script>
+</body>
+</html>
